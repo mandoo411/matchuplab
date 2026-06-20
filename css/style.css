@@ -21,6 +21,7 @@
   --radius-sm: 8px;
   --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
   --transition: 0.2s ease;
+  --scroll-offset: 148px;
 }
 
 /* --- 리셋 & 기본 --- */
@@ -75,6 +76,7 @@ button {
 
 .section {
   padding: 48px 0;
+  scroll-margin-top: var(--scroll-offset);
 }
 
 .section-title {
@@ -90,13 +92,23 @@ button {
 }
 
 /* ============================================
+   Sticky 헤더 (GNB + 종목/리그 탭)
+   ============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--bg-nav);
+  box-shadow: var(--shadow);
+}
+
+/* ============================================
    1. GNB (글로벌 네비게이션)
    ============================================ */
 .gnb {
   background-color: var(--bg-nav);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  position: relative;
+  z-index: 2;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -124,6 +136,17 @@ button {
 .logo-lab {
   font-weight: 300;
   letter-spacing: 0.15em;
+}
+
+/* GNB 우측: 햄버거 + 네비게이션 */
+.gnb-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.gnb-nav {
+  position: static;
 }
 
 .gnb-menu {
@@ -165,9 +188,11 @@ button {
   top: 56px;
   left: 0;
   right: 0;
+  z-index: 101;
   background: var(--bg-nav);
   padding: 12px 16px 16px;
   border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
 }
 
 /* ============================================
@@ -671,6 +696,10 @@ button {
    반응형: 태블릿 (768px+)
    ============================================ */
 @media (min-width: 768px) {
+  :root {
+    --scroll-offset: 132px;
+  }
+
   .gnb-toggle {
     display: none;
   }
@@ -685,6 +714,7 @@ button {
     padding: 0;
     border: none;
     background: transparent;
+    box-shadow: none;
   }
 
   .hero-headline {

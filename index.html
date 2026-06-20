@@ -18,40 +18,41 @@
 <body>
 
   <!-- ============================================
-       1. GNB (글로벌 네비게이션)
+       1. GNB + 2. 종목/리그 탭 (sticky 고정 영역)
        ============================================ -->
-  <header class="gnb">
-    <div class="gnb-inner">
-      <a href="#" class="logo">
-        <span class="logo-matchup">MatchUp</span><span class="logo-lab"> LAB</span>
-      </a>
-      <button class="gnb-toggle" id="gnb-toggle" aria-label="메뉴 열기">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav>
-        <ul class="gnb-menu" id="gnb-menu">
-          <li><a href="#">홈</a></li>
-          <li><a href="#livescore">라이브스코어</a></li>
-          <li><a href="#ai-analysis">AI분석</a></li>
-          <li><a href="#matches">경기일정</a></li>
-          <li><a href="#">리그순위</a></li>
-          <li><a href="#">마이페이지</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div class="site-header">
+    <header class="gnb">
+      <div class="gnb-inner">
+        <a href="#" class="logo">
+          <span class="logo-matchup">MatchUp</span><span class="logo-lab"> LAB</span>
+        </a>
+        <div class="gnb-actions">
+          <button class="gnb-toggle" id="gnb-toggle" aria-label="메뉴 열기">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav class="gnb-nav">
+            <ul class="gnb-menu" id="gnb-menu">
+              <li><a href="#">홈</a></li>
+              <li><a href="#livescore">라이브스코어</a></li>
+              <li><a href="#ai-analysis">AI분석</a></li>
+              <li><a href="#matches">경기일정</a></li>
+              <li><a href="#">리그순위</a></li>
+              <li><a href="#">마이페이지</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
 
-  <!-- ============================================
-       2. 종목 탭 & 리그 서브탭
-       ============================================ -->
-  <div class="sport-tabs-wrap">
-    <div class="sport-tabs" id="sport-tabs" role="tablist" aria-label="종목 선택">
-      <!-- JS 렌더링 -->
-    </div>
-    <div class="league-subtabs" id="league-subtabs" role="tablist" aria-label="리그 선택">
-      <!-- JS 렌더링 -->
+    <div class="sport-tabs-wrap">
+      <div class="sport-tabs" id="sport-tabs" role="tablist" aria-label="종목 선택">
+        <!-- JS 렌더링 -->
+      </div>
+      <div class="league-subtabs" id="league-subtabs" role="tablist" aria-label="리그 선택">
+        <!-- JS 렌더링 -->
+      </div>
     </div>
   </div>
 
