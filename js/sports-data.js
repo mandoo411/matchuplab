@@ -177,7 +177,7 @@ const SPORTS_DATA = {
     leagues: {
       kbl: {
         id: 'kbl',
-        name: 'KBL · WKBL',
+        name: 'KBL',
         matches: [
           {
             id: 'bk-kbl1',
@@ -190,6 +190,24 @@ const SPORTS_DATA = {
             confidence: 76,
             conclusion: 'SK 홈 연승 중, DB 원정 약세',
             reason: 'SK 홈 10연승. DB 원정 5승 8패. SK eFG% 54.2% vs DB 48.1%. DB는 센터 부상으로 리바운드 열세 예상.',
+          },
+        ],
+      },
+      wkbl: {
+        id: 'wkbl',
+        name: 'WKBL',
+        matches: [
+          {
+            id: 'bk-wkbl1',
+            teamA: '청주 KB스타즈',
+            teamB: '부천 하나원큐',
+            time: '19:00',
+            probWin: 54,
+            probDraw: 0,
+            probLoss: 46,
+            confidence: 71,
+            conclusion: 'KB스타즈 홈 강세, 하나원큐 원정 득점력 저조',
+            reason: 'KB스타즈 홈 8승 2패. 하나원큐 원정 3승 7패. KB스타즈 3점슛 성공률 36.8%로 리그 1위. 하나원큐는 원정 평균 득점 58.2점으로 하위권.',
           },
         ],
       },
