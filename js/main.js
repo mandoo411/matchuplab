@@ -1,103 +1,13 @@
 /**
- * MatchUp LAB - 메인 인터랙션 로직
- * 종목/리그 탭 전환, 경기 카드 렌더링, 분석 근거 블러 처리
+ * MatchUp LAB - 메인(index) 페이지 전용 로직
  */
 
 (function () {
   'use strict';
 
-  // 현재 선택 상태
-  let currentSport = 'football';
-  let currentLeague = 'kLeague';
-
-  // DOM 참조
-  const sportTabsEl = document.getElementById('sport-tabs');
-  const leagueSubtabsEl = document.getElementById('league-subtabs');
   const matchesGridEl = document.getElementById('matches-grid');
   const transparencyTableBody = document.getElementById('transparency-tbody');
-  const gnbToggle = document.getElementById('gnb-toggle');
-  const gnbMenu = document.getElementById('gnb-menu');
 
-  /**
-   * GNB 모바일 메뉴 토글
-   */
-  function initGnb() {
-    if (!gnbToggle || !gnbMenu) return;
-
-    gnbToggle.addEventListener('click', () => {
-      gnbMenu.classList.toggle('open');
-    });
-
-    gnbMenu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        gnbMenu.classList.remove('open');
-      });
-    });
-  }
-
-  /**
-   * 종목 탭 렌더링
-   */
-  function renderSportTabs() {
-    if (!sportTabsEl) return;
-
-    sportTabsEl.innerHTML = SPORT_TABS.map(
-      (tab) =>
-        `<button class="sport-tab${tab.id === currentSport ? ' active' : ''}" data-sport="${tab.id}">${tab.label}</button>`
-    ).join('');
-
-    sportTabsEl.querySelectorAll('.sport-tab').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const sportId = btn.dataset.sport;
-        selectSport(sportId);
-      });
-    });
-  }
-
-  /**
-   * 종목 선택 → 리그 서브탭 갱신
-   */
-  function selectSport(sportId) {
-    currentSport = sportId;
-    const tabMeta = SPORT_TABS.find((t) => t.id === sportId);
-    currentLeague = tabMeta ? tabMeta.defaultLeague : Object.keys(SPORTS_DATA[sportId].leagues)[0];
-
-    renderSportTabs();
-    renderLeagueSubtabs();
-    renderMatches();
-  }
-
-  /**
-   * 리그 서브탭 렌더링
-   */
-  function renderLeagueSubtabs() {
-    if (!leagueSubtabsEl) return;
-
-    const sportData = SPORTS_DATA[currentSport];
-    const leagues = sportData.leagues;
-    const leagueKeys = Object.keys(leagues);
-
-    leagueSubtabsEl.classList.remove('hidden');
-
-    leagueSubtabsEl.innerHTML = leagueKeys
-      .map((key) => {
-        const league = leagues[key];
-        return `<button class="league-tab${key === currentLeague ? ' active' : ''}" data-league="${key}">${league.name}</button>`;
-      })
-      .join('');
-
-    leagueSubtabsEl.querySelectorAll('.league-tab').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        currentLeague = btn.dataset.league;
-        renderLeagueSubtabs();
-        renderMatches();
-      });
-    });
-  }
-
-  /**
-   * 확률 막대바 HTML 생성
-   */
   function buildProbBar(match, hasDraw) {
     if (hasDraw) {
       return `
@@ -128,9 +38,6 @@
       </div>`;
   }
 
-  /**
-   * 경기 카드 HTML 생성
-   */
   function buildMatchCard(match, leagueName, hasDraw) {
     return `
       <article class="match-card" data-match-id="${match.id}">
@@ -156,37 +63,9 @@
       </article>`;
   }
 
-  /**
-   * 오늘의 주요 경기 렌더링
-   */
-  function renderMatches() {
+  function bindReasonToggles() {
     if (!matchesGridEl) return;
 
-    const sportData = SPORTS_DATA[currentSport];
-    const league = sportData.leagues[currentLeague];
-    const hasDraw = sportData.hasDraw;
-
-    if (!league || league.matches.length === 0) {
-      matchesGridEl.innerHTML = `
-        <div class="empty-matches">
-          <p>해당 리그의 예정 경기가 없습니다.</p>
-          <p style="margin-top:8px;font-size:0.8125rem;">다른 리그 탭을 선택해 보세요.</p>
-        </div>`;
-      return;
-    }
-
-    matchesGridEl.innerHTML = league.matches
-      .map((match) => buildMatchCard(match, league.name, hasDraw))
-      .join('');
-
-    bindReasonToggles();
-  }
-
-  /**
-   * 분석 근거 토글 + 블러 처리
-   * 확률·신뢰도는 항상 공개, 근거 텍스트만 블러
-   */
-  function bindReasonToggles() {
     matchesGridEl.querySelectorAll('.reason-block').forEach((block) => {
       const toggle = block.querySelector('.reason-toggle');
       const content = block.querySelector('.reason-content');
@@ -200,9 +79,30 @@
     });
   }
 
-  /**
-   * 투명성 테이블 렌더링
-   */
+  function renderMatches() {
+    if (!matchesGridEl) return;
+
+    const { sport, league } = MatchUpTabs.getState();
+    const sportData = SPORTS_DATA[sport];
+    const leagueData = sportData.leagues[league];
+    const hasDraw = sportData.hasDraw;
+
+    if (!leagueData || leagueData.matches.length === 0) {
+      matchesGridEl.innerHTML = `
+        <div class="empty-matches">
+          <p>해당 리그의 예정 경기가 없습니다.</p>
+          <p style="margin-top:8px;font-size:0.8125rem;">다른 리그 탭을 선택해 보세요.</p>
+        </div>`;
+      return;
+    }
+
+    matchesGridEl.innerHTML = leagueData.matches
+      .map((match) => buildMatchCard(match, leagueData.name, hasDraw))
+      .join('');
+
+    bindReasonToggles();
+  }
+
   function renderTransparencyTable() {
     if (!transparencyTableBody) return;
 
@@ -221,14 +121,12 @@
     }).join('');
   }
 
-  /**
-   * 초기화
-   */
   function init() {
-    initGnb();
-    renderSportTabs();
-    renderLeagueSubtabs();
-    renderMatches();
+    MatchUpTabs.init({
+      onChange: () => {
+        renderMatches();
+      },
+    });
     renderTransparencyTable();
   }
 

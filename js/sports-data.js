@@ -300,3 +300,210 @@ const SPORT_TABS = [
   { id: 'volleyball', label: '🏐 배구', defaultLeague: 'vLeagueMen' },
   { id: 'basketball', label: '🏀 농구', defaultLeague: 'kbl' },
 ];
+
+// ============================================
+// 순위표 더미 생성 헬퍼
+// ============================================
+const FORM_PATTERNS = [
+  ['W', 'W', 'D', 'L', 'W'],
+  ['W', 'L', 'W', 'W', 'D'],
+  ['D', 'W', 'W', 'L', 'W'],
+  ['L', 'W', 'D', 'W', 'W'],
+  ['W', 'W', 'W', 'D', 'L'],
+  ['D', 'D', 'W', 'L', 'W'],
+  ['L', 'L', 'W', 'W', 'D'],
+  ['W', 'D', 'L', 'W', 'L'],
+];
+
+function buildFootballStandings(teamNames) {
+  return teamNames.map((name, i) => {
+    const win = Math.max(14 - i * 2, 3);
+    const draw = 3 + (i % 4);
+    const loss = Math.max(2 + i, 1);
+    const played = win + draw + loss;
+    return {
+      rank: i + 1,
+      name,
+      played,
+      win,
+      draw,
+      loss,
+      points: win * 3 + draw,
+      form: FORM_PATTERNS[i % FORM_PATTERNS.length],
+    };
+  });
+}
+
+function buildNoDrawStandings(teamNames) {
+  return teamNames.map((name, i) => {
+    const win = Math.max(18 - i * 2, 4);
+    const loss = Math.max(4 + i, 2);
+    const played = win + loss;
+    const winRate = ((win / played) * 100).toFixed(1);
+    const gamesBack = i === 0 ? '-' : String((i * 1.5).toFixed(1));
+    const form = FORM_PATTERNS[i % FORM_PATTERNS.length].filter((r) => r !== 'D');
+    return {
+      rank: i + 1,
+      name,
+      played,
+      win,
+      loss,
+      winRate,
+      gamesBack,
+      form,
+    };
+  });
+}
+
+// ============================================
+// 경기일정 더미 데이터 (dateOffset: 0=오늘 ~ 6)
+// ============================================
+const SCHEDULE_DATA = {
+  football: {
+    kLeague: [
+      { id: 'sch-fb-k1', dateOffset: 0, teamA: '울산 HD', teamB: '전북 현대', time: '19:30', confidence: 78 },
+      { id: 'sch-fb-k2', dateOffset: 2, teamA: '포항 스틸러스', teamB: 'FC서울', time: '19:00', confidence: 70 },
+      { id: 'sch-fb-k3', dateOffset: 4, teamA: '수원 FC', teamB: '대구 FC', time: '16:30', confidence: 65 },
+    ],
+    epl: [
+      { id: 'sch-fb-e1', dateOffset: 0, teamA: '아스널', teamB: '리버풀', time: '01:30', confidence: 72 },
+      { id: 'sch-fb-e2', dateOffset: 3, teamA: '맨체스터 시티', teamB: '맨체스터 유나이티드', time: '23:00', confidence: 75 },
+    ],
+    bundesliga: [
+      { id: 'sch-fb-b1', dateOffset: 1, teamA: '바이에른 뮌헨', teamB: '보루시아 도르트문트', time: '23:30', confidence: 81 },
+      { id: 'sch-fb-b2', dateOffset: 5, teamA: 'RB 라이프치히', teamB: '바이어 레버쿠젠', time: '22:30', confidence: 68 },
+    ],
+    ligue1: [
+      { id: 'sch-fb-l1', dateOffset: 2, teamA: '파리 생제르맹', teamB: '마르세유', time: '04:00', confidence: 77 },
+    ],
+    serieA: [
+      { id: 'sch-fb-s1', dateOffset: 3, teamA: '인터 밀란', teamB: '유벤투스', time: '03:45', confidence: 74 },
+    ],
+    laLiga: [
+      { id: 'sch-fb-ll1', dateOffset: 1, teamA: '레알 마드리드', teamB: 'FC바르셀로나', time: '04:00', confidence: 80 },
+    ],
+  },
+  baseball: {
+    kbo: [
+      { id: 'sch-bb-k1', dateOffset: 0, teamA: 'LG 트윈스', teamB: '두산 베어스', time: '18:30', confidence: 75 },
+      { id: 'sch-bb-k2', dateOffset: 1, teamA: 'KIA 타이거즈', teamB: 'SSG 랜더스', time: '18:30', confidence: 69 },
+      { id: 'sch-bb-k3', dateOffset: 3, teamA: 'NC 다이노스', teamB: '삼성 라이온즈', time: '18:30', confidence: 66 },
+    ],
+    mlb: [
+      { id: 'sch-bb-m1', dateOffset: 0, teamA: '뉴욕 양키스', teamB: '보스턴 레드삭스', time: '08:05', confidence: 68 },
+      { id: 'sch-bb-m2', dateOffset: 2, teamA: 'LA 다저스', teamB: '샌프란시스코 자이언츠', time: '11:10', confidence: 72 },
+    ],
+    npb: [
+      { id: 'sch-bb-n1', dateOffset: 4, teamA: '요미우리 자이언츠', teamB: '한신 타이거스', time: '18:00', confidence: 67 },
+    ],
+  },
+  volleyball: {
+    vLeagueMen: [
+      { id: 'sch-vb-m1', dateOffset: 0, teamA: '대한항공', teamB: '현대캐피탈', time: '19:00', confidence: 70 },
+      { id: 'sch-vb-m2', dateOffset: 2, teamA: '삼성화재', teamB: 'OK금융그룹', time: '19:00', confidence: 68 },
+    ],
+    vLeagueWomen: [
+      { id: 'sch-vb-w1', dateOffset: 0, teamA: '흥국생명', teamB: '현대건설', time: '19:00', confidence: 73 },
+      { id: 'sch-vb-w2', dateOffset: 3, teamA: 'GS칼텍스', teamB: 'IBK기업은행', time: '19:00', confidence: 71 },
+    ],
+  },
+  basketball: {
+    kbl: [
+      { id: 'sch-bk-k1', dateOffset: 0, teamA: '서울 SK', teamB: '원주 DB', time: '19:00', confidence: 76 },
+      { id: 'sch-bk-k2', dateOffset: 2, teamA: '고양 소노', teamB: '창원 LG', time: '19:00', confidence: 70 },
+    ],
+    wkbl: [
+      { id: 'sch-bk-w1', dateOffset: 0, teamA: '청주 KB스타즈', teamB: '부천 하나원큐', time: '19:00', confidence: 71 },
+      { id: 'sch-bk-w2', dateOffset: 4, teamA: '용인 삼성생명', teamB: '아산 우리은행', time: '16:00', confidence: 68 },
+    ],
+    nba: [
+      { id: 'sch-bk-n1', dateOffset: 0, teamA: '보스턴 셀틱스', teamB: '밀워키 벅스', time: '09:00', confidence: 74 },
+      { id: 'sch-bk-n2', dateOffset: 1, teamA: 'LA 레이커스', teamB: '골든스테이트 워리어스', time: '12:30', confidence: 73 },
+    ],
+  },
+};
+
+// ============================================
+// 리그순위 더미 데이터
+// ============================================
+const STANDINGS_DATA = {
+  football: {
+    kLeague: buildFootballStandings(['울산 HD', '전북 현대', '포항 스틸러스', 'FC서울', '수원 FC', '대구 FC', '강원 FC', '제주 유나이티드']),
+    epl: buildFootballStandings(['아스널', '리버풀', '맨체스터 시티', '맨체스터 유나이티드', '토트넘', '뉴캐슬', '첼시', '애스턴 빌라']),
+    bundesliga: buildFootballStandings(['바이에른 뮌헨', '보루시아 도르트문트', 'RB 라이프치히', '바이어 레버쿠젠', '프라이부르크', '슈투트가르트', '보루시아 M', '볼프스부르크']),
+    ligue1: buildFootballStandings(['파리 생제르맹', '마르세유', 'AS 모나코', 'RC 랑스', '릴 OSC', 'OGC 니스', '올랭픽 리옹', '스타드 렌']),
+    serieA: buildFootballStandings(['인터 밀란', '유벤투스', 'AC 밀란', '아탈란타', 'AS 로마', 'SS 라치오', '나폴리', '피오렌티나']),
+    laLiga: buildFootballStandings(['레알 마드리드', 'FC바르셀로나', '지로나', '아틀레티코 마드리드', '헤타페', '레알 소시에다드', '레알 베티스', '비야레알']),
+  },
+  baseball: {
+    kbo: buildNoDrawStandings(['LG 트윈스', 'KIA 타이거즈', 'SSG 랜더스', 'NC 다이노스', '두산 베어스', 'KT 위즈', '삼성 라이온즈', '롯데 자이언츠']),
+    mlb: buildNoDrawStandings(['뉴욕 양키스', 'LA 다저스', '보스턴 레드삭스', '애틀랜타 브레이브스', '휴스턴 애스트로스', '필라델피아 필리스', '샌디에이고 파드레스', '시카고 커스']),
+    npb: buildNoDrawStandings(['오릭스 버팔로스', '요미우리 자이언츠', '한신 타이거스', '치바 롯데 마린스', '소프트뱅크 호크스', '도쿄 Yakult 스왈로스', '히로시마 카프', '세이부 라이온스']),
+  },
+  volleyball: {
+    vLeagueMen: buildNoDrawStandings(['현대캐피탈', '대한항공', '삼성화재', 'OK금융그룹', 'KB손해보험', '한국전력', '우리카드', '페퍼저축은행']),
+    vLeagueWomen: buildNoDrawStandings(['흥국생명', '현대건설', 'GS칼텍스', 'IBK기업은행', '한국도로공사', '정관장', '페퍼저축은행', 'KGC인삼공사']),
+  },
+  basketball: {
+    kbl: buildNoDrawStandings(['서울 SK', '창원 LG', '고양 소노', '원주 DB', '울산 현대모비스', '수원 KT', '대구 한국가스공사', '안양 정관장']),
+    wkbl: buildNoDrawStandings(['청주 KB스타즈', '부천 하나원큐', '용인 삼성생명', '아산 우리은행', '부산 BNK', '인천 신한', '국민은행', '우리은행']),
+    nba: buildNoDrawStandings(['보스턴 셀틱스', '밀워키 벅스', 'LA 레이커스', '골든스테이트 워리어스', '덴버 너게츠', '필라델피아 76ers', '뉴욕 닉스', '피닉스 선즈']),
+  },
+};
+
+// ============================================
+// 라이브스코어 더미 데이터
+// ============================================
+const LIVESCORE_DATA = {
+  football: {
+    kLeague: [
+      { id: 'live-fb-k1', teamA: '울산 HD', teamB: '전북 현대', status: 'live', scoreA: 1, scoreB: 0, display: "65'" },
+      { id: 'live-fb-k2', teamA: '포항 스틸러스', teamB: 'FC서울', status: 'upcoming', scoreA: null, scoreB: null, display: '19:00' },
+      { id: 'live-fb-k3', teamA: '수원 FC', teamB: '대구 FC', status: 'finished', scoreA: 2, scoreB: 1, display: '종료' },
+    ],
+    epl: [
+      { id: 'live-fb-e1', teamA: '아스널', teamB: '리버풀', status: 'live', scoreA: 2, scoreB: 2, display: "78'" },
+      { id: 'live-fb-e2', teamA: '맨체스터 시티', teamB: '첼시', status: 'finished', scoreA: 3, scoreB: 0, display: '종료' },
+    ],
+    bundesliga: [
+      { id: 'live-fb-b1', teamA: '바이에른 뮌헨', teamB: '보루시아 도르트문트', status: 'upcoming', scoreA: null, scoreB: null, display: '23:30' },
+    ],
+    ligue1: [],
+    serieA: [],
+    laLiga: [
+      { id: 'live-fb-ll1', teamA: '레알 마드리드', teamB: 'FC바르셀로나', status: 'finished', scoreA: 1, scoreB: 1, display: '종료' },
+    ],
+  },
+  baseball: {
+    kbo: [
+      { id: 'live-bb-k1', teamA: 'LG 트윈스', teamB: '두산 베어스', status: 'live', scoreA: 4, scoreB: 3, display: '7회' },
+      { id: 'live-bb-k2', teamA: 'KIA 타이거즈', teamB: 'SSG 랜더스', status: 'upcoming', scoreA: null, scoreB: null, display: '18:30' },
+    ],
+    mlb: [
+      { id: 'live-bb-m1', teamA: '뉴욕 양키스', teamB: '보스턴 레드삭스', status: 'live', scoreA: 2, scoreB: 1, display: '5회' },
+      { id: 'live-bb-m2', teamA: 'LA 다저스', teamB: '샌프란시스코 자이언츠', status: 'finished', scoreA: 5, scoreB: 2, display: '종료' },
+    ],
+    npb: [],
+  },
+  volleyball: {
+    vLeagueMen: [
+      { id: 'live-vb-m1', teamA: '대한항공', teamB: '현대캐피탈', status: 'live', scoreA: 2, scoreB: 1, display: '4세트' },
+      { id: 'live-vb-m2', teamA: '삼성화재', teamB: 'OK금융그룹', status: 'finished', scoreA: 3, scoreB: 0, display: '종료' },
+    ],
+    vLeagueWomen: [
+      { id: 'live-vb-w1', teamA: '흥국생명', teamB: '현대건설', status: 'upcoming', scoreA: null, scoreB: null, display: '19:00' },
+    ],
+  },
+  basketball: {
+    kbl: [
+      { id: 'live-bk-k1', teamA: '서울 SK', teamB: '원주 DB', status: 'finished', scoreA: 88, scoreB: 82, display: '종료' },
+    ],
+    wkbl: [
+      { id: 'live-bk-w1', teamA: '청주 KB스타즈', teamB: '부천 하나원큐', status: 'upcoming', scoreA: null, scoreB: null, display: '19:00' },
+    ],
+    nba: [
+      { id: 'live-bk-n1', teamA: '보스턴 셀틱스', teamB: '밀워키 벅스', status: 'live', scoreA: 98, scoreB: 95, display: 'Q4 05:32' },
+      { id: 'live-bk-n2', teamA: 'LA 레이커스', teamB: '골든스테이트 워리어스', status: 'upcoming', scoreA: null, scoreB: null, display: '12:30' },
+    ],
+  },
+};
