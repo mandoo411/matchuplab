@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MatchUp LAB - AI가 분석하는 스포츠 경기 인사이트. 확률, 신뢰도, 근거를 투명하게 제공합니다.">
+  <title>MatchUp LAB - AI 스포츠 분석</title>
+
+  <!-- Pretendard (본문) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <!-- Inter (로고) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================
+       1. GNB (글로벌 네비게이션)
+       ============================================ -->
+  <header class="gnb">
+    <div class="gnb-inner">
+      <a href="#" class="logo">
+        <span class="logo-matchup">MatchUp</span><span class="logo-lab"> LAB</span>
+      </a>
+      <button class="gnb-toggle" id="gnb-toggle" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav>
+        <ul class="gnb-menu" id="gnb-menu">
+          <li><a href="#">홈</a></li>
+          <li><a href="#livescore">라이브스코어</a></li>
+          <li><a href="#ai-analysis">AI분석</a></li>
+          <li><a href="#matches">경기일정</a></li>
+          <li><a href="#">리그순위</a></li>
+          <li><a href="#">마이페이지</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================
+       2. 종목 탭 & 리그 서브탭
+       ============================================ -->
+  <div class="sport-tabs-wrap">
+    <div class="sport-tabs" id="sport-tabs" role="tablist" aria-label="종목 선택">
+      <!-- JS 렌더링 -->
+    </div>
+    <div class="league-subtabs" id="league-subtabs" role="tablist" aria-label="리그 선택">
+      <!-- JS 렌더링 -->
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============================================
+         3. 히어로 섹션
+         ============================================ -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-headline">AI가 분석하는 진짜 스포츠 인사이트</h1>
+        <p class="hero-subcopy">감으로 보는 경기는 그만. 데이터와 AI 분석으로 더 깊이 이해하세요.</p>
+        <a href="#" class="btn-cta">무료로 시작하기</a>
+      </div>
+    </section>
+
+    <!-- ============================================
+         4. 오늘의 주요 경기
+         ============================================ -->
+    <section class="section" id="matches">
+      <div class="container">
+        <h2 class="section-title">오늘의 주요 경기</h2>
+        <p class="section-desc">선택한 종목·리그의 AI 분석 경기입니다. 확률과 신뢰도는 무료로 확인할 수 있습니다.</p>
+        <div class="matches-grid" id="matches-grid">
+          <!-- JS 렌더링 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         5. 우리는 숨기지 않습니다
+         ============================================ -->
+    <section class="section" id="transparency">
+      <div class="container">
+        <h2 class="section-title">우리는 숨기지 않습니다</h2>
+        <p class="section-desc">틀린 예측도 그대로 공개합니다. 숫자로 증명하는 투명성이 우리의 약속입니다.</p>
+        <p class="transparency-stats">최근 30일 AI 예측 적중률: 64.3% (자동 집계, 매일 업데이트, 승/무/패 단순 적중 기준)</p>
+        <div class="transparency-table-wrap">
+          <table class="transparency-table">
+            <thead>
+              <tr>
+                <th>날짜</th>
+                <th>종목</th>
+                <th>경기</th>
+                <th>AI 예측</th>
+                <th>실제 결과</th>
+                <th>적중</th>
+              </tr>
+            </thead>
+            <tbody id="transparency-tbody">
+              <!-- JS 렌더링 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         6. AI 분석이란?
+         ============================================ -->
+    <section class="section" id="ai-analysis">
+      <div class="container">
+        <h2 class="section-title">AI 분석이란?</h2>
+        <div class="info-box">
+          <p>AI는 최근 폼, 부상 정보, 상대 전적, 홈/원정 기록 등을 분석해 확률을 제시합니다. 어떤 예측 시스템도 100%를 보장할 수 없습니다 — 우리는 확률과 근거를 투명하게 보여드릴 뿐입니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         7. 라이브스코어
+         ============================================ -->
+    <section class="section" id="livescore">
+      <div class="container">
+        <h2 class="section-title">라이브스코어</h2>
+        <p class="section-desc">실시간 스코어를 확인하세요.</p>
+        <!--
+          추후 종목별 라이브스코어 위젯 삽입 예정
+          - football: API-Sports.io football live endpoint
+          - baseball: API-Sports.io baseball live endpoint
+          - volleyball: V리그 위젯
+          - basketball: NBA/KBL live feed
+        -->
+        <div class="livescore-placeholder">
+          라이브스코어 위젯 영역
+          <span>추후 종목별 실시간 스코어 위젯이 이 영역에 표시됩니다.</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+       8. 푸터
+       ============================================ -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-business">
+        MatchUp LAB | 대표: (placeholder) | 사업자등록번호: (placeholder)<br>
+        주소: (placeholder) | 이메일: contact@matchuplab.com
+      </p>
+      <div class="footer-links">
+        <a href="#">이용약관</a>
+        <a href="#">개인정보처리방침</a>
+      </div>
+      <p class="footer-disclaimer">
+        본 서비스는 스포츠 경기에 대한 AI 기반 분석 정보를 제공하며, 베팅이나 도박을 위한 서비스가 아닙니다. 모든 예측은 참고용 정보이며 결과를 보장하지 않습니다. 본 서비스는 어떠한 베팅 사이트와도 제휴하지 않습니다.
+      </p>
+      <p class="footer-copy">&copy; 2026 MatchUp LAB. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/sports-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,738 @@
+/* ============================================
+   MatchUp LAB - 디자인 시스템 & 레이아웃
+   ============================================ */
+
+/* --- CSS 변수 --- */
+:root {
+  --bg-main: #0d0f1a;
+  --bg-nav: #1a1f35;
+  --bg-card: #151929;
+  --bg-card-hover: #1c2238;
+  --color-accent: #00e6ff;
+  --color-win: #22c55e;
+  --color-loss: #ef4444;
+  --color-draw: #6b7280;
+  --color-text: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-border: #2a3050;
+  --font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-logo: 'Inter', sans-serif;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --transition: 0.2s ease;
+}
+
+/* --- 리셋 & 기본 --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-main);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* --- 공통 컨테이너 --- */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.section {
+  padding: 48px 0;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.section-desc {
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  margin-bottom: 24px;
+}
+
+/* ============================================
+   1. GNB (글로벌 네비게이션)
+   ============================================ */
+.gnb {
+  background-color: var(--bg-nav);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.gnb-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.logo {
+  font-family: var(--font-logo);
+  font-size: 1.25rem;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.logo-matchup {
+  font-weight: 900;
+}
+
+.logo-lab {
+  font-weight: 300;
+  letter-spacing: 0.15em;
+}
+
+.gnb-menu {
+  display: none;
+  gap: 4px;
+}
+
+.gnb-menu a {
+  padding: 8px 14px;
+  font-size: 0.875rem;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+}
+
+.gnb-menu a:hover {
+  color: var(--color-accent);
+}
+
+.gnb-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+}
+
+.gnb-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+.gnb-menu.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  background: var(--bg-nav);
+  padding: 12px 16px 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ============================================
+   2. 종목 탭 & 리그 서브탭
+   ============================================ */
+.sport-tabs-wrap {
+  background: var(--bg-nav);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sport-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 8px 16px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sport-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.sport-tab {
+  flex-shrink: 0;
+  padding: 10px 18px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.sport-tab:hover {
+  color: var(--color-accent);
+}
+
+.sport-tab.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.league-subtabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 8px 16px 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.league-subtabs::-webkit-scrollbar {
+  display: none;
+}
+
+.league-subtabs.hidden {
+  display: none;
+}
+
+.league-tab {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  background: var(--bg-main);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.league-tab:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.league-tab.active {
+  color: var(--bg-main);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ============================================
+   3. 히어로 섹션
+   ============================================ */
+.hero {
+  padding: 56px 0 40px;
+  text-align: center;
+}
+
+.hero-headline {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #fff 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subcopy {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-bottom: 28px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-cta {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--color-accent);
+  color: var(--bg-main);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.btn-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   4. 오늘의 주요 경기
+   ============================================ */
+.matches-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.match-card {
+  background: var(--bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.match-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(0, 230, 255, 0.25);
+}
+
+.match-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.league-label {
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  background: rgba(0, 230, 255, 0.1);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.match-time {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.match-teams {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.match-teams .vs {
+  color: var(--color-text-muted);
+  font-weight: 400;
+  font-size: 0.875rem;
+  margin: 0 8px;
+}
+
+/* 확률 막대바 */
+.prob-bar-wrap {
+  margin-bottom: 14px;
+}
+
+.prob-bar {
+  display: flex;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.prob-segment {
+  transition: width 0.4s ease;
+}
+
+.prob-segment.win {
+  background: var(--color-win);
+}
+
+.prob-segment.draw {
+  background: var(--color-draw);
+}
+
+.prob-segment.loss {
+  background: var(--color-loss);
+}
+
+.prob-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.prob-labels span strong {
+  color: var(--color-text);
+}
+
+.prob-labels .label-win strong {
+  color: var(--color-win);
+}
+
+.prob-labels .label-loss strong {
+  color: var(--color-loss);
+}
+
+.prob-labels .label-draw strong {
+  color: var(--color-draw);
+}
+
+/* 2색 바 (무승부 없는 종목) */
+.prob-bar.two-way .prob-segment.win {
+  border-radius: 5px 0 0 5px;
+}
+
+.prob-bar.two-way .prob-segment.loss {
+  border-radius: 0 5px 5px 0;
+}
+
+/* AI 신뢰도 & 결론 */
+.match-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.confidence-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: rgba(0, 230, 255, 0.12);
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.ai-conclusion {
+  font-size: 0.875rem;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+/* 분석 근거 (블러 영역) */
+.reason-block {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.reason-toggle {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.8125rem;
+  color: var(--color-accent);
+  border: 1px solid rgba(0, 230, 255, 0.3);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.reason-toggle:hover {
+  background: rgba(0, 230, 255, 0.08);
+}
+
+.reason-content {
+  margin-top: 12px;
+  position: relative;
+}
+
+.reason-content.hidden {
+  display: none;
+}
+
+.reason-text {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm);
+}
+
+.reason-text.blurred {
+  filter: blur(5px);
+  user-select: none;
+  pointer-events: none;
+}
+
+.reason-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 15, 26, 0.6);
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.reason-overlay.hidden {
+  display: none;
+}
+
+.empty-matches {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--color-text-muted);
+  background: var(--bg-card);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* ============================================
+   5. 우리는 숨기지 않습니다
+   ============================================ */
+.transparency-stats {
+  display: inline-block;
+  font-size: 1rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 24px;
+  padding: 10px 18px;
+  background: rgba(0, 230, 255, 0.08);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(0, 230, 255, 0.2);
+}
+
+.transparency-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
+.transparency-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  min-width: 600px;
+}
+
+.transparency-table th,
+.transparency-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.transparency-table th {
+  background: var(--bg-nav);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.transparency-table tr:last-child td {
+  border-bottom: none;
+}
+
+.transparency-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.hit-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+}
+
+.hit-icon.success {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--color-win);
+}
+
+.hit-icon.fail {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-loss);
+}
+
+/* ============================================
+   6. AI 분석이란?
+   ============================================ */
+.info-box {
+  background: var(--bg-card);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.info-box p {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ============================================
+   7. 라이브스코어 placeholder
+   ============================================ */
+.livescore-placeholder {
+  background: var(--bg-card);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius);
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+}
+
+.livescore-placeholder span {
+  display: block;
+  font-size: 0.8125rem;
+  margin-top: 8px;
+  color: rgba(148, 163, 184, 0.6);
+}
+
+/* ============================================
+   8. 푸터
+   ============================================ */
+.footer {
+  background: var(--bg-nav);
+  border-top: 1px solid var(--color-border);
+  padding: 40px 0 32px;
+  margin-top: 24px;
+}
+
+.footer-business {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.footer-links a {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  transition: color var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}
+
+.footer-disclaimer {
+  font-size: 0.75rem;
+  color: rgba(148, 163, 184, 0.7);
+  line-height: 1.7;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 16px;
+}
+
+/* ============================================
+   반응형: 태블릿 (768px+)
+   ============================================ */
+@media (min-width: 768px) {
+  .gnb-toggle {
+    display: none;
+  }
+
+  .gnb-menu {
+    display: flex;
+  }
+
+  .gnb-menu.open {
+    position: static;
+    flex-direction: row;
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+
+  .hero-headline {
+    font-size: 2.25rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .matches-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .match-meta {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* ============================================
+   반응형: 데스크톱 (1024px+)
+   ============================================ */
+@media (min-width: 1024px) {
+  .hero {
+    padding: 72px 0 56px;
+  }
+
+  .hero-headline {
+    font-size: 2.75rem;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .matches-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .match-card {
+    padding: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .matches-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
