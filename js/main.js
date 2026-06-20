@@ -68,7 +68,7 @@
   }
 
   /**
-   * 리그 서브탭 렌더링 (배구는 단일 리그, 서브탭 UI는 표시)
+   * 리그 서브탭 렌더링
    */
   function renderLeagueSubtabs() {
     if (!leagueSubtabsEl) return;
@@ -76,13 +76,6 @@
     const sportData = SPORTS_DATA[currentSport];
     const leagues = sportData.leagues;
     const leagueKeys = Object.keys(leagues);
-
-    // 배구는 V리그 단일 — 서브탭 미표시
-    if (currentSport === 'volleyball') {
-      leagueSubtabsEl.classList.add('hidden');
-      currentLeague = 'vLeague';
-      return;
-    }
 
     leagueSubtabsEl.classList.remove('hidden');
 

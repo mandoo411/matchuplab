@@ -32,8 +32,8 @@ const SPORTS_DATA = {
         matches: [
           {
             id: 'fb-epl1',
-            teamA: 'Arsenal',
-            teamB: 'Liverpool',
+            teamA: '아스널',
+            teamB: '리버풀',
             time: '01:30',
             probWin: 38,
             probDraw: 27,
@@ -50,15 +50,15 @@ const SPORTS_DATA = {
         matches: [
           {
             id: 'fb-bl1',
-            teamA: 'Bayern',
-            teamB: 'Dortmund',
+            teamA: '바이에른 뮌헨',
+            teamB: '보루시아 도르트문트',
             time: '23:30',
             probWin: 55,
             probDraw: 22,
             probLoss: 23,
             confidence: 81,
-            conclusion: '홈 전적 우세, 최근 폼도 Bayern이 앞서',
-            reason: 'Bayern 홈 8연승 중. Dortmund 원정 3경기 1승 2패. xG 기준 Bayern이 0.4 더 높음. Der Klassiker 역사상 홈팀 승률 62%.',
+            conclusion: '홈 전적 우세, 최근 폼도 바이에른 뮌헨이 앞서',
+            reason: '바이에른 뮌헨 홈 8연승 중. 보루시아 도르트문트 원정 3경기 1승 2패. xG 기준 바이에른 뮌헨이 0.4 더 높음. Der Klassiker 역사상 홈팀 승률 62%.',
           },
         ],
       },
@@ -108,15 +108,15 @@ const SPORTS_DATA = {
         matches: [
           {
             id: 'bb-mlb1',
-            teamA: 'Yankees',
-            teamB: 'Red Sox',
+            teamA: '뉴욕 양키스',
+            teamB: '보스턴 레드삭스',
             time: '08:05',
             probWin: 52,
             probDraw: 0,
             probLoss: 48,
             confidence: 68,
             conclusion: 'rivalry 경기, 투수전 예상으로 접전',
-            reason: '양팀 시즌 OPS 비슷. Yankees 홈 15-10, Red Sox 원정 12-13. 선발 FIP 차이 0.2로 미미. 최근 10경기 H2H 5-5.',
+            reason: '양팀 시즌 OPS 비슷. 뉴욕 양키스 홈 15-10, 보스턴 레드삭스 원정 12-13. 선발 FIP 차이 0.2로 미미. 최근 10경기 H2H 5-5.',
           },
         ],
       },
@@ -128,16 +128,16 @@ const SPORTS_DATA = {
     },
   },
 
-  // 🏐 배구 (무승부 없음, V리그 단일)
+  // 🏐 배구 (무승부 없음)
   volleyball: {
     hasDraw: false,
     leagues: {
-      vLeague: {
-        id: 'vLeague',
-        name: 'V리그',
+      vLeagueMen: {
+        id: 'vLeagueMen',
+        name: 'V리그 남자부',
         matches: [
           {
-            id: 'vb-v1',
+            id: 'vb-vm1',
             teamA: '대한항공',
             teamB: '현대캐피탈',
             time: '19:00',
@@ -147,6 +147,24 @@ const SPORTS_DATA = {
             confidence: 70,
             conclusion: '현대캐피탈 최근 4연승, 원정에서도 강세',
             reason: '현대캐피탈 시즌 승률 68%. 대한항공 홈이나 최근 3경기 1승 2패. 블로킹 성공률 현대캐피탈 8.2 vs 6.5. 세트 득실도 현대 우세.',
+          },
+        ],
+      },
+      vLeagueWomen: {
+        id: 'vLeagueWomen',
+        name: 'V리그 여자부',
+        matches: [
+          {
+            id: 'vb-vw1',
+            teamA: '흥국생명',
+            teamB: '현대건설',
+            time: '19:00',
+            probWin: 52,
+            probDraw: 0,
+            probLoss: 48,
+            confidence: 73,
+            conclusion: '흥국생명 홈 연승, 현대건설 원정 수비 약세',
+            reason: '흥국생명 홈 6연승. 현대건설 원정 4승 5패. 흥국생명 공격 성공률 48.2%로 리그 2위. 현대건설은 리시브 효율 하위권.',
           },
         ],
       },
@@ -181,15 +199,15 @@ const SPORTS_DATA = {
         matches: [
           {
             id: 'bk-nba1',
-            teamA: 'Celtics',
-            teamB: 'Bucks',
+            teamA: '보스턴 셀틱스',
+            teamB: '밀워키 벅스',
             time: '09:00',
             probWin: 48,
             probDraw: 0,
             probLoss: 52,
             confidence: 74,
-            conclusion: 'Bucks 원정 강세, Celtics 홈 방어가 변수',
-            reason: 'Bucks 원정 NetRtg +4.2. Celtics 홈 방어 효율 1위. Giannis 출전 예정. 최근 5경기 H2H Bucks 3승. 페이스 차이로 고득점 예상.',
+            conclusion: '밀워키 벅스 원정 강세, 보스턴 셀틱스 홈 방어가 변수',
+            reason: '밀워키 벅스 원정 NetRtg +4.2. 보스턴 셀틱스 홈 방어 효율 1위. Giannis 출전 예정. 최근 5경기 H2H 밀워키 벅스 3승. 페이스 차이로 고득점 예상.',
           },
         ],
       },
@@ -218,7 +236,7 @@ const TRANSPARENCY_RECORDS = [
   {
     date: '06-17',
     sport: '농구',
-    match: 'Celtics vs Bucks',
+    match: '보스턴 셀틱스 vs 밀워키 벅스',
     prediction: '원정 승',
     result: '원정 승 (98-102)',
     hit: true,
@@ -226,7 +244,7 @@ const TRANSPARENCY_RECORDS = [
   {
     date: '06-16',
     sport: '축구',
-    match: 'Arsenal vs Liverpool',
+    match: '아스널 vs 리버풀',
     prediction: '무승부',
     result: '홈 승 (3-1)',
     hit: false,
@@ -242,7 +260,7 @@ const TRANSPARENCY_RECORDS = [
   {
     date: '06-14',
     sport: '야구',
-    match: 'Yankees vs Red Sox',
+    match: '뉴욕 양키스 vs 보스턴 레드삭스',
     prediction: '홈 승',
     result: '홈 승 (4-2)',
     hit: true,
@@ -250,7 +268,7 @@ const TRANSPARENCY_RECORDS = [
   {
     date: '06-13',
     sport: '축구',
-    match: 'Bayern vs Dortmund',
+    match: '바이에른 뮌헨 vs 보루시아 도르트문트',
     prediction: '홈 승',
     result: '무승부 (1-1)',
     hit: false,
@@ -261,6 +279,6 @@ const TRANSPARENCY_RECORDS = [
 const SPORT_TABS = [
   { id: 'football', label: '⚽ 축구', defaultLeague: 'kLeague' },
   { id: 'baseball', label: '⚾ 야구', defaultLeague: 'kbo' },
-  { id: 'volleyball', label: '🏐 배구', defaultLeague: 'vLeague' },
+  { id: 'volleyball', label: '🏐 배구', defaultLeague: 'vLeagueMen' },
   { id: 'basketball', label: '🏀 농구', defaultLeague: 'kbl' },
 ];
