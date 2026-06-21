@@ -804,7 +804,7 @@ function buildPointsStandings(teamNames, sport) {
   });
 }
 
-/** 야구·농구: 승률 기준, 무승부 없음 */
+/** 야구·농구: 승률 기준, 무승부 없음 (농구 전용 — 야구는 BASEBALL_STANDINGS_DATA 사용) */
 function buildWinRateStandings(teamNames, sport) {
   const total = teamNames.length;
   return teamNames.map((name, i) => {
@@ -850,17 +850,184 @@ function buildStandingsForSport(sport, leagueKey) {
   if (sport === 'football' || sport === 'volleyball') {
     return buildPointsStandings(names, sport);
   }
+  if (sport === 'baseball') {
+    return [];
+  }
   return buildWinRateStandings(names, sport);
 }
+
+// ============================================
+// 야구 리그순위 — 서브탭 설정 (MLB 디비전 / NPB 리그)
+// ============================================
+const STANDINGS_SUB_TABS = {
+  baseball: {
+    mlb: [
+      { id: 'alEast', label: 'AL 동부' },
+      { id: 'alCentral', label: 'AL 중부' },
+      { id: 'alWest', label: 'AL 서부' },
+      { id: 'alWildCard', label: 'AL 와일드카드' },
+      { id: 'nlEast', label: 'NL 동부' },
+      { id: 'nlCentral', label: 'NL 중부' },
+      { id: 'nlWest', label: 'NL 서부' },
+      { id: 'nlWildCard', label: 'NL 와일드카드' },
+    ],
+    npb: [
+      { id: 'central', label: '센트럴리그' },
+      { id: 'pacific', label: '퍼시픽리그' },
+    ],
+  },
+};
+
+function bbTeam(rank, name, winRate, gamesBack, win, draw, loss, played, streak, battingAvg, era, nextOpponent, options) {
+  const opts = options || {};
+  const form = opts.form || FORM_PATTERNS[(rank - 1) % FORM_PATTERNS.length].filter((r) => r !== 'D');
+  while (form.length < 5) form.push(form.length % 2 === 0 ? 'W' : 'L');
+  return {
+    rank,
+    name,
+    winRate,
+    gamesBack,
+    win,
+    draw: draw || 0,
+    loss,
+    played,
+    streak,
+    battingAvg,
+    era,
+    form: form.slice(0, 5),
+    nextOpponent,
+    nextMatchPending: !!opts.nextMatchPending,
+    isWildCard: !!opts.isWildCard,
+  };
+}
+
+// MLB 디비전별 원본 (와일드카드 탭에서 재사용)
+const MLB_DIVISION_DATA = {
+  alEast: [
+    bbTeam(1, '뉴욕 양키스', '.613', '0.0', 46, 0, 29, 75, '1패', '.246', '3.34', '신시내티'),
+    bbTeam(2, '탬파베이', '.575', '3.0', 42, 0, 31, 73, '1패', '.256', '3.92', '워싱턴'),
+    bbTeam(3, '토론토', '.494', '9.0', 38, 0, 39, 77, '1승', '.249', '4.13', '시카고 컵스'),
+    bbTeam(4, '볼티모어', '.462', '11.5', 36, 0, 42, 78, '1승', '.239', '4.50', 'LA 다저스'),
+    bbTeam(5, '보스턴', '.419', '14.5', 31, 0, 43, 74, '2승', '.244', '3.86', '시애틀'),
+  ],
+  alCentral: [
+    bbTeam(1, '클리블랜드', '.532', '0.0', 41, 0, 36, 77, '1승', '.229', '3.81', '휴스턴'),
+    bbTeam(2, '시카고W', '.520', '1.0', 39, 0, 36, 75, '2패', '.238', '4.41', '디트로이트'),
+    bbTeam(3, '미네소타', '.474', '4.5', 37, 0, 41, 78, '1승', '.246', '4.83', '애리조나'),
+    bbTeam(4, '디트로이트', '.421', '8.5', 32, 0, 44, 76, '2승', '.233', '3.85', '시카고W'),
+    bbTeam(5, '캔자스시티', '.416', '9.0', 32, 0, 45, 77, '3승', '.247', '4.48', '세인트루이스'),
+  ],
+  alWest: [
+    bbTeam(1, '시애틀', '.500', '0.0', 39, 0, 39, 78, '2패', '.232', '3.66', '보스턴'),
+    bbTeam(2, '애슬레틱스', '.494', '0.5', 38, 0, 39, 77, '1패', '.250', '4.95', 'LA 에인절스'),
+    bbTeam(3, '텍사스', '.474', '2.0', 36, 0, 40, 76, '1패', '.241', '3.96', '샌디에이고'),
+    bbTeam(4, '휴스턴', '.462', '3.0', 36, 0, 42, 78, '1패', '.243', '4.89', '클리블랜드'),
+    bbTeam(5, 'LA 에인절스', '.397', '8.0', 31, 0, 47, 78, '1승', '.239', '4.63', '애슬레틱스'),
+  ],
+  nlEast: [
+    bbTeam(1, '애틀랜타', '.640', '0.0', 48, 0, 27, 75, '2승', '.253', '3.34', '밀waukee'),
+    bbTeam(2, '필라델피아', '.539', '7.5', 41, 0, 35, 76, '1승', '.232', '4.09', '뉴욕 메츠'),
+    bbTeam(3, '워싱턴', '.519', '9.0', 40, 0, 37, 77, '1승', '.247', '4.64', '탬파베이'),
+    bbTeam(4, '마이애미', '.506', '10.0', 39, 0, 38, 77, '3승', '.246', '4.11', '샌프란시스코'),
+    bbTeam(5, '뉴욕 메츠', '.447', '14.5', 34, 0, 42, 76, '1패', '.233', '4.07', '필라델피아'),
+  ],
+  nlCentral: [
+    bbTeam(1, '밀waukee', '.608', '0.0', 45, 0, 29, 74, '3패', '.255', '3.44', '애틀랜타'),
+    bbTeam(2, '세인트루이스', '.541', '5.0', 40, 0, 34, 74, '3패', '.247', '4.22', '캔자스시티'),
+    bbTeam(3, '시카고 컵스', '.519', '6.5', 40, 0, 37, 77, '1패', '.244', '4.28', '토론토'),
+    bbTeam(4, '피츠버그', '.494', '8.5', 38, 0, 39, 77, '2패', '.254', '4.20', '콜로라도'),
+    bbTeam(5, '신시내티', '.480', '9.5', 36, 0, 39, 75, '1승', '.229', '4.63', '뉴욕 양키스'),
+  ],
+  nlWest: [
+    bbTeam(1, 'LA 다저스', '.636', '0.0', 49, 0, 28, 77, '1패', '.261', '3.34', '볼티모어'),
+    bbTeam(2, '샌디에이고', '.520', '9.0', 39, 0, 36, 75, '1승', '.219', '3.90', '텍사스'),
+    bbTeam(3, '애리조나', '.513', '9.5', 39, 0, 37, 76, '1패', '.239', '4.32', '미네소타'),
+    bbTeam(4, '샌프란시스코', '.408', '17.5', 31, 0, 45, 76, '2패', '.259', '4.49', '마이애미'),
+    bbTeam(5, '콜로라도', '.390', '19.0', 30, 0, 47, 77, '2승', '.252', '5.49', '피츠버그'),
+  ],
+};
+
+function cloneWithWildCardGb(team, gamesBack) {
+  return { ...team, rank: team.rank, gamesBack, isWildCard: true };
+}
+
+function buildMlbWildCard(alTeams, gbList) {
+  return alTeams.map((team, i) => cloneWithWildCardGb(team, gbList[i]));
+}
+
+const BASEBALL_STANDINGS_DATA = {
+  kbo: [
+    bbTeam(1, 'LG 트윈스', '.598', '0.0', 42, 1, 29, 72, '2승', '.272', '3.45', 'KIA 타이거즈'),
+    bbTeam(2, 'KIA 타이거즈', '.581', '1.5', 41, 0, 30, 71, '1승', '.268', '3.52', 'LG 트윈스'),
+    bbTeam(3, 'SSG 랜더스', '.556', '3.5', 39, 1, 31, 71, '1패', '.265', '3.68', 'NC 다이노스'),
+    bbTeam(4, 'NC 다이노스', '.534', '5.0', 37, 2, 32, 71, '2승', '.258', '3.81', 'KT 위즈'),
+    bbTeam(5, 'KT 위즈', '.521', '6.0', 36, 1, 33, 70, '1승', '.251', '3.92', '두산 베어스'),
+    bbTeam(6, '두산 베어스', '.507', '7.0', 35, 2, 34, 71, '1패', '.249', '4.05', '삼성 라이온즈'),
+    bbTeam(7, '삼성 라이온즈', '.486', '8.5', 33, 1, 35, 69, '2패', '.243', '4.18', '롯데 자이언츠'),
+    bbTeam(8, '롯데 자이언츠', '.465', '10.0', 32, 0, 37, 69, '1승', '.241', '4.35', '한화 이글스'),
+    bbTeam(9, '한화 이글스', '.438', '12.0', 30, 1, 38, 69, '3패', '.235', '4.52', '키움 히어로즈'),
+    bbTeam(10, '키움 히어로즈', '.412', '14.0', 28, 2, 40, 70, '1패', '.228', '4.71', '한화 이글스'),
+  ],
+  mlb: {
+    alEast: MLB_DIVISION_DATA.alEast,
+    alCentral: MLB_DIVISION_DATA.alCentral,
+    alWest: MLB_DIVISION_DATA.alWest,
+    alWildCard: buildMlbWildCard(
+      [
+        MLB_DIVISION_DATA.alEast[1],
+        MLB_DIVISION_DATA.alCentral[1],
+        MLB_DIVISION_DATA.alEast[2],
+        MLB_DIVISION_DATA.alWest[1],
+        MLB_DIVISION_DATA.alCentral[2],
+        MLB_DIVISION_DATA.alWest[2],
+      ],
+      ['+6.0', '+2.0', '0.0', '0.0', '-1.5', '-1.5']
+    ).map((t, i) => ({ ...t, rank: i + 1 })),
+    nlEast: MLB_DIVISION_DATA.nlEast,
+    nlCentral: MLB_DIVISION_DATA.nlCentral,
+    nlWest: MLB_DIVISION_DATA.nlWest,
+    nlWildCard: buildMlbWildCard(
+      [
+        MLB_DIVISION_DATA.nlCentral[1],
+        MLB_DIVISION_DATA.nlEast[1],
+        MLB_DIVISION_DATA.nlWest[1],
+        MLB_DIVISION_DATA.nlEast[2],
+        MLB_DIVISION_DATA.nlCentral[2],
+        MLB_DIVISION_DATA.nlWest[2],
+      ],
+      ['+1.5', '+1.5', '0.0', '0.0', '0.0', '0.5']
+    ).map((t, i) => ({ ...t, rank: i + 1 })),
+  },
+  npb: {
+    central: [
+      bbTeam(1, '요미우리', '.547', '0.0', 35, 2, 29, 66, '1승', '.229', '2.94', null, { nextMatchPending: true }),
+      bbTeam(1, '한신', '.547', '0.0', 35, 1, 29, 65, '2승', '.250', '3.06', null, { nextMatchPending: true }),
+      bbTeam(3, '야쿠르트', '.538', '0.5', 35, 1, 30, 66, '1패', '.237', '3.22', null, { nextMatchPending: true }),
+      bbTeam(4, '요코하마', '.413', '8.5', 26, 2, 37, 65, '2패', '.244', '3.73', null, { nextMatchPending: true }),
+      bbTeam(5, '히로시마', '.393', '9.5', 24, 3, 37, 64, '1승', '.215', '3.03', null, { nextMatchPending: true }),
+      bbTeam(6, '주니치', '.354', '12.5', 23, 1, 42, 66, '1패', '.230', '3.45', null, { nextMatchPending: true }),
+    ],
+    pacific: [
+      bbTeam(1, '세이부', '.636', '0.0', 42, 2, 24, 68, '1승', '.249', '2.40', null, { nextMatchPending: true }),
+      bbTeam(2, '소프트뱅크', '.585', '3.5', 38, 0, 27, 65, '1승', '.249', '3.23', null, { nextMatchPending: true }),
+      bbTeam(3, '오릭스', '.554', '5.5', 36, 1, 29, 66, '1패', '.247', '3.29', null, { nextMatchPending: true }),
+      bbTeam(4, '닛폰햄', '.551', '5.5', 38, 0, 31, 69, '1패', '.244', '3.40', null, { nextMatchPending: true }),
+      bbTeam(5, '지바롯데', '.508', '8.5', 32, 2, 31, 65, '2승', '.237', '3.51', null, { nextMatchPending: true }),
+      bbTeam(6, '라쿠텐', '.359', '18.0', 23, 1, 41, 65, '4패', '.236', '3.73', null, { nextMatchPending: true }),
+    ],
+  },
+};
 
 function buildAllStandingsData() {
   const data = {};
   Object.keys(STANDINGS_TEAM_NAMES).forEach((sport) => {
     data[sport] = {};
     Object.keys(STANDINGS_TEAM_NAMES[sport]).forEach((leagueKey) => {
+      if (sport === 'baseball') return;
       data[sport][leagueKey] = buildStandingsForSport(sport, leagueKey);
     });
   });
+  data.baseball = BASEBALL_STANDINGS_DATA;
   return data;
 }
 
