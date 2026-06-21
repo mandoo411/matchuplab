@@ -1093,6 +1093,33 @@ button {
   font-weight: 600;
 }
 
+.standings-mlb-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.standings-division-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.standings-division-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  padding: 0 2px;
+}
+
+.standings-table-wrap--nested {
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: var(--radius);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
+
 .npb-standings-legend {
   display: flex;
   flex-wrap: wrap;

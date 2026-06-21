@@ -30,15 +30,15 @@
       const leagueData = STANDINGS_DATA.baseball[league];
       if (!leagueData) return [];
       if (league === 'kbo') return leagueData;
+      if (league === 'mlb') return [];
       if (subLeague && leagueData[subLeague]) return leagueData[subLeague];
       return [];
     }
 
     if (sport === 'basketball' && league === 'nba') {
       const allTeams = STANDINGS_DATA.basketball.nba || [];
-      if (!subLeague || subLeague === 'all') return allTeams;
-      if (typeof NBA_CONFERENCES === 'undefined' || !NBA_CONFERENCES[subLeague]) {
-        return allTeams;
+      if (!subLeague || !NBA_CONFERENCES[subLeague]) {
+        return [];
       }
       const confNames = NBA_CONFERENCES[subLeague];
       const filtered = allTeams
@@ -48,6 +48,51 @@
     }
 
     return STANDINGS_DATA[sport][league] || [];
+  }
+
+  function getMlbStandingsSections(subLeague) {
+    if (typeof MLB_STANDINGS_SECTIONS === 'undefined' || !subLeague) return [];
+    return MLB_STANDINGS_SECTIONS[subLeague] || [];
+  }
+
+  function buildBaseballTableHtml(teams, showDraw, caption) {
+    const tableClass = showDraw
+      ? 'standings-table standings-table--baseball'
+      : 'standings-table standings-table--baseball standings-table--mlb';
+
+    return `
+      <table class="${tableClass}">
+        <caption class="sr-only">${caption}</caption>
+        <thead>
+          <tr>${buildBaseballHead(showDraw)}</tr>
+        </thead>
+        <tbody>
+          ${teams.map((t) => buildBaseballRow(t, showDraw)).join('')}
+        </tbody>
+      </table>`;
+  }
+
+  function renderMlbStackedStandings(subLeague, leagueName) {
+    const sections = getMlbStandingsSections(subLeague);
+    const leagueData = STANDINGS_DATA.baseball.mlb;
+    if (!sections.length || !leagueData) {
+      return '';
+    }
+
+    return sections
+      .map((section) => {
+        const teams = leagueData[section.id] || [];
+        if (teams.length === 0) return '';
+
+        return `
+          <section class="standings-division-section">
+            <h3 class="standings-division-title">${section.title}</h3>
+            <div class="standings-table-wrap standings-table-wrap--nested">
+              ${buildBaseballTableHtml(teams, false, `${leagueName} ${section.title} (${teams.length}팀)`)}
+            </div>
+          </section>`;
+      })
+      .join('');
   }
 
   function buildFormIcons(form) {
@@ -268,6 +313,20 @@
     const basketball = isBasketball(sport);
     const volleyball = isVolleyball(sport);
 
+    if (baseball && league === 'mlb') {
+      const mlbHtml = renderMlbStackedStandings(subLeague, leagueName);
+      if (!mlbHtml) {
+        standingsTableWrap.innerHTML = `
+          <div class="empty-matches">
+            <p>순위 데이터가 없습니다.</p>
+          </div>`;
+        return;
+      }
+
+      standingsTableWrap.innerHTML = `<div class="standings-mlb-stack">${mlbHtml}</div>`;
+      return;
+    }
+
     if (teams.length === 0) {
       standingsTableWrap.innerHTML = `
         <div class="empty-matches">
@@ -278,20 +337,13 @@
 
     if (baseball) {
       const showDraw = league !== 'mlb';
-      const tableClass = showDraw ? 'standings-table standings-table--baseball' : 'standings-table standings-table--baseball standings-table--mlb';
       const npbLegend = league === 'npb' ? buildNpbLegend() : '';
 
       standingsTableWrap.innerHTML = `
         ${npbLegend}
-        <table class="${tableClass}">
-          <caption class="sr-only">${leagueName} 순위표 (${teams.length}팀)</caption>
-          <thead>
-            <tr>${buildBaseballHead(showDraw)}</tr>
-          </thead>
-          <tbody>
-            ${teams.map((t) => buildBaseballRow(t, showDraw)).join('')}
-          </tbody>
-        </table>`;
+        <div class="standings-table-wrap">
+          ${buildBaseballTableHtml(teams, showDraw, `${leagueName} 순위표 (${teams.length}팀)`)}
+        </div>`;
       return;
     }
 
