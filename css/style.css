@@ -912,8 +912,8 @@ button {
    리그순위 테이블
    ============================================ */
 .standings-table-wrap {
-  overflow: auto;
-  max-height: min(70vh, 720px);
+  overflow-x: auto;
+  overflow-y: visible;
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
   background: var(--bg-card);
