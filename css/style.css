@@ -957,6 +957,7 @@ button {
 .standings-table-wrap {
   overflow-x: auto;
   overflow-y: visible;
+  max-height: none;
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
   background: var(--bg-card);

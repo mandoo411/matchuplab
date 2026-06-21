@@ -119,7 +119,8 @@ const MatchUpTabs = (function () {
     el.classList.remove('hidden');
 
     if (!currentSubLeague || !tabs.some((t) => t.id === currentSubLeague)) {
-      currentSubLeague = tabs[0].id;
+      const defaultTab = tabs.find((t) => t.default) || tabs[0];
+      currentSubLeague = defaultTab.id;
     }
 
     el.innerHTML = tabs

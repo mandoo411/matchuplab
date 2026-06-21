@@ -760,8 +760,29 @@ const STANDINGS_TEAM_NAMES = {
   basketball: {
     kbl: ['서울 SK', '창원 LG', '고양 소노', '원주 DB', '울산 현대모비스', '수원 KT', '대구 한국가스공사', '안양 정관장', '서울 삼성', '전주 KCC'],
     wkbl: ['청주 KB스타즈', '부천 하나원큐', '용인 삼성생명', '아산 우리은행', '부산 BNK 썸', '인천 신한은행', 'IBK기업은행', '국민은행'],
-    nba: ['보스턴 셀틱스', '밀워키 벅스', 'LA 레이커스', '골든스테이트 워리어스', '덴버 너게츠', '필라델피아 76ers', '뉴욕 닉스', '피닉스 선즈', 'LA 클리ppers', '댈러스 매버릭스', '새크ramento 킹스', '멤phis 그rizzlies', '뉴올리언z 펠리컨s', '미네소타 Timberwolves', '오클라호마시티 썬더', '유ta Jazz', '포틀land 트레일 블레이저스', '휴스턴 로켓ts', '샌안토니오 스퍼스', '인디ana 페이sers', '마이애mi 히트', '올랜do 매직', '애틀anta 호크s', '시카고 불스', '토론to 랩tors', '브rooklyn 네ts', '워싱ton 위zards', '샬lotte 호ornets', '디troit 피스tons', '클리veland 캐valiers'],
+    nba: [
+      '보스턴 셀틱스', '덴버 너게츠', '오클라호마시티 썬더', '미네소타 팀버울브스', 'LA 레이커스',
+      '밀워키 벅스', '클리블랜드 캐벌리어스', '뉴욕 닉스', '필라델피아 76ers', '골든스테이트 워리어스',
+      '마이애미 히트', '휴스턴 로키츠', '인디애나 페이서스', 'LA 클리퍼스', '올랜도 매직',
+      '애틀랜타 호크스', '시카고 불스', '샬럿 호넷츠', '브루클린 네츠', '토론토 랩터스',
+      '유타 재즈', '피닉스 선즈', '댈러스 매버릭스', '워싱턴 위저즈', '멤피스 그리즐리스',
+      '새크라멘토 킹스', '포틀랜드 트레일블레이저스', '디트로이트 피스턴스', '뉴올리언스 펠리컨스', '샌안토니오 스퍼스',
+    ],
   },
+};
+
+/** NBA 동부/서부 컨퍼런스 팀 (리그순위 필터용) */
+const NBA_CONFERENCES = {
+  east: [
+    '보스턴 셀틱스', '뉴욕 닉스', '브루클린 네츠', '필라델피아 76ers', '토론토 랩터스',
+    '밀워키 벅스', '클리블랜드 캐벌리어스', '시카고 불스', '인디애나 페이서스', '디트로이트 피스턴스',
+    '마이애미 히트', '올랜도 매직', '애틀랜타 호크스', '워싱턴 위저즈', '샬럿 호넷츠',
+  ],
+  west: [
+    '덴버 너게츠', '미네소타 팀버울브스', '오클라호마시티 썬더', '포틀랜드 트레일블레이저스', '유타 재즈',
+    'LA 레이커스', 'LA 클리퍼스', '골든스테이트 워리어스', '피닉스 선즈', '새크라멘토 킹스',
+    '댈러스 매버릭스', '휴스턴 로키츠', '멤피스 그리즐리스', '뉴올리언스 펠리컨스', '샌안토니오 스퍼스',
+  ],
 };
 
 function formatGoalDiff(diff) {
@@ -804,7 +825,71 @@ function buildPointsStandings(teamNames, sport) {
   });
 }
 
-/** 야구·농구: 승률 기준, 무승부 없음 (농구 전용 — 야구는 BASEBALL_STANDINGS_DATA 사용) */
+/** 농구: 승률 기준, 리그별 정규시즌 경기수 반영 */
+function buildBasketballStandings(teamNames, leagueKey) {
+  const total = teamNames.length;
+  const isNba = leagueKey === 'nba';
+  const isWkbl = leagueKey === 'wkbl';
+
+  /** NBA: 82경기 기준, 팀별 70~82 (시즌 말 1~2경기 차) */
+  const nbaPlayedByIndex = [
+    82, 81, 81, 80, 80, 79, 79, 78, 78, 77,
+    77, 76, 76, 75, 75, 74, 74, 73, 73, 72,
+    72, 71, 71, 70, 70, 71, 72, 73, 74, 75,
+  ];
+
+  return teamNames.map((name, i) => {
+    const ratio = total > 1 ? i / (total - 1) : 0;
+    let played;
+    if (isNba) {
+      played = nbaPlayedByIndex[i] || 76;
+    } else if (isWkbl) {
+      played = 34 - (i % 2);
+    } else {
+      played = 38 - (i % 3);
+    }
+
+    const winPct = 0.72 - ratio * 0.46;
+    const win = Math.max(Math.min(Math.round(played * winPct), played - 1), 1);
+    const loss = played - win;
+    const winRate = played > 0 ? (win / played).toFixed(3) : '0.000';
+
+    let ppgOff;
+    let ppgDef;
+    if (isNba) {
+      ppgOff = 118 - ratio * 14;
+      ppgDef = 108 + ratio * 12;
+    } else if (isWkbl) {
+      ppgOff = 72 - ratio * 10;
+      ppgDef = 68 + ratio * 8;
+    } else {
+      ppgOff = 82 - ratio * 11;
+      ppgDef = 78 + ratio * 9;
+    }
+
+    const scored = Math.round(played * ppgOff);
+    const conceded = Math.round(played * ppgDef);
+    const nextIdx = (i + 2) % total;
+    const form = FORM_PATTERNS[i % FORM_PATTERNS.length].filter((r) => r !== 'D');
+    while (form.length < 5) form.push(form.length % 2 === 0 ? 'W' : 'L');
+
+    return {
+      rank: i + 1,
+      name,
+      played,
+      win,
+      loss,
+      winRate,
+      scored,
+      conceded,
+      goalDiff: scored - conceded,
+      form: form.slice(0, 5),
+      nextOpponent: teamNames[nextIdx],
+    };
+  });
+}
+
+/** 야구·농구(구): 승률 기준 — 야구 전용 레거시, 농구는 buildBasketballStandings 사용 */
 function buildWinRateStandings(teamNames, sport) {
   const total = teamNames.length;
   return teamNames.map((name, i) => {
@@ -853,6 +938,9 @@ function buildStandingsForSport(sport, leagueKey) {
   if (sport === 'baseball') {
     return [];
   }
+  if (sport === 'basketball') {
+    return buildBasketballStandings(names, leagueKey);
+  }
   return buildWinRateStandings(names, sport);
 }
 
@@ -874,6 +962,13 @@ const STANDINGS_SUB_TABS = {
     npb: [
       { id: 'central', label: '센트럴리그' },
       { id: 'pacific', label: '퍼시픽리그' },
+    ],
+  },
+  basketball: {
+    nba: [
+      { id: 'east', label: '동부' },
+      { id: 'all', label: '전체', default: true },
+      { id: 'west', label: '서부' },
     ],
   },
 };

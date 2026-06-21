@@ -26,6 +26,19 @@
       return [];
     }
 
+    if (sport === 'basketball' && league === 'nba') {
+      const allTeams = STANDINGS_DATA.basketball.nba || [];
+      if (!subLeague || subLeague === 'all') return allTeams;
+      if (typeof NBA_CONFERENCES === 'undefined' || !NBA_CONFERENCES[subLeague]) {
+        return allTeams;
+      }
+      const confNames = NBA_CONFERENCES[subLeague];
+      const filtered = allTeams
+        .filter((t) => confNames.includes(t.name))
+        .sort((a, b) => parseFloat(b.winRate) - parseFloat(a.winRate));
+      return filtered.map((t, i) => ({ ...t, rank: i + 1 }));
+    }
+
     return STANDINGS_DATA[sport][league] || [];
   }
 
