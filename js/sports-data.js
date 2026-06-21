@@ -739,12 +739,65 @@ const FORM_PATTERNS = [
   ['W', 'D', 'L', 'W', 'L'],
 ];
 
-function buildFootballStandings(teamNames) {
+const STANDINGS_TEAM_NAMES = {
+  football: {
+    kLeague: ['울산 HD', '전북 현대', '포항 스틸러스', 'FC서울', '강원 FC', '수원 FC', '대구 FC', '제주 유나이티드', '김천 상무', '광주 FC', 'FC안양', '대전 FC'],
+    epl: ['아스널', '리버풀', '맨체스터 시티', '아스톤 빌라', '토트넘', '맨체스터 유나이티드', '뉴캐슬', '첼시', '웨스트햄', '울버햄튼', '브라이턴', '본머스', '풀럼', '크리스털 팰리스', '에버턴', '노팅엄 포레스트', '브렌트퍼드', '입스위치 타운', '레스터 시티', '사우샘프턴'],
+    bundesliga: ['바이에른 뮌헨', '바이어 레버쿠젠', '슈투트가르트', 'RB 라이프치히', '보루시아 도르트문트', '프라이부르크', '아인트라흐트 프랑크푸르트', '볼프스부르크', '헤르타 베를린', '마인츠', '아ugsburg', 'Union 베를린', 'Werder 브remen', '보chum', '하이덴하임', '1.FC 쾰ln', 'SV 다armstadt', '보루시아 묀헨gladbach'],
+    ligue1: ['파리 생제르맹', 'AS 모나코', '브rest', '릴 OSC', 'RC 랑스', 'OGC 니스', '마르세유', '올랭픽 리옹', '스타드 렌', '스트라스부르', 'Montpellier', 'Toulouse', 'Reims', 'Nantes', 'Metz', 'Le Havre', 'Lorient', 'Clermont'],
+    serieA: ['인터 밀란', 'AC 밀란', '유벤투스', '아탈란타', 'AS 로마', 'SS 라치오', '나폴리', '피orentina', 'Bologna', 'Torino', 'Monza', 'Genoa', 'Lecce', 'Udinese', 'Empoli', 'Verona', 'Cagliari', 'Frosinone', 'Sassuolo', 'Salernitana'],
+    laLiga: ['레알 마드리드', 'FC바르셀로나', '지ro나', '아틀레티코 마드리드', 'Athletic Bilbao', '레알 소시에다드', '레알 베티스', 'Valencia', 'Villarreal', 'Getafe', 'Sevilla', 'Osasuna', 'Las Palmas', 'Rayo Vallecano', 'Mallorca', 'Alaves', 'Celta Vigo', 'Cadiz', 'Granada', 'Almeria'],
+  },
+  baseball: {
+    kbo: ['LG 트윈스', 'KIA 타이거즈', 'SSG 랜더스', 'NC 다이노스', 'KT 위즈', '두산 베어스', '삼성 라이온즈', '롯데 자이언츠', '한화 이글스', '키움 히어로즈'],
+    mlb: ['뉴욕 양키스', '보스턴 레드삭스', '토론토 블루제이스', '볼티모어 오리올스', '탬파베이 레이스', '클리블랜드 가디언스', '미네소타 트윈스', '디트로이트 타이거스', '시카고 화이트삭스', '캔자스시티 로열스', '휴스턴 애스트로스', '시애틀 매리너스', '텍사스 레인저스', 'LA 에인절스', '오클랜드 애슬레틱스', '애틀랜타 브레이브스', '필라델피아 필리스', '뉴욕 메츠', '마이애미 말린스', '워싱턴 내셔널스', '밀워키 브루어스', '시카고 커스', '세인트루이스 카디널스', '피츠버그 파이렛스', '신시내티 레ds', 'LA 다저스', '샌디에이고 파드레스', '샌프란시스코 자이언츠', '애리조나 다이아몬드백스', '콜로라도 로키스'],
+    npb: ['오릭스 버팔로스', '후쿠오카 소프트뱅크', 'Tohoku 라쿠텐', '치바 롯데', '세이bu 라이온스', 'Hokkaido 니혼햄', 'Yomiuri 자이언츠', 'Tokyo Yakult', 'Hanshin 타이거스', 'Hiroshima Carp', 'Yokohama DeNA', 'Chunichi 드래gons'],
+  },
+  volleyball: {
+    vLeagueMen: ['현대캐피탈', '대한항공', '삼성화재', 'OK금융그룹', 'KB손해보험', '한국전력', '우리카드'],
+    vLeagueWomen: ['흥국생명', '현대건설', 'GS칼텍스', 'IBK기업은행', '한국도로공사', '정관장', 'KGC인삼공사'],
+  },
+  basketball: {
+    kbl: ['서울 SK', '창원 LG', '고양 소노', '원주 DB', '울산 현대모비스', '수원 KT', '대구 한국가스공사', '안양 정관장', '서울 삼성', '전주 KCC'],
+    wkbl: ['청주 KB스타즈', '부천 하나원큐', '용인 삼성생명', '아산 우리은행', '부산 BNK 썸', '인천 신한은행', 'IBK기업은행', '국민은행'],
+    nba: ['보스턴 셀틱스', '밀워키 벅스', 'LA 레이커스', '골든스테이트 워리어스', '덴버 너게츠', '필라델피아 76ers', '뉴욕 닉스', '피닉스 선즈', 'LA 클리ppers', '댈러스 매버릭스', '새크ramento 킹스', '멤phis 그rizzlies', '뉴올리언z 펠리컨s', '미네소타 Timberwolves', '오클라호마시티 썬더', '유ta Jazz', '포틀land 트레일 블레이저스', '휴스턴 로켓ts', '샌안토니오 스퍼스', '인디ana 페이sers', '마이애mi 히트', '올랜do 매직', '애틀anta 호크s', '시카고 불스', '토론to 랩tors', '브rooklyn 네ts', '워싱ton 위zards', '샬lotte 호ornets', '디troit 피스tons', '클리veland 캐valiers'],
+  },
+};
+
+function getLogoInitial(name) {
+  const trimmed = name.replace(/^FC\s*/i, '').trim();
+  return trimmed.charAt(0);
+}
+
+function getLogoHue(index, sport) {
+  const sportHue = { football: 160, baseball: 30, volleyball: 280, basketball: 200 };
+  const base = sportHue[sport] || 180;
+  return (base + index * 23) % 360;
+}
+
+function formatGoalDiff(diff) {
+  if (diff > 0) return `+${diff}`;
+  return String(diff);
+}
+
+/** 축구·배구: 승점 기준, 무승부 포함 */
+function buildPointsStandings(teamNames, sport) {
+  const total = teamNames.length;
   return teamNames.map((name, i) => {
-    const win = Math.max(14 - i * 2, 3);
-    const draw = 3 + (i % 4);
-    const loss = Math.max(2 + i, 1);
-    const played = win + draw + loss;
+    const ratio = total > 1 ? i / (total - 1) : 0;
+    const played = Math.round(22 + ratio * 14);
+    const win = Math.max(Math.round(played * (0.62 - ratio * 0.42)), 1);
+    const draw = Math.max(Math.round(played * (0.22 - ratio * 0.08)), 0);
+    let loss = Math.max(played - win - draw, 0);
+    if (win + draw + loss !== played) loss = played - win - draw;
+
+    const points = win * 3 + draw;
+    const scoredBase = sport === 'volleyball' ? 85 : 42;
+    const concededBase = sport === 'volleyball' ? 72 : 28;
+    const scored = Math.round(scoredBase + (total - i) * 2.8 - i * 1.5);
+    const conceded = Math.round(concededBase + i * 2.2 + ratio * 8);
+    const nextIdx = (i + 2) % total;
+
     return {
       rank: i + 1,
       name,
@@ -752,20 +805,42 @@ function buildFootballStandings(teamNames) {
       win,
       draw,
       loss,
-      points: win * 3 + draw,
+      points,
+      scored,
+      conceded,
+      goalDiff: scored - conceded,
       form: FORM_PATTERNS[i % FORM_PATTERNS.length],
+      nextOpponent: teamNames[nextIdx],
+      logoInitial: getLogoInitial(name),
+      logoHue: getLogoHue(i, sport),
     };
   });
 }
 
-function buildNoDrawStandings(teamNames) {
+/** 야구·농구: 승률 기준, 무승부 없음 */
+function buildWinRateStandings(teamNames, sport) {
+  const total = teamNames.length;
   return teamNames.map((name, i) => {
-    const win = Math.max(18 - i * 2, 4);
-    const loss = Math.max(4 + i, 2);
-    const played = win + loss;
-    const winRate = ((win / played) * 100).toFixed(1);
-    const gamesBack = i === 0 ? '-' : String((i * 1.5).toFixed(1));
+    const ratio = total > 1 ? i / (total - 1) : 0;
+    const played = Math.round(40 + ratio * 100);
+    const win = Math.max(Math.round(played * (0.62 - ratio * 0.45)), 1);
+    const loss = Math.max(played - win, 0);
+    const winRate = played > 0 ? (win / played).toFixed(3) : '0.000';
+
+    let scored;
+    let conceded;
+    if (sport === 'baseball') {
+      scored = Math.round(520 - i * 18 + (total - i) * 4);
+      conceded = Math.round(380 + i * 16 + ratio * 40);
+    } else {
+      scored = Math.round(8800 - i * 120 + (total - i) * 30);
+      conceded = Math.round(8200 + i * 110 + ratio * 200);
+    }
+
+    const nextIdx = (i + 2) % total;
     const form = FORM_PATTERNS[i % FORM_PATTERNS.length].filter((r) => r !== 'D');
+    while (form.length < 5) form.push(form.length % 2 === 0 ? 'W' : 'L');
+
     return {
       rank: i + 1,
       name,
@@ -773,10 +848,35 @@ function buildNoDrawStandings(teamNames) {
       win,
       loss,
       winRate,
-      gamesBack,
-      form,
+      scored,
+      conceded,
+      goalDiff: scored - conceded,
+      form: form.slice(0, 5),
+      nextOpponent: teamNames[nextIdx],
+      logoInitial: getLogoInitial(name),
+      logoHue: getLogoHue(i, sport),
     };
   });
+}
+
+function buildStandingsForSport(sport, leagueKey) {
+  const names = STANDINGS_TEAM_NAMES[sport] && STANDINGS_TEAM_NAMES[sport][leagueKey];
+  if (!names || names.length === 0) return [];
+  if (sport === 'football' || sport === 'volleyball') {
+    return buildPointsStandings(names, sport);
+  }
+  return buildWinRateStandings(names, sport);
+}
+
+function buildAllStandingsData() {
+  const data = {};
+  Object.keys(STANDINGS_TEAM_NAMES).forEach((sport) => {
+    data[sport] = {};
+    Object.keys(STANDINGS_TEAM_NAMES[sport]).forEach((leagueKey) => {
+      data[sport][leagueKey] = buildStandingsForSport(sport, leagueKey);
+    });
+  });
+  return data;
 }
 
 // ============================================
@@ -871,30 +971,7 @@ const SCHEDULE_DATA = {
 // ============================================
 // 리그순위 더미 데이터
 // ============================================
-const STANDINGS_DATA = {
-  football: {
-    kLeague: buildFootballStandings(['울산 HD', '전북 현대', '포항 스틸러스', 'FC서울', '수원 FC', '대구 FC', '강원 FC', '제주 유나이티드']),
-    epl: buildFootballStandings(['아스널', '리버풀', '맨체스터 시티', '맨체스터 유나이티드', '토트넘', '뉴캐슬', '첼시', '애스턴 빌라']),
-    bundesliga: buildFootballStandings(['바이에른 뮌헨', '보루시아 도르트문트', 'RB 라이프치히', '바이어 레버쿠젠', '프라이부르크', '슈투트가르트', '보루시아 M', '볼프스부르크']),
-    ligue1: buildFootballStandings(['파리 생제르맹', '마르세유', 'AS 모나코', 'RC 랑스', '릴 OSC', 'OGC 니스', '올랭픽 리옹', '스타드 렌']),
-    serieA: buildFootballStandings(['인터 밀란', '유벤투스', 'AC 밀란', '아탈란타', 'AS 로마', 'SS 라치오', '나폴리', '피오렌티나']),
-    laLiga: buildFootballStandings(['레알 마드리드', 'FC바르셀로나', '지로나', '아틀레티코 마드리드', '헤타페', '레알 소시에다드', '레알 베티스', '비야레알']),
-  },
-  baseball: {
-    kbo: buildNoDrawStandings(['LG 트윈스', 'KIA 타이거즈', 'SSG 랜더스', 'NC 다이노스', '두산 베어스', 'KT 위즈', '삼성 라이온즈', '롯데 자이언츠']),
-    mlb: buildNoDrawStandings(['뉴욕 양키스', 'LA 다저스', '보스턴 레드삭스', '애틀랜타 브레이브스', '휴스턴 애스트로스', '필라델피아 필리스', '샌디에이고 파드레스', '시카고 커스']),
-    npb: buildNoDrawStandings(['오릭스 버팔로스', '요미우리 자이언츠', '한신 타이거스', '치바 롯데 마린스', '소프트뱅크 호크스', '도쿄 Yakult 스왈로스', '히로시마 카프', '세이부 라이온스']),
-  },
-  volleyball: {
-    vLeagueMen: buildNoDrawStandings(['현대캐피탈', '대한항공', '삼성화재', 'OK금융그룹', 'KB손해보험', '한국전력', '우리카드', '페퍼저축은행']),
-    vLeagueWomen: buildNoDrawStandings(['흥국생명', '현대건설', 'GS칼텍스', 'IBK기업은행', '한국도로공사', '정관장', '페퍼저축은행', 'KGC인삼공사']),
-  },
-  basketball: {
-    kbl: buildNoDrawStandings(['서울 SK', '창원 LG', '고양 소노', '원주 DB', '울산 현대모비스', '수원 KT', '대구 한국가스공사', '안양 정관장']),
-    wkbl: buildNoDrawStandings(['청주 KB스타즈', '부천 하나원큐', '용인 삼성생명', '아산 우리은행', '부산 BNK', '인천 신한', '국민은행', '우리은행']),
-    nba: buildNoDrawStandings(['보스턴 셀틱스', '밀워키 벅스', 'LA 레이커스', '골든스테이트 워리어스', '덴버 너게츠', '필라델피아 76ers', '뉴욕 닉스', '피닉스 선즈']),
-  },
-};
+const STANDINGS_DATA = buildAllStandingsData();
 
 // ============================================
 // 라이브스코어 더미 데이터
