@@ -764,17 +764,6 @@ const STANDINGS_TEAM_NAMES = {
   },
 };
 
-function getLogoInitial(name) {
-  const trimmed = name.replace(/^FC\s*/i, '').trim();
-  return trimmed.charAt(0);
-}
-
-function getLogoHue(index, sport) {
-  const sportHue = { football: 160, baseball: 30, volleyball: 280, basketball: 200 };
-  const base = sportHue[sport] || 180;
-  return (base + index * 23) % 360;
-}
-
 function formatGoalDiff(diff) {
   if (diff > 0) return `+${diff}`;
   return String(diff);
@@ -811,8 +800,6 @@ function buildPointsStandings(teamNames, sport) {
       goalDiff: scored - conceded,
       form: FORM_PATTERNS[i % FORM_PATTERNS.length],
       nextOpponent: teamNames[nextIdx],
-      logoInitial: getLogoInitial(name),
-      logoHue: getLogoHue(i, sport),
     };
   });
 }
@@ -853,8 +840,6 @@ function buildWinRateStandings(teamNames, sport) {
       goalDiff: scored - conceded,
       form: form.slice(0, 5),
       nextOpponent: teamNames[nextIdx],
-      logoInitial: getLogoInitial(name),
-      logoHue: getLogoHue(i, sport),
     };
   });
 }

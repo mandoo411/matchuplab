@@ -21,16 +21,11 @@
       .join('');
   }
 
-  function buildLogoBadge(team) {
-    return `<span class="team-logo-badge" style="--logo-hue:${team.logoHue}">${team.logoInitial}</span>`;
-  }
-
   function buildPointsRow(team) {
     const diffClass = team.goalDiff > 0 ? 'diff-plus' : team.goalDiff < 0 ? 'diff-minus' : '';
     return `
       <tr>
         <td class="col-sticky col-sticky-rank">${team.rank}</td>
-        <td class="col-sticky col-sticky-logo">${buildLogoBadge(team)}</td>
         <td class="col-sticky col-sticky-team team-name">${team.name}</td>
         <td>${team.played}</td>
         <td>${team.win}</td>
@@ -50,7 +45,6 @@
     return `
       <tr>
         <td class="col-sticky col-sticky-rank">${team.rank}</td>
-        <td class="col-sticky col-sticky-logo">${buildLogoBadge(team)}</td>
         <td class="col-sticky col-sticky-team team-name">${team.name}</td>
         <td>${team.played}</td>
         <td>${team.win}</td>
@@ -82,7 +76,6 @@
 
     const headPoints = `
       <th class="col-sticky col-sticky-rank">순위</th>
-      <th class="col-sticky col-sticky-logo">로고</th>
       <th class="col-sticky col-sticky-team">팀</th>
       <th>경기</th>
       <th>승</th>
@@ -97,7 +90,6 @@
 
     const headWinRate = `
       <th class="col-sticky col-sticky-rank">순위</th>
-      <th class="col-sticky col-sticky-logo">로고</th>
       <th class="col-sticky col-sticky-team">팀</th>
       <th>경기</th>
       <th>승</th>
