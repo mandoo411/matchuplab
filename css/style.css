@@ -23,6 +23,9 @@
   --transition: 0.2s ease;
   --scroll-offset: 148px;
   --standings-rank-col-width: 44px;
+  --standings-team-col-width: 128px;
+  --standings-row-even-bg: #181c2a;
+  --standings-row-hover-bg: #141f34;
 }
 
 /* --- 리셋 & 기본 --- */
@@ -1001,7 +1004,7 @@ button {
   position: sticky;
   top: 0;
   z-index: 4;
-  background: var(--bg-nav);
+  background-color: var(--bg-nav);
   color: var(--color-text-muted);
   font-weight: 600;
   font-size: 0.75rem;
@@ -1010,23 +1013,43 @@ button {
 
 .standings-table .col-sticky {
   position: sticky;
+  background-color: var(--bg-card);
+  background-clip: padding-box;
+  isolation: isolate;
+}
+
+.standings-table tbody .col-sticky-rank {
   z-index: 2;
 }
 
+.standings-table tbody .col-sticky-team {
+  z-index: 3;
+}
+
 .standings-table thead .col-sticky {
+  background-color: var(--bg-nav);
+}
+
+.standings-table thead .col-sticky-rank {
   z-index: 5;
-  background: var(--bg-nav);
+}
+
+.standings-table thead .col-sticky-team {
+  z-index: 6;
 }
 
 .standings-table .col-sticky-rank {
   left: 0;
   min-width: var(--standings-rank-col-width);
   width: var(--standings-rank-col-width);
+  max-width: var(--standings-rank-col-width);
 }
 
 .standings-table .col-sticky-team {
   left: var(--standings-rank-col-width);
-  min-width: 128px;
+  min-width: var(--standings-team-col-width);
+  width: var(--standings-team-col-width);
+  max-width: var(--standings-team-col-width);
   text-align: left;
   box-shadow: 4px 0 8px rgba(0, 0, 0, 0.12);
 }
@@ -1036,7 +1059,7 @@ button {
 }
 
 .standings-table tbody tr:nth-child(even) td {
-  background-color: rgba(255, 255, 255, 0.025);
+  background-color: var(--standings-row-even-bg);
 }
 
 .standings-table tbody tr:nth-child(odd) td.col-sticky {
@@ -1044,15 +1067,15 @@ button {
 }
 
 .standings-table tbody tr:nth-child(even) td.col-sticky {
-  background-color: rgba(255, 255, 255, 0.025);
+  background-color: var(--standings-row-even-bg);
 }
 
 .standings-table tbody tr:hover td {
-  background-color: rgba(0, 230, 255, 0.05);
+  background-color: var(--standings-row-hover-bg);
 }
 
 .standings-table tbody tr:hover td.col-sticky {
-  background-color: rgba(0, 230, 255, 0.05);
+  background-color: var(--standings-row-hover-bg);
 }
 
 .standings-table tbody tr:last-child td {
@@ -1617,6 +1640,7 @@ button {
   /* --- standings: 테이블 가독성 & sticky --- */
   :root {
     --standings-rank-col-width: 52px;
+    --standings-team-col-width: 104px;
   }
 
   .standings-table-wrap {
@@ -1649,12 +1673,14 @@ button {
   .standings-table .col-sticky-rank {
     min-width: var(--standings-rank-col-width);
     width: var(--standings-rank-col-width);
+    max-width: var(--standings-rank-col-width);
   }
 
   .standings-table .col-sticky-team {
     left: var(--standings-rank-col-width);
-    min-width: 96px;
-    max-width: 112px;
+    min-width: var(--standings-team-col-width);
+    width: var(--standings-team-col-width);
+    max-width: var(--standings-team-col-width);
   }
 
   .standings-table .col-sticky-team.team-name {
@@ -1820,7 +1846,6 @@ button {
   }
 
   .standings-table .col-sticky-team {
-    min-width: 88px;
-    max-width: 96px;
+    --standings-team-col-width: 88px;
   }
 }
