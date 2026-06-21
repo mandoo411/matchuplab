@@ -8,6 +8,13 @@
   const matchesGridEl = document.getElementById('matches-grid');
   const transparencyTableBody = document.getElementById('transparency-tbody');
 
+  const REASON_LOCK_ICON =
+    '<svg class="reason-lock-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+
+  function reasonToggleLabel(isOpen) {
+    return isOpen ? '분석 근거 닫기' : `${REASON_LOCK_ICON} 분석 근거 보기`;
+  }
+
   function buildProbBar(match, hasDraw) {
     if (hasDraw) {
       return `
@@ -54,7 +61,7 @@
         </div>
         <p class="ai-conclusion">${match.conclusion}</p>
         <div class="reason-block">
-          <button class="reason-toggle" aria-expanded="false">분석 근거 보기</button>
+          <button class="reason-toggle" aria-expanded="false">${REASON_LOCK_ICON} 분석 근거 보기</button>
           <div class="reason-content hidden">
             <div class="reason-text blurred">${match.reason}</div>
             <div class="reason-overlay">로그인 후 상세 근거를 확인하세요</div>
@@ -74,7 +81,7 @@
         const isOpen = !content.classList.contains('hidden');
         content.classList.toggle('hidden');
         toggle.setAttribute('aria-expanded', String(!isOpen));
-        toggle.textContent = isOpen ? '분석 근거 보기' : '분석 근거 닫기';
+        toggle.innerHTML = reasonToggleLabel(!isOpen);
       });
     });
   }

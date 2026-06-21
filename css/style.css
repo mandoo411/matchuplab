@@ -480,6 +480,14 @@ button {
   border: 1px solid rgba(0, 230, 255, 0.3);
   border-radius: var(--radius-sm);
   transition: background var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.reason-lock-icon {
+  flex-shrink: 0;
 }
 
 .reason-toggle:hover {
@@ -752,7 +760,7 @@ button {
   }
 
   .matches-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 
@@ -763,7 +771,7 @@ button {
 
 @media (min-width: 1200px) {
   .matches-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -819,6 +827,8 @@ button {
 
 .date-chip {
   flex-shrink: 0;
+  min-width: 108px;
+  text-align: center;
   padding: 10px 16px;
   font-size: 0.8125rem;
   color: var(--color-text-muted);
@@ -844,6 +854,10 @@ button {
   border-color: rgba(0, 230, 255, 0.4);
 }
 
+.date-chip.today {
+  min-width: 140px;
+}
+
 .schedule-list {
   display: flex;
   flex-direction: column;
@@ -855,14 +869,13 @@ button {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 18px 20px;
-  cursor: pointer;
-  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  cursor: default;
+  transition: background var(--transition), border-color var(--transition);
 }
 
 .schedule-card:hover {
   background: var(--bg-card-hover);
-  border-color: rgba(0, 230, 255, 0.35);
-  transform: translateY(-2px);
+  border-color: rgba(0, 230, 255, 0.25);
 }
 
 .schedule-card-header {
@@ -882,8 +895,17 @@ button {
 }
 
 .schedule-card-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-size: 0.75rem;
   color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.schedule-card-arrow {
+  font-size: 0.875rem;
+  line-height: 1;
 }
 
 /* ============================================
@@ -893,6 +915,7 @@ button {
   overflow-x: auto;
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
+  background: var(--bg-card);
 }
 
 .standings-table {
@@ -917,14 +940,33 @@ button {
   white-space: nowrap;
 }
 
+.standings-table th:nth-child(2) {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.15);
+}
+
 .standings-table td.team-name {
   text-align: left;
   font-weight: 600;
   white-space: nowrap;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.15);
 }
 
-.standings-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.02);
+.standings-table tbody tr:nth-child(odd) td {
+  background-color: var(--bg-card);
+}
+
+.standings-table tbody tr:nth-child(even) td {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.standings-table tbody tr:hover td {
+  background-color: rgba(0, 230, 255, 0.04);
 }
 
 .standings-table tbody tr:last-child td {
@@ -1007,6 +1049,20 @@ button {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 18px 20px;
+  border-left-width: 4px;
+  border-left-style: solid;
+}
+
+.livescore-card--live {
+  border-left-color: var(--color-loss);
+}
+
+.livescore-card--upcoming {
+  border-left-color: var(--color-accent);
+}
+
+.livescore-card--finished {
+  border-left-color: var(--color-draw);
 }
 
 .livescore-card-header {
@@ -1060,12 +1116,11 @@ button {
   }
 }
 
-.livescore-teams {
+.livescore-body {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 12px;
-  text-align: center;
+  gap: 16px;
 }
 
 .livescore-team {
@@ -1073,12 +1128,33 @@ button {
   font-weight: 600;
 }
 
-.livescore-team:first-child {
+.livescore-team--home {
   text-align: right;
 }
 
-.livescore-team:last-child {
+.livescore-team--away {
   text-align: left;
+}
+
+.livescore-center-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 72px;
+}
+
+.livescore-vs-text {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.livescore-sub {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
 }
 
 .livescore-score {
@@ -1093,19 +1169,6 @@ button {
 .score-sep {
   color: var(--color-text-muted);
   font-weight: 400;
-}
-
-.livescore-time {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
-}
-
-.livescore-period {
-  margin-top: 8px;
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  text-align: center;
 }
 
 .livescore-widget-notice {

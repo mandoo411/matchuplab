@@ -52,7 +52,7 @@
         <div class="match-teams">${match.teamA}<span class="vs">vs</span>${match.teamB}</div>
         <div class="schedule-card-footer">
           <span class="confidence-badge">신뢰도 ${match.confidence}%</span>
-          <span class="schedule-card-hint">상세보기 예정</span>
+          <span class="schedule-card-hint">상세보기 예정 <span class="schedule-card-arrow" aria-hidden="true">›</span></span>
         </div>
       </article>`;
   }

@@ -19,31 +19,40 @@
     return `<span class="status-badge upcoming">${display}</span>`;
   }
 
-  function buildScoreDisplay(match) {
+  /** LIVE / 예정 / 종료 공통 중앙 영역 */
+  function buildLivescoreCenter(match) {
     if (match.status === 'upcoming') {
-      return `<span class="livescore-time">${match.display}</span>`;
+      return `
+        <div class="livescore-center-inner">
+          <span class="livescore-vs-text">VS</span>
+          <span class="livescore-sub">${match.display}</span>
+        </div>`;
     }
+
+    const sub = match.status === 'live' ? match.display : '';
     return `
-      <div class="livescore-score">
-        <span>${match.scoreA}</span>
-        <span class="score-sep">:</span>
-        <span>${match.scoreB}</span>
+      <div class="livescore-center-inner">
+        <div class="livescore-score">
+          <span>${match.scoreA}</span>
+          <span class="score-sep">:</span>
+          <span>${match.scoreB}</span>
+        </div>
+        ${sub ? `<span class="livescore-sub">${sub}</span>` : ''}
       </div>`;
   }
 
   function buildLivescoreCard(match, leagueName) {
     return `
-      <article class="livescore-card" data-status="${match.status}">
+      <article class="livescore-card livescore-card--${match.status}" data-status="${match.status}">
         <div class="livescore-card-header">
           <span class="league-label">${leagueName}</span>
           ${buildStatusBadge(match.status, match.display)}
         </div>
-        <div class="livescore-teams">
-          <span class="livescore-team">${match.teamA}</span>
-          ${buildScoreDisplay(match)}
-          <span class="livescore-team">${match.teamB}</span>
+        <div class="livescore-body">
+          <span class="livescore-team livescore-team--home">${match.teamA}</span>
+          ${buildLivescoreCenter(match)}
+          <span class="livescore-team livescore-team--away">${match.teamB}</span>
         </div>
-        ${match.status === 'live' ? `<p class="livescore-period">${match.display}</p>` : ''}
       </article>`;
   }
 
