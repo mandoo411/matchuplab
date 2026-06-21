@@ -1422,3 +1422,373 @@ button {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ============================================
+   반응형: 모바일 (767px 이하, 360~430px 기준)
+   ============================================ */
+@media (max-width: 767px) {
+  :root {
+    --scroll-offset: 196px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  .section {
+    padding: 32px 0;
+  }
+
+  .page-header {
+    padding: 24px 0 4px;
+  }
+
+  .page-header .section-desc {
+    font-size: 0.875rem;
+  }
+
+  /* --- GNB & 탭바 (터치 타겟 44px+) --- */
+  .gnb-toggle {
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gnb-menu a {
+    display: block;
+    min-height: 44px;
+    line-height: 44px;
+    padding: 0 14px;
+  }
+
+  .sport-tab {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 16px;
+  }
+
+  .league-tab {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 16px;
+  }
+
+  .division-subtabs {
+    padding: 6px 12px 10px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .division-tab {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 0.8125rem;
+    scroll-snap-align: center;
+  }
+
+  .sport-tabs,
+  .league-subtabs {
+    padding-left: 12px;
+    padding-right: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* --- index: 매치카드 & 잠금 버튼 --- */
+  .match-card {
+    padding: 16px;
+  }
+
+  .match-teams {
+    font-size: 1rem;
+    line-height: 1.45;
+    word-break: keep-all;
+  }
+
+  .match-meta {
+    flex-wrap: wrap;
+  }
+
+  .reason-toggle {
+    min-height: 44px;
+    white-space: nowrap;
+    font-size: 0.8125rem;
+  }
+
+  /* --- schedule: 날짜칩 & 상세보기 --- */
+  .date-chips-wrap {
+    margin-left: -12px;
+    margin-right: -12px;
+    padding: 0 12px;
+  }
+
+  .date-chip {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .date-chip.today {
+    min-width: 132px;
+  }
+
+  .schedule-card {
+    padding: 14px 16px;
+  }
+
+  .schedule-card-header,
+  .schedule-card-footer {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .schedule-card-hint {
+    font-size: 0.75rem;
+    opacity: 0.5;
+    white-space: nowrap;
+  }
+
+  /* --- livescore: 긴 팀명 & 상태 보더 --- */
+  .livescore-card {
+    padding: 14px 16px;
+    border-left-width: 4px;
+  }
+
+  .livescore-body {
+    gap: 8px;
+  }
+
+  .livescore-team {
+    font-size: 0.8125rem;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .livescore-center-inner {
+    min-width: 64px;
+    flex-shrink: 0;
+  }
+
+  .livescore-score {
+    font-size: 1.25rem;
+  }
+
+  .status-filter-btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* --- standings: 테이블 가독성 & sticky --- */
+  .standings-table-wrap {
+    margin-left: -12px;
+    margin-right: -12px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    scrollbar-width: none;
+  }
+
+  .standings-table-wrap::-webkit-scrollbar {
+    display: none;
+  }
+
+  .standings-table {
+    font-size: 0.75rem;
+  }
+
+  .standings-table th,
+  .standings-table td {
+    padding: 10px 8px;
+    font-size: 0.75rem;
+  }
+
+  .standings-table thead th {
+    font-size: 0.75rem;
+  }
+
+  .standings-table .col-sticky-rank {
+    min-width: 40px;
+    width: 40px;
+  }
+
+  .standings-table .col-sticky-team {
+    left: 40px;
+    min-width: 96px;
+    max-width: 112px;
+  }
+
+  .standings-table .col-sticky-team.team-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .standings-table .next-match {
+    min-width: 88px;
+    font-size: 0.75rem;
+  }
+
+  .form-badge {
+    width: 22px;
+    height: 22px;
+    font-size: 0.75rem;
+  }
+
+  .standings-table--football th:not(.col-sticky),
+  .standings-table--football td:not(.col-sticky) {
+    min-width: 40px;
+  }
+
+  .standings-table--football th:last-child,
+  .standings-table--football td:last-child {
+    min-width: 88px;
+  }
+
+  .standings-table--baseball th:not(.col-sticky),
+  .standings-table--baseball td:not(.col-sticky) {
+    min-width: 40px;
+  }
+
+  .standings-table--baseball th:last-child,
+  .standings-table--baseball td:last-child {
+    min-width: 88px;
+  }
+
+  .standings-table--basketball-kor th:nth-child(3),
+  .standings-table--basketball-kor td:nth-child(3),
+  .standings-table--basketball-kor th:nth-child(4),
+  .standings-table--basketball-kor td:nth-child(4),
+  .standings-table--basketball-kor th:nth-child(5),
+  .standings-table--basketball-kor td:nth-child(5),
+  .standings-table--basketball-kor td:nth-child(6),
+  .standings-table--basketball-kor th:nth-child(6),
+  .standings-table--basketball-kor th:nth-child(7),
+  .standings-table--basketball-kor td:nth-child(7),
+  .standings-table--basketball-kor th:nth-child(8),
+  .standings-table--basketball-kor td:nth-child(8) {
+    min-width: 40px;
+  }
+
+  .standings-table--basketball-nba th:nth-child(3),
+  .standings-table--basketball-nba td:nth-child(3),
+  .standings-table--basketball-nba th:nth-child(4),
+  .standings-table--basketball-nba td:nth-child(4),
+  .standings-table--basketball-nba th:nth-child(5),
+  .standings-table--basketball-nba td:nth-child(5),
+  .standings-table--basketball-nba th:nth-child(6),
+  .standings-table--basketball-nba td:nth-child(6),
+  .standings-table--basketball-nba th:nth-child(7),
+  .standings-table--basketball-nba td:nth-child(7),
+  .standings-table--basketball-nba th:nth-child(8),
+  .standings-table--basketball-nba td:nth-child(8) {
+    min-width: 40px;
+  }
+
+  .standings-table--basketball-nba th:nth-child(9),
+  .standings-table--basketball-nba td:nth-child(9),
+  .standings-table--basketball-nba th:nth-child(10),
+  .standings-table--basketball-nba td:nth-child(10) {
+    min-width: 72px;
+  }
+
+  .standings-table--basketball-nba th:nth-child(11),
+  .standings-table--basketball-nba td:nth-child(11) {
+    min-width: 56px;
+  }
+
+  .standings-table--basketball-nba th:nth-child(12),
+  .standings-table--basketball-nba td:nth-child(12) {
+    min-width: 76px;
+  }
+
+  .standings-table--volleyball th:nth-child(3),
+  .standings-table--volleyball td:nth-child(3),
+  .standings-table--volleyball th:nth-child(4),
+  .standings-table--volleyball td:nth-child(4),
+  .standings-table--volleyball th:nth-child(5),
+  .standings-table--volleyball td:nth-child(5),
+  .standings-table--volleyball th:nth-child(6),
+  .standings-table--volleyball td:nth-child(6) {
+    min-width: 40px;
+  }
+
+  .standings-table--volleyball th:nth-child(7),
+  .standings-table--volleyball td:nth-child(7),
+  .standings-table--volleyball th:nth-child(8),
+  .standings-table--volleyball td:nth-child(8) {
+    min-width: 72px;
+  }
+
+  .npb-standings-legend {
+    font-size: 0.75rem;
+    padding: 8px 12px;
+  }
+
+  /* --- mypage: 프리뷰 카드 --- */
+  .mypage-login-box {
+    padding: 32px 16px;
+    margin-bottom: 28px;
+  }
+
+  .mypage-auth-btns {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mypage-auth-btns .btn-cta,
+  .mypage-auth-btns .btn-outline {
+    width: 100%;
+    text-align: center;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 767px) {
+  .mypage-preview-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .preview-card {
+    padding: 16px;
+  }
+
+  .preview-card h3 {
+    font-size: 0.875rem;
+  }
+
+  .preview-card p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 359px) {
+  .livescore-body {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .livescore-team--home,
+  .livescore-team--away {
+    text-align: center;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+
+  .standings-table .col-sticky-team {
+    min-width: 88px;
+    max-width: 96px;
+  }
+}

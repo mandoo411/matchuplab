@@ -30,6 +30,15 @@ const MatchUpTabs = (function () {
     return sportTabs[currentLeague] || null;
   }
 
+  function scrollActiveTabIntoView(container) {
+    if (!container || container.classList.contains('hidden')) return;
+    const active = container.querySelector('.active');
+    if (!active) return;
+    requestAnimationFrame(() => {
+      active.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+    });
+  }
+
   function initGnb() {
     const toggle = gnbToggle();
     const menu = gnbMenu();
@@ -60,6 +69,8 @@ const MatchUpTabs = (function () {
         selectSport(btn.dataset.sport);
       });
     });
+
+    scrollActiveTabIntoView(el);
   }
 
   function selectSport(sportId) {
@@ -102,6 +113,8 @@ const MatchUpTabs = (function () {
         notifyChange();
       });
     });
+
+    scrollActiveTabIntoView(el);
   }
 
   function renderDivisionSubtabs() {
@@ -137,6 +150,8 @@ const MatchUpTabs = (function () {
         notifyChange();
       });
     });
+
+    scrollActiveTabIntoView(el);
   }
 
   function init(options) {
