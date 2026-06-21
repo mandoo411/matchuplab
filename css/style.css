@@ -969,7 +969,23 @@ button {
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.8125rem;
+  min-width: 100%;
+}
+
+.standings-table--football {
   min-width: 920px;
+}
+
+.standings-table--basketball-kor {
+  min-width: 680px;
+}
+
+.standings-table--basketball-nba {
+  min-width: 980px;
+}
+
+.standings-table--volleyball {
+  min-width: 640px;
 }
 
 .standings-table th,

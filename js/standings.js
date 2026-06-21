@@ -7,8 +7,16 @@
 
   const standingsTableWrap = document.getElementById('standings-table-wrap');
 
-  function usesPointsColumns(sport) {
-    return sport === 'football' || sport === 'volleyball';
+  function usesFootballColumns(sport) {
+    return sport === 'football';
+  }
+
+  function isBasketball(sport) {
+    return sport === 'basketball';
+  }
+
+  function isVolleyball(sport) {
+    return sport === 'volleyball';
   }
 
   function isBaseball(sport) {
@@ -104,6 +112,98 @@
       </tr>`;
   }
 
+  function buildKoreanBasketballHead() {
+    return `
+      <th class="col-sticky col-sticky-rank">순위</th>
+      <th class="col-sticky col-sticky-team">팀</th>
+      <th>승률</th>
+      <th>경기</th>
+      <th>승</th>
+      <th>패</th>
+      <th>게임차</th>
+      <th>연속</th>
+      <th>최근5</th>`;
+  }
+
+  function buildKoreanBasketballRow(team) {
+    return `
+      <tr>
+        <td class="col-sticky col-sticky-rank">${team.rank}</td>
+        <td class="col-sticky col-sticky-team team-name">${team.name}</td>
+        <td><strong>${team.winRate}</strong></td>
+        <td>${team.played}</td>
+        <td>${team.win}</td>
+        <td>${team.loss}</td>
+        <td>${formatGamesBack(team)}</td>
+        <td>${team.streak}</td>
+        <td><div class="form-row">${buildFormIcons(team.form)}</div></td>
+      </tr>`;
+  }
+
+  function buildNbaBasketballHead() {
+    return `
+      <th class="col-sticky col-sticky-rank">순위</th>
+      <th class="col-sticky col-sticky-team">팀</th>
+      <th>승률</th>
+      <th>경기</th>
+      <th>승</th>
+      <th>패</th>
+      <th>게임차</th>
+      <th>연속</th>
+      <th>홈성적</th>
+      <th>원정성적</th>
+      <th>디비전</th>
+      <th>디비전성적</th>
+      <th>최근5</th>`;
+  }
+
+  function buildNbaBasketballRow(team) {
+    return `
+      <tr>
+        <td class="col-sticky col-sticky-rank">${team.rank}</td>
+        <td class="col-sticky col-sticky-team team-name">${team.name}</td>
+        <td><strong>${team.winRate}</strong></td>
+        <td>${team.played}</td>
+        <td>${team.win}</td>
+        <td>${team.loss}</td>
+        <td>${formatGamesBack(team)}</td>
+        <td>${team.streak}</td>
+        <td>${team.homeRecord}</td>
+        <td>${team.awayRecord}</td>
+        <td>${team.division}</td>
+        <td>${team.divisionRecord}</td>
+        <td><div class="form-row">${buildFormIcons(team.form)}</div></td>
+      </tr>`;
+  }
+
+  function buildVolleyballHead() {
+    return `
+      <th class="col-sticky col-sticky-rank">순위</th>
+      <th class="col-sticky col-sticky-team">팀</th>
+      <th>승점</th>
+      <th>경기</th>
+      <th>승</th>
+      <th>패</th>
+      <th>세트득실률</th>
+      <th>점수득실률</th>
+      <th>최근5</th>`;
+  }
+
+  function buildVolleyballRow(team) {
+    return `
+      <tr>
+        <td class="col-sticky col-sticky-rank">${team.rank}</td>
+        <td class="col-sticky col-sticky-team team-name">${team.name}</td>
+        <td><strong>${team.points}</strong></td>
+        <td>${team.played}</td>
+        <td>${team.win}</td>
+        <td>${team.loss}</td>
+        <td>${team.setRatio}</td>
+        <td>${team.pointRatio}</td>
+        <td><div class="form-row">${buildFormIcons(team.form)}</div></td>
+      </tr>`;
+  }
+
   function buildBaseballRow(team, showDraw) {
     const gbClass =
       team.isWildCard && typeof team.gamesBack === 'string' && team.gamesBack.startsWith('+')
@@ -163,8 +263,10 @@
     const { sport, league, subLeague } = MatchUpTabs.getState();
     const leagueName = MatchUpTabs.getLeagueName();
     const teams = getStandingsTeams(sport, league, subLeague);
-    const withPoints = usesPointsColumns(sport);
+    const football = usesFootballColumns(sport);
     const baseball = isBaseball(sport);
+    const basketball = isBasketball(sport);
+    const volleyball = isVolleyball(sport);
 
     if (teams.length === 0) {
       standingsTableWrap.innerHTML = `
@@ -188,6 +290,41 @@
           </thead>
           <tbody>
             ${teams.map((t) => buildBaseballRow(t, showDraw)).join('')}
+          </tbody>
+        </table>`;
+      return;
+    }
+
+    if (volleyball) {
+      standingsTableWrap.innerHTML = `
+        <table class="standings-table standings-table--volleyball">
+          <caption class="sr-only">${leagueName} 순위표 (${teams.length}팀)</caption>
+          <thead>
+            <tr>${buildVolleyballHead()}</tr>
+          </thead>
+          <tbody>
+            ${teams.map((t) => buildVolleyballRow(t)).join('')}
+          </tbody>
+        </table>`;
+      return;
+    }
+
+    if (basketball) {
+      const isNba = league === 'nba';
+      const tableClass = isNba
+        ? 'standings-table standings-table--basketball-nba'
+        : 'standings-table standings-table--basketball-kor';
+      const head = isNba ? buildNbaBasketballHead() : buildKoreanBasketballHead();
+      const rowBuilder = isNba ? buildNbaBasketballRow : buildKoreanBasketballRow;
+
+      standingsTableWrap.innerHTML = `
+        <table class="${tableClass}">
+          <caption class="sr-only">${leagueName} 순위표 (${teams.length}팀)</caption>
+          <thead>
+            <tr>${head}</tr>
+          </thead>
+          <tbody>
+            ${teams.map((t) => rowBuilder(t)).join('')}
           </tbody>
         </table>`;
       return;
@@ -221,13 +358,13 @@
       <th>다음경기</th>`;
 
     standingsTableWrap.innerHTML = `
-      <table class="standings-table">
+      <table class="standings-table standings-table--football">
         <caption class="sr-only">${leagueName} 순위표 (${teams.length}팀)</caption>
         <thead>
-          <tr>${withPoints ? headPoints : headWinRate}</tr>
+          <tr>${football ? headPoints : headWinRate}</tr>
         </thead>
         <tbody>
-          ${teams.map((t) => (withPoints ? buildPointsRow(t) : buildWinRateRow(t))).join('')}
+          ${teams.map((t) => (football ? buildPointsRow(t) : buildWinRateRow(t))).join('')}
         </tbody>
       </table>`;
   }

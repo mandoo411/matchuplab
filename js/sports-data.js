@@ -785,13 +785,33 @@ const NBA_CONFERENCES = {
   ],
 };
 
+/** NBA 디비전 매핑 (리그순위 NBA 전용 컬럼) */
+const NBA_DIVISION_TEAMS = {
+  '대서양': ['보스턴 셀틱스', '뉴욕 닉스', '브루클린 네츠', '필라델피아 76ers', '토론토 랩터스'],
+  '중부': ['밀워키 벅스', '클리블랜드 캐벌리어스', '시카고 불스', '인디애나 페이서스', '디트로이트 피스턴스'],
+  '남동부': ['마이애미 히트', '올랜도 매직', '애틀랜타 호크스', '워싱턴 위저즈', '샬럿 호넷츠'],
+  '노스웨스트': ['덴버 너게츠', '미네소타 팀버울브스', '오클라호마시티 썬더', '포틀랜드 트레일블레이저스', '유타 재즈'],
+  '퍼시픽': ['LA 레이커스', 'LA 클리퍼스', '골든스테이트 워리어스', '피닉스 선즈', '새크라멘토 킹스'],
+  '사우스웨스트': ['댈러스 매버릭스', '휴스턴 로키츠', '멤피스 그리즐리스', '뉴올리언스 펠리컨스', '샌안토니오 스퍼스'],
+};
+
+function getNbaDivisionName(teamName) {
+  const entries = Object.entries(NBA_DIVISION_TEAMS);
+  for (let d = 0; d < entries.length; d += 1) {
+    if (entries[d][1].includes(teamName)) return entries[d][0];
+  }
+  return '';
+}
+
+const BASKETBALL_STREAKS = ['2승', '1승', '1패', '3승', '2패', '1승', '1패', '2승', '3패', '2승'];
+
 function formatGoalDiff(diff) {
   if (diff > 0) return `+${diff}`;
   return String(diff);
 }
 
-/** 축구·배구: 승점 기준, 무승부 포함 */
-function buildPointsStandings(teamNames, sport) {
+/** 축구: 승점 기준, 무승부 포함 */
+function buildFootballStandings(teamNames) {
   const total = teamNames.length;
   return teamNames.map((name, i) => {
     const ratio = total > 1 ? i / (total - 1) : 0;
@@ -802,10 +822,8 @@ function buildPointsStandings(teamNames, sport) {
     if (win + draw + loss !== played) loss = played - win - draw;
 
     const points = win * 3 + draw;
-    const scoredBase = sport === 'volleyball' ? 85 : 42;
-    const concededBase = sport === 'volleyball' ? 72 : 28;
-    const scored = Math.round(scoredBase + (total - i) * 2.8 - i * 1.5);
-    const conceded = Math.round(concededBase + i * 2.2 + ratio * 8);
+    const scored = Math.round(42 + (total - i) * 2.8 - i * 1.5);
+    const conceded = Math.round(28 + i * 2.2 + ratio * 8);
     const nextIdx = (i + 2) % total;
 
     return {
@@ -825,68 +843,163 @@ function buildPointsStandings(teamNames, sport) {
   });
 }
 
-/** 농구: 승률 기준, 리그별 정규시즌 경기수 반영 */
-function buildBasketballStandings(teamNames, leagueKey) {
+/** 배구 V리그: 승점·세트/점수 득실률 기준 */
+function buildVolleyballStandings(teamNames) {
+  const played = 36;
   const total = teamNames.length;
-  const isNba = leagueKey === 'nba';
-  const isWkbl = leagueKey === 'wkbl';
-
-  /** NBA: 82경기 기준, 팀별 70~82 (시즌 말 1~2경기 차) */
-  const nbaPlayedByIndex = [
-    82, 81, 81, 80, 80, 79, 79, 78, 78, 77,
-    77, 76, 76, 75, 75, 74, 74, 73, 73, 72,
-    72, 71, 71, 70, 70, 71, 72, 73, 74, 75,
-  ];
 
   return teamNames.map((name, i) => {
     const ratio = total > 1 ? i / (total - 1) : 0;
-    let played;
-    if (isNba) {
-      played = nbaPlayedByIndex[i] || 76;
-    } else if (isWkbl) {
-      played = 34 - (i % 2);
-    } else {
-      played = 38 - (i % 3);
-    }
-
-    const winPct = 0.72 - ratio * 0.46;
-    const win = Math.max(Math.min(Math.round(played * winPct), played - 1), 1);
+    const win = Math.max(Math.round(played * (0.75 - ratio * 0.42)), 1);
     const loss = played - win;
-    const winRate = played > 0 ? (win / played).toFixed(3) : '0.000';
+    const points = win * 3 + Math.max(Math.round(win * 0.15), 0);
 
-    let ppgOff;
-    let ppgDef;
-    if (isNba) {
-      ppgOff = 118 - ratio * 14;
-      ppgDef = 108 + ratio * 12;
-    } else if (isWkbl) {
-      ppgOff = 72 - ratio * 10;
-      ppgDef = 68 + ratio * 8;
-    } else {
-      ppgOff = 82 - ratio * 11;
-      ppgDef = 78 + ratio * 9;
-    }
+    const setsWon = Math.round(win * 3.15 + loss * 1.1);
+    const setsLost = Math.max(Math.round(loss * 2.95 + win * 0.85), 1);
+    const setRatio = (setsWon / setsLost).toFixed(3);
 
-    const scored = Math.round(played * ppgOff);
-    const conceded = Math.round(played * ppgDef);
-    const nextIdx = (i + 2) % total;
+    const scoreFor = Math.round(played * (78 - ratio * 9));
+    const scoreAgainst = Math.max(Math.round(played * (72 + ratio * 7)), 1);
+    const pointRatio = (scoreFor / scoreAgainst).toFixed(3);
+
     const form = FORM_PATTERNS[i % FORM_PATTERNS.length].filter((r) => r !== 'D');
     while (form.length < 5) form.push(form.length % 2 === 0 ? 'W' : 'L');
 
     return {
       rank: i + 1,
       name,
+      points,
       played,
       win,
       loss,
-      winRate,
-      scored,
-      conceded,
-      goalDiff: scored - conceded,
+      setRatio,
+      pointRatio,
       form: form.slice(0, 5),
-      nextOpponent: teamNames[nextIdx],
     };
   });
+}
+
+function buildFormNoDraw(index) {
+  const form = FORM_PATTERNS[index % FORM_PATTERNS.length].filter((r) => r !== 'D');
+  while (form.length < 5) form.push(form.length % 2 === 0 ? 'W' : 'L');
+  return form.slice(0, 5);
+}
+
+function calcGamesBack(leaderWins, teamWins, index) {
+  if (index === 0) return '0.0';
+  return Math.max((leaderWins - teamWins) / 2, 0).toFixed(1);
+}
+
+/** KBL/WKBL: 국내 농구 순위 (통일 경기수) */
+function buildKoreanBasketballStandings(teamNames, playedTotal) {
+  const total = teamNames.length;
+  const rows = teamNames.map((name, i) => {
+    const ratio = total > 1 ? i / (total - 1) : 0;
+    const win = Math.max(Math.round(playedTotal * (0.68 - ratio * 0.38)), 1);
+    const loss = playedTotal - win;
+    const winRate = (win / playedTotal).toFixed(3);
+
+    return {
+      name,
+      played: playedTotal,
+      win,
+      loss,
+      winRate,
+      streak: BASKETBALL_STREAKS[i % BASKETBALL_STREAKS.length],
+      form: buildFormNoDraw(i),
+    };
+  });
+
+  const leaderWins = rows[0].win;
+  return rows.map((row, i) => ({
+    rank: i + 1,
+    ...row,
+    gamesBack: calcGamesBack(leaderWins, row.win, i),
+  }));
+}
+
+function splitHomeAwayRecord(played, win, loss) {
+  const homeGames = Math.floor(played / 2);
+  const awayGames = played - homeGames;
+  const winRate = win / played;
+
+  let homeWin = Math.round(homeGames * winRate);
+  if (homeWin > win) homeWin = win;
+  if (homeWin > homeGames) homeWin = homeGames;
+  let homeLoss = homeGames - homeWin;
+
+  let awayWin = win - homeWin;
+  let awayLoss = loss - homeLoss;
+
+  if (awayWin < 0) {
+    homeWin += awayWin;
+    awayWin = 0;
+    homeLoss = homeGames - homeWin;
+  }
+  if (awayLoss < 0) {
+    awayLoss = 0;
+    awayWin = awayGames;
+  }
+  if (awayWin + awayLoss !== awayGames) {
+    awayLoss = awayGames - awayWin;
+  }
+
+  return {
+    homeRecord: `${homeWin}승${homeLoss}패`,
+    awayRecord: `${awayWin}승${awayLoss}패`,
+  };
+}
+
+/** NBA: 디비전·홈/원정 성적 포함 */
+function buildNbaStandings(teamNames) {
+  const total = teamNames.length;
+  const playedTotal = 78;
+
+  const rows = teamNames.map((name, i) => {
+    const ratio = total > 1 ? i / (total - 1) : 0;
+    const win = Math.max(Math.round(playedTotal * (0.72 - ratio * 0.46)), 1);
+    const loss = playedTotal - win;
+    const winRate = (win / playedTotal).toFixed(3);
+    const { homeRecord, awayRecord } = splitHomeAwayRecord(playedTotal, win, loss);
+
+    const divisionGames = 16;
+    const divWinRate = Math.min(winRate * 1.08, 0.92);
+    let divWin = Math.round(divisionGames * divWinRate);
+    divWin = Math.max(Math.min(divWin, divisionGames - 1), 1);
+    const divLoss = divisionGames - divWin;
+
+    return {
+      name,
+      played: playedTotal,
+      win,
+      loss,
+      winRate,
+      streak: BASKETBALL_STREAKS[i % BASKETBALL_STREAKS.length],
+      homeRecord,
+      awayRecord,
+      division: getNbaDivisionName(name),
+      divisionRecord: `${divWin}승${divLoss}패`,
+      form: buildFormNoDraw(i),
+    };
+  });
+
+  const leaderWins = rows[0].win;
+  return rows.map((row, i) => ({
+    rank: i + 1,
+    ...row,
+    gamesBack: calcGamesBack(leaderWins, row.win, i),
+  }));
+}
+
+/** 농구: 리그별 전용 순위 생성 */
+function buildBasketballStandings(teamNames, leagueKey) {
+  if (leagueKey === 'nba') {
+    return buildNbaStandings(teamNames);
+  }
+  if (leagueKey === 'wkbl') {
+    return buildKoreanBasketballStandings(teamNames, 30);
+  }
+  return buildKoreanBasketballStandings(teamNames, 54);
 }
 
 /** 야구·농구(구): 승률 기준 — 야구 전용 레거시, 농구는 buildBasketballStandings 사용 */
@@ -932,8 +1045,11 @@ function buildWinRateStandings(teamNames, sport) {
 function buildStandingsForSport(sport, leagueKey) {
   const names = STANDINGS_TEAM_NAMES[sport] && STANDINGS_TEAM_NAMES[sport][leagueKey];
   if (!names || names.length === 0) return [];
-  if (sport === 'football' || sport === 'volleyball') {
-    return buildPointsStandings(names, sport);
+  if (sport === 'football') {
+    return buildFootballStandings(names);
+  }
+  if (sport === 'volleyball') {
+    return buildVolleyballStandings(names);
   }
   if (sport === 'baseball') {
     return [];
