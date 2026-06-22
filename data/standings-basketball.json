@@ -1,5 +1,8 @@
 {
-  "nba": null,
-  "kbl": null,
-  "wkbl": null
+  "nba": {
+    "동부": [],
+    "서부": []
+  },
+  "kbl": [],
+  "wkbl": []
 }
