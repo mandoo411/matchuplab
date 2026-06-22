@@ -421,7 +421,21 @@
       </table>`;
   }
 
-  function init() {
+  function showLoading() {
+    if (!standingsTableWrap) return;
+    standingsTableWrap.innerHTML = `
+      <div class="standings-loading" role="status" aria-live="polite">
+        <p>데이터를 불러오는 중...</p>
+      </div>`;
+  }
+
+  async function init() {
+    showLoading();
+
+    if (typeof MatchUpStandingsLoader !== 'undefined') {
+      await MatchUpStandingsLoader.load();
+    }
+
     MatchUpTabs.init({
       onChange: () => {
         renderStandingsTable();

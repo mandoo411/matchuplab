@@ -1341,9 +1341,11 @@ const SCHEDULE_DATA = {
 };
 
 // ============================================
-// 리그순위 더미 데이터
+// 리그순위 더미 데이터 (API JSON fallback용)
 // ============================================
-const STANDINGS_DATA = buildAllStandingsData();
+const STANDINGS_DUMMY_DATA = buildAllStandingsData();
+/** 활성 순위 데이터 — standings-loader.js가 JSON fetch 후 갱신 */
+var STANDINGS_DATA = STANDINGS_DUMMY_DATA;
 
 // ============================================
 // 라이브스코어 더미 데이터

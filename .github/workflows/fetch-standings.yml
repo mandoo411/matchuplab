@@ -1,0 +1,43 @@
+name: Fetch standings (API-Sports)
+
+on:
+  schedule:
+    # UTC 21:00 = KST 06:00
+    - cron: "0 21 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch standings data
+        env:
+          API_SPORTS_KEY: ${{ secrets.API_SPORTS_KEY }}
+        run: node scripts/fetch-standings.js
+
+      - name: Commit & push if changed
+        run: |
+          if git status --porcelain data | grep -q .; then
+            DATE=$(date -u +"%Y-%m-%d")
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data
+            git commit -m "chore: standings data update ${DATE}"
+            git push
+          else
+            echo "No data changes; skip commit."
+          fi
+
