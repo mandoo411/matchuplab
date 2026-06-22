@@ -1,560 +1,76 @@
 {
-  "kbo": null,
+  "kbo": [
+    {"rank":1,"team":"LG 트윈스","win_rate":0.634,"game_behind":"-","win":45,"draw":0,"lose":26,"played":71,"streak":"3승","avg":"","era":"","recent5":["W","W","W","W","W"]},
+    {"rank":2,"team":"KT 위즈","win_rate":0.594,"game_behind":"3","win":41,"draw":1,"lose":28,"played":70,"streak":"1승","avg":"0.284","era":"4.08","recent5":[]},
+    {"rank":3,"team":"삼성 라이온즈","win_rate":0.588,"game_behind":"3.5","win":40,"draw":2,"lose":28,"played":70,"streak":"1승","avg":"","era":"","recent5":["W"]},
+    {"rank":4,"team":"KIA 타이거즈","win_rate":0.535,"game_behind":"7","win":38,"draw":1,"lose":33,"played":72,"streak":"1승","avg":"","era":"","recent5":["W"]},
+    {"rank":5,"team":"두산 베어스","win_rate":0.486,"game_behind":"10.5","win":34,"draw":2,"lose":36,"played":72,"streak":"3패","avg":"","era":"","recent5":["L","L","L"]},
+    {"rank":6,"team":"한화 이글스","win_rate":0.485,"game_behind":"10.5","win":33,"draw":2,"lose":35,"played":70,"streak":"1패","avg":"","era":"","recent5":["L"]},
+    {"rank":7,"team":"NC 다이노스","win_rate":0.471,"game_behind":"11.5","win":32,"draw":1,"lose":36,"played":69,"streak":"2패","avg":"","era":"","recent5":["L","L"]},
+    {"rank":8,"team":"롯데 자이언츠","win_rate":0.426,"game_behind":"14.5","win":29,"draw":2,"lose":39,"played":70,"streak":"5승","avg":"","era":"","recent5":["W","W","W","W","W"]},
+    {"rank":9,"team":"SSG 랜더스","win_rate":0.420,"game_behind":"15","win":29,"draw":2,"lose":40,"played":71,"streak":"2패","avg":"0.261","era":"","recent5":["L","L"]},
+    {"rank":10,"team":"키움 히어로즈","win_rate":0.361,"game_behind":"19.5","win":26,"draw":1,"lose":46,"played":73,"streak":"6패","avg":"","era":"","recent5":["L","L","L","L","L","L"]}
+  ],
   "mlb": {
     "AL동부": [
-      {
-        "position": 1,
-        "team": {
-          "name": "Yankees"
-        },
-        "games": {
-          "played": 78
-        },
-        "wins": {
-          "total": 47,
-          "percentage": ".603"
-        },
-        "loses": {
-          "total": 31
-        },
-        "streak": "W1",
-        "gamesBack": "-"
-      },
-      {
-        "position": 2,
-        "team": {
-          "name": "Rays"
-        },
-        "games": {
-          "played": 76
-        },
-        "wins": {
-          "total": 43,
-          "percentage": ".566"
-        },
-        "loses": {
-          "total": 33
-        },
-        "streak": "L2",
-        "gamesBack": "3.0"
-      },
-      {
-        "position": 3,
-        "team": {
-          "name": "Blue Jays"
-        },
-        "games": {
-          "played": 79
-        },
-        "wins": {
-          "total": 39,
-          "percentage": ".494"
-        },
-        "loses": {
-          "total": 40
-        },
-        "streak": "L1",
-        "gamesBack": "8.5"
-      },
-      {
-        "position": 4,
-        "team": {
-          "name": "Orioles"
-        },
-        "games": {
-          "played": 81
-        },
-        "wins": {
-          "total": 38,
-          "percentage": ".469"
-        },
-        "loses": {
-          "total": 43
-        },
-        "streak": "L1",
-        "gamesBack": "10.5"
-      },
-      {
-        "position": 5,
-        "team": {
-          "name": "Red Sox"
-        },
-        "games": {
-          "played": 77
-        },
-        "wins": {
-          "total": 32,
-          "percentage": ".416"
-        },
-        "loses": {
-          "total": 45
-        },
-        "streak": "W1",
-        "gamesBack": "14.5"
-      }
+      {"rank":1,"team":"양키스","win_rate":0.605,"game_behind":"-","win":46,"lose":30,"played":76,"streak":"2패","recent5":[]},
+      {"rank":2,"team":"레이스","win_rate":0.581,"game_behind":"2","win":43,"lose":31,"played":74,"streak":"1승","recent5":[]},
+      {"rank":3,"team":"블루제이스","win_rate":0.494,"game_behind":"8.5","win":38,"lose":39,"played":77,"streak":"1승","recent5":[]},
+      {"rank":4,"team":"오리올스","win_rate":0.468,"game_behind":"10.5","win":37,"lose":42,"played":79,"streak":"2승","recent5":[]},
+      {"rank":5,"team":"레드삭스","win_rate":0.413,"game_behind":"14.5","win":31,"lose":44,"played":75,"streak":"1패","recent5":[]}
     ],
     "AL중부": [
-      {
-        "position": 1,
-        "team": {
-          "name": "White Sox"
-        },
-        "games": {
-          "played": 78
-        },
-        "wins": {
-          "total": 41,
-          "percentage": ".526"
-        },
-        "loses": {
-          "total": 37
-        },
-        "streak": "W2",
-        "gamesBack": "-"
-      },
-      {
-        "position": 2,
-        "team": {
-          "name": "Guardians"
-        },
-        "games": {
-          "played": 80
-        },
-        "wins": {
-          "total": 41,
-          "percentage": ".513"
-        },
-        "loses": {
-          "total": 39
-        },
-        "streak": "L3",
-        "gamesBack": "1.0"
-      },
-      {
-        "position": 3,
-        "team": {
-          "name": "Twins"
-        },
-        "games": {
-          "played": 81
-        },
-        "wins": {
-          "total": 38,
-          "percentage": ".469"
-        },
-        "loses": {
-          "total": 43
-        },
-        "streak": "L2",
-        "gamesBack": "4.5"
-      },
-      {
-        "position": 4,
-        "team": {
-          "name": "Tigers"
-        },
-        "games": {
-          "played": 79
-        },
-        "wins": {
-          "total": 34,
-          "percentage": ".430"
-        },
-        "loses": {
-          "total": 45
-        },
-        "streak": "L1",
-        "gamesBack": "7.5"
-      },
-      {
-        "position": 5,
-        "team": {
-          "name": "Royals"
-        },
-        "games": {
-          "played": 80
-        },
-        "wins": {
-          "total": 34,
-          "percentage": ".425"
-        },
-        "loses": {
-          "total": 46
-        },
-        "streak": "W2",
-        "gamesBack": "8.0"
-      }
+      {"rank":1,"team":"가디언스","win_rate":0.526,"game_behind":"-","win":41,"lose":37,"played":78,"streak":"1패","recent5":[]},
+      {"rank":2,"team":"화이트삭스","win_rate":0.513,"game_behind":"1","win":39,"lose":37,"played":76,"streak":"3패","recent5":[]},
+      {"rank":3,"team":"타이거스","win_rate":0.481,"game_behind":"3.5","win":38,"lose":41,"played":79,"streak":"2승","recent5":[]},
+      {"rank":4,"team":"로열스","win_rate":0.429,"game_behind":"7.5","win":33,"lose":44,"played":77,"streak":"3승","recent5":[]},
+      {"rank":5,"team":"트윈스","win_rate":0.410,"game_behind":"9","win":32,"lose":46,"played":78,"streak":"1패","recent5":[]}
     ],
     "AL서부": [
-      {
-        "position": 1,
-        "team": {
-          "name": "Mariners"
-        },
-        "games": {
-          "played": 80
-        },
-        "wins": {
-          "total": 41,
-          "percentage": ".513"
-        },
-        "loses": {
-          "total": 39
-        },
-        "streak": "W2",
-        "gamesBack": "-"
-      },
-      {
-        "position": 2,
-        "team": {
-          "name": "Athletics"
-        },
-        "games": {
-          "played": 79
-        },
-        "wins": {
-          "total": 38,
-          "percentage": ".481"
-        },
-        "loses": {
-          "total": 41
-        },
-        "streak": "L3",
-        "gamesBack": "2.5"
-      },
-      {
-        "position": 3,
-        "team": {
-          "name": "Rangers"
-        },
-        "games": {
-          "played": 79
-        },
-        "wins": {
-          "total": 38,
-          "percentage": ".481"
-        },
-        "loses": {
-          "total": 41
-        },
-        "streak": "L1",
-        "gamesBack": "2.5"
-      },
-      {
-        "position": 4,
-        "team": {
-          "name": "Astros"
-        },
-        "games": {
-          "played": 81
-        },
-        "wins": {
-          "total": 38,
-          "percentage": ".469"
-        },
-        "loses": {
-          "total": 43
-        },
-        "streak": "W1",
-        "gamesBack": "3.5"
-      },
-      {
-        "position": 5,
-        "team": {
-          "name": "Angels"
-        },
-        "games": {
-          "played": 81
-        },
-        "wins": {
-          "total": 33,
-          "percentage": ".407"
-        },
-        "loses": {
-          "total": 48
-        },
-        "streak": "W1",
-        "gamesBack": "8.5"
-      }
+      {"rank":1,"team":"매리너스","win_rate":0.506,"game_behind":"-","win":40,"lose":39,"played":79,"streak":"1승","recent5":[]},
+      {"rank":2,"team":"애슬레틱스","win_rate":0.487,"game_behind":"1.5","win":38,"lose":40,"played":78,"streak":"2패","recent5":[]},
+      {"rank":3,"team":"레인저스","win_rate":0.481,"game_behind":"2","win":37,"lose":40,"played":77,"streak":"1승","recent5":[]},
+      {"rank":4,"team":"애스트로스","win_rate":0.468,"game_behind":"3","win":37,"lose":42,"played":79,"streak":"1승","recent5":[]},
+      {"rank":5,"team":"에인절스","win_rate":0.405,"game_behind":"8","win":32,"lose":47,"played":79,"streak":"2승","recent5":[]}
     ],
-    "AL와일드카드": [],
+    "AL와일드카드": [
+      {"rank":1,"team":"레이스","win_rate":0.581,"game_behind":"-","win":43,"lose":31,"played":74,"streak":"1승","recent5":[]},
+      {"rank":2,"team":"화이트삭스","win_rate":0.513,"game_behind":"5.5","win":39,"lose":37,"played":76,"streak":"3패","recent5":[]},
+      {"rank":3,"team":"블루제이스","win_rate":0.494,"game_behind":"7","win":38,"lose":39,"played":77,"streak":"1승","recent5":[]},
+      {"rank":4,"team":"애슬레틱스","win_rate":0.487,"game_behind":"7.5","win":38,"lose":40,"played":78,"streak":"2패","recent5":[]},
+      {"rank":5,"team":"타이거스","win_rate":0.481,"game_behind":"8","win":38,"lose":41,"played":79,"streak":"2승","recent5":[]},
+      {"rank":6,"team":"레인저스","win_rate":0.481,"game_behind":"8","win":37,"lose":40,"played":77,"streak":"1승","recent5":[]},
+      {"rank":7,"team":"애스트로스","win_rate":0.468,"game_behind":"9","win":37,"lose":42,"played":79,"streak":"1승","recent5":[]}
+    ],
     "NL동부": [
-      {
-        "position": 1,
-        "team": {
-          "name": "Braves"
-        },
-        "games": {
-          "played": 78
-        },
-        "wins": {
-          "total": 48,
-          "percentage": ".615"
-        },
-        "loses": {
-          "total": 30
-        },
-        "streak": "L3",
-        "gamesBack": "-"
-      },
-      {
-        "position": 2,
-        "team": {
-          "name": "Phillies"
-        },
-        "games": {
-          "played": 79
-        },
-        "wins": {
-          "total": 43,
-          "percentage": ".544"
-        },
-        "loses": {
-          "total": 36
-        },
-        "streak": "W1",
-        "gamesBack": "5.5"
-      },
-      {
-        "position": 3,
-        "team": {
-          "name": "Marlins"
-        },
-        "games": {
-          "played": 80
-        },
-        "wins": {
-          "total": 41,
-          "percentage": ".513"
-        },
-        "loses": {
-          "total": 39
-        },
-        "streak": "W1",
-        "gamesBack": "8.0"
-      },
-      {
-        "position": 4,
-        "team": {
-          "name": "Nationals"
-        },
-        "games": {
-          "played": 80
-        },
-        "wins": {
-          "total": 41,
-          "percentage": ".513"
-        },
-        "loses": {
-          "total": 39
-        },
-        "streak": "L1",
-        "gamesBack": "8.0"
-      },
-      {
-        "position": 5,
-        "team": {
-          "name": "Mets"
-        },
-        "games": {
-          "played": 78
-        },
-        "wins": {
-          "total": 34,
-          "percentage": ".436"
-        },
-        "loses": {
-          "total": 44
-        },
-        "streak": "L3",
-        "gamesBack": "14.0"
-      }
+      {"rank":1,"team":"브레이브스","win_rate":0.632,"game_behind":"-","win":48,"lose":28,"played":76,"streak":"1패","recent5":[]},
+      {"rank":2,"team":"필리스","win_rate":0.545,"game_behind":"6.5","win":42,"lose":35,"played":77,"streak":"2승","recent5":[]},
+      {"rank":3,"team":"마린스","win_rate":0.513,"game_behind":"9","win":40,"lose":38,"played":78,"streak":"4승","recent5":[]},
+      {"rank":4,"team":"메츠","win_rate":0.513,"game_behind":"9","win":40,"lose":38,"played":78,"streak":"1패","recent5":[]},
+      {"rank":5,"team":"내셔널스","win_rate":0.442,"game_behind":"14.5","win":34,"lose":43,"played":77,"streak":"2패","recent5":[]}
     ],
     "NL중부": [
-      {
-        "position": 1,
-        "team": {
-          "name": "Brewers"
-        },
-        "games": {
-          "played": 77
-        },
-        "wins": {
-          "total": 48,
-          "percentage": ".623"
-        },
-        "loses": {
-          "total": 29
-        },
-        "streak": "W3",
-        "gamesBack": "-"
-      },
-      {
-        "position": 2,
-        "team": {
-          "name": "Cardinals"
-        },
-        "games": {
-          "played": 77
-        },
-        "wins": {
-          "total": 42,
-          "percentage": ".545"
-        },
-        "loses": {
-          "total": 35
-        },
-        "streak": "L1",
-        "gamesBack": "6.0"
-      },
-      {
-        "position": 3,
-        "team": {
-          "name": "Cubs"
-        },
-        "games": {
-          "played": 78
-        },
-        "wins": {
-          "total": 41,
-          "percentage": ".526"
-        },
-        "loses": {
-          "total": 37
-        },
-        "streak": "W1",
-        "gamesBack": "7.5"
-      },
-      {
-        "position": 4,
-        "team": {
-          "name": "Pirates"
-        },
-        "games": {
-          "played": 79
-        },
-        "wins": {
-          "total": 39,
-          "percentage": ".494"
-        },
-        "loses": {
-          "total": 40
-        },
-        "streak": "L1",
-        "gamesBack": "10.0"
-      },
-      {
-        "position": 5,
-        "team": {
-          "name": "Reds"
-        },
-        "games": {
-          "played": 78
-        },
-        "wins": {
-          "total": 37,
-          "percentage": ".474"
-        },
-        "loses": {
-          "total": 41
-        },
-        "streak": "L2",
-        "gamesBack": "11.5"
-      }
+      {"rank":1,"team":"브루어스","win_rate":0.613,"game_behind":"-","win":46,"lose":29,"played":75,"streak":"1승","recent5":[]},
+      {"rank":2,"team":"카디널스","win_rate":0.547,"game_behind":"5","win":41,"lose":34,"played":75,"streak":"1승","recent5":[]},
+      {"rank":3,"team":"컵스","win_rate":0.519,"game_behind":"7","win":40,"lose":37,"played":77,"streak":"1패","recent5":[]},
+      {"rank":4,"team":"레즈","win_rate":0.500,"game_behind":"8.5","win":39,"lose":39,"played":78,"streak":"1승","recent5":[]},
+      {"rank":5,"team":"파이리츠","win_rate":0.487,"game_behind":"9.5","win":37,"lose":39,"played":76,"streak":"2승","recent5":[]}
     ],
     "NL서부": [
-      {
-        "position": 1,
-        "team": {
-          "name": "Dodgers"
-        },
-        "games": {
-          "played": 80
-        },
-        "wins": {
-          "total": 51,
-          "percentage": ".638"
-        },
-        "loses": {
-          "total": 29
-        },
-        "streak": "W2",
-        "gamesBack": "-"
-      },
-      {
-        "position": 2,
-        "team": {
-          "name": "Padres"
-        },
-        "games": {
-          "played": 78
-        },
-        "wins": {
-          "total": 41,
-          "percentage": ".526"
-        },
-        "loses": {
-          "total": 37
-        },
-        "streak": "W2",
-        "gamesBack": "9.0"
-      },
-      {
-        "position": 3,
-        "team": {
-          "name": "D-backs"
-        },
-        "games": {
-          "played": 79
-        },
-        "wins": {
-          "total": 40,
-          "percentage": ".506"
-        },
-        "loses": {
-          "total": 39
-        },
-        "streak": "W1",
-        "gamesBack": "10.5"
-      },
-      {
-        "position": 4,
-        "team": {
-          "name": "Giants"
-        },
-        "games": {
-          "played": 78
-        },
-        "wins": {
-          "total": 32,
-          "percentage": ".410"
-        },
-        "loses": {
-          "total": 46
-        },
-        "streak": "W1",
-        "gamesBack": "18.0"
-      },
-      {
-        "position": 5,
-        "team": {
-          "name": "Rockies"
-        },
-        "games": {
-          "played": 80
-        },
-        "wins": {
-          "total": 31,
-          "percentage": ".388"
-        },
-        "loses": {
-          "total": 49
-        },
-        "streak": "L1",
-        "gamesBack": "20.0"
-      }
+      {"rank":1,"team":"다저스","win_rate":0.628,"game_behind":"-","win":49,"lose":29,"played":78,"streak":"2패","recent5":[]},
+      {"rank":2,"team":"파드리스","win_rate":0.513,"game_behind":"9","win":39,"lose":37,"played":76,"streak":"1패","recent5":[]},
+      {"rank":3,"team":"다이아몬드백스","win_rate":0.506,"game_behind":"9.5","win":39,"lose":38,"played":77,"streak":"2패","recent5":[]},
+      {"rank":4,"team":"자이언츠","win_rate":0.403,"game_behind":"17.5","win":31,"lose":46,"played":77,"streak":"3패","recent5":[]},
+      {"rank":5,"team":"로키스","win_rate":0.385,"game_behind":"19","win":30,"lose":48,"played":78,"streak":"1패","recent5":[]}
     ],
-    "NL와일드카드": []
+    "NL와일드카드": [
+      {"rank":1,"team":"필리스","win_rate":0.545,"game_behind":"-","win":42,"lose":35,"played":77,"streak":"2승","recent5":[]},
+      {"rank":2,"team":"마린스","win_rate":0.513,"game_behind":"2.5","win":40,"lose":38,"played":78,"streak":"4승","recent5":[]},
+      {"rank":3,"team":"메츠","win_rate":0.513,"game_behind":"2.5","win":40,"lose":38,"played":78,"streak":"1패","recent5":[]},
+      {"rank":4,"team":"파드리스","win_rate":0.513,"game_behind":"2.5","win":39,"lose":37,"played":76,"streak":"1패","recent5":[]},
+      {"rank":5,"team":"컵스","win_rate":0.519,"game_behind":"2","win":40,"lose":37,"played":77,"streak":"1패","recent5":[]},
+      {"rank":6,"team":"다이아몬드백스","win_rate":0.506,"game_behind":"3.5","win":39,"lose":38,"played":77,"streak":"2패","recent5":[]}
+    ]
   },
   "npb": {
     "센트럴": [],
