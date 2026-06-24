@@ -35,7 +35,8 @@ const MatchUpTabs = (function () {
     const active = container.querySelector('.active');
     if (!active) return;
     requestAnimationFrame(() => {
-      active.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+      const targetLeft = active.offsetLeft - (container.clientWidth - active.offsetWidth) / 2;
+      container.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
     });
   }
 
