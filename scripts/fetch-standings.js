@@ -62,7 +62,7 @@ const FOOTBALL = {
     { key: 'bundesliga', id: 78, season: 2025 },
     { key: 'ligue1', id: 61, season: 2025 },
     { key: 'serieA', id: 135, season: 2025 },
-    { key: 'laliga', id: 140, season: 2025 },
+    { key: 'laLiga', id: 140, season: 2025 },
   ],
 };
 
@@ -99,7 +99,7 @@ async function fetchFootball() {
     bundesliga: null,
     ligue1: null,
     serieA: null,
-    laliga: null,
+    laLiga: null,
   };
 
   for (const league of FOOTBALL.leagues) {

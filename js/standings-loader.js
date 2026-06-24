@@ -277,7 +277,7 @@ const MatchUpStandingsLoader = (function () {
 
   function mergeFootball(api, fallback) {
     const out = {};
-    const keys = ['kLeague', 'epl', 'bundesliga', 'ligue1', 'serieA', 'laliga'];
+    const keys = ['kLeague', 'epl', 'bundesliga', 'ligue1', 'serieA', 'laLiga'];
     keys.forEach((key) => {
       const apiRows = api?.[key];
       if (isEmptyData(apiRows)) {

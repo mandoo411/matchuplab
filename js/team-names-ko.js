@@ -62,7 +62,7 @@ const TEAM_NAMES_KO = {
     Heidenheim: '하이덴하임',
     Bochum: '보쿰',
   },
-  laliga: {
+  laLiga: {
     'Real Madrid': '레알 마드리드',
     Barcelona: '바르셀로나',
     'Atletico Madrid': '아틀레티코 마드리드',
