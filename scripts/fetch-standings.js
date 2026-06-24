@@ -7,6 +7,13 @@
  *  - statsapi.mlb.com    : MLB                                          (no key needed)
  *  - balldontlie.io      : NBA                                          (needs BALLDONTLIE_KEY)
  *
+ * NBA note: balldontlie.io's /nba/v1/standings endpoint requires a paid
+ * "GOAT" tier subscription ($39.99/mo) — confirmed via their official docs
+ * (Free tier only includes Teams/Players/Games, "Team Standings" = GOAT only).
+ * The Free tier DOES include the Games endpoint, so we fetch all regular-season
+ * games for the season and calculate win/loss standings ourselves. This stays
+ * fully free and does not depend on any paid upgrade.
+ *
  * No working free real-data source exists for: K리그, KBO, NPB, KBL, WKBL, V리그(남/여).
  * Those are intentionally left null/empty so the existing frontend fallback
  * logic (js/sports-data.js dummy data) kicks in automatically — this is by design,
@@ -264,54 +271,156 @@ async function fetchBaseball() {
 }
 
 // -----------------------
-// NBA (balldontlie.io)
+// NBA (balldontlie.io) — Games 결과를 직접 집계해서 순위 계산
+// (Standings 엔드포인트는 무료 플랜에서 401 → GOAT 유료 플랜 전용으로 확인됨)
 // -----------------------
 
-function extractNbaRows(payload) {
-  return safeArray(payload?.data)
-    .map((row) => ({
-      team: { name: row?.team?.name ?? null },
-      conference: row?.team?.conference ?? null,
-      division: row?.team?.division ?? null,
-      win: { total: row?.wins ?? null, percentage: null },
-      loss: { total: row?.losses ?? null },
-      streak: null,
-      winStreak: null,
-      home: row?.home_record ?? null,
-      away: row?.road_record ?? null,
-      divisionRecord: row?.division_record ?? null,
-      rank: row?.conference_rank ?? null,
-    }))
-    .filter((r) => r.team?.name);
+function emptyNbaGroups() {
+  return { 동부: [], 서부: [] };
+}
+
+async function fetchAllNbaGames(season, headers) {
+  const games = [];
+  let cursor;
+  // 안전장치: 한 시즌 최대 페이지 수를 넘지 않도록 상한선
+  for (let page = 0; page < 25; page += 1) {
+    const params = new URLSearchParams();
+    params.append('seasons[]', String(season));
+    params.set('per_page', '100');
+    params.set('postseason', 'false');
+    if (cursor) params.set('cursor', String(cursor));
+
+    const url = `https://api.balldontlie.io/nba/v1/games?${params.toString()}`;
+    const json = await fetchJson(url, { headers });
+    const batch = safeArray(json?.data);
+    games.push(...batch);
+
+    cursor = json?.meta?.next_cursor || null;
+    if (!cursor || batch.length === 0) break;
+    // balldontlie 무료 플랜 레이트리밋(5 req/min) 여유 확보
+    await sleep(13000);
+  }
+  return games;
+}
+
+function computeNbaStandingsFromGames(games) {
+  const teams = new Map();
+
+  function ensureTeam(t) {
+    if (!t?.id) return null;
+    if (!teams.has(t.id)) {
+      teams.set(t.id, {
+        name: t.full_name || t.name || null,
+        conference: t.conference || null,
+        division: t.division || null,
+        win: 0,
+        loss: 0,
+        homeWin: 0,
+        homeLoss: 0,
+        awayWin: 0,
+        awayLoss: 0,
+        divWin: 0,
+        divLoss: 0,
+        log: [],
+      });
+    }
+    return teams.get(t.id);
+  }
+
+  const finals = games
+    .filter((g) => g?.status === 'Final' && g?.home_team && g?.visitor_team)
+    .sort((a, b) => new Date(a.datetime || a.date) - new Date(b.datetime || b.date));
+
+  for (const g of finals) {
+    const home = ensureTeam(g.home_team);
+    const away = ensureTeam(g.visitor_team);
+    if (!home || !away) continue;
+
+    const homeScore = g.home_team_score ?? 0;
+    const awayScore = g.visitor_team_score ?? 0;
+    if (homeScore === awayScore) continue; // NBA에는 무승부 없음(데이터 이상치 방어)
+
+    const homeWon = homeScore > awayScore;
+    const sameDivision =
+      g.home_team.division && g.home_team.division === g.visitor_team.division &&
+      g.home_team.conference === g.visitor_team.conference;
+
+    if (homeWon) {
+      home.win += 1; home.homeWin += 1; home.log.push('W');
+      away.loss += 1; away.awayLoss += 1; away.log.push('L');
+      if (sameDivision) { home.divWin += 1; away.divLoss += 1; }
+    } else {
+      home.loss += 1; home.homeLoss += 1; home.log.push('L');
+      away.win += 1; away.awayWin += 1; away.log.push('W');
+      if (sameDivision) { home.divLoss += 1; away.divWin += 1; }
+    }
+  }
+
+  function calcStreak(log) {
+    if (!log.length) return 0;
+    const last = log[log.length - 1];
+    let n = 0;
+    for (let i = log.length - 1; i >= 0 && log[i] === last; i -= 1) n += 1;
+    return last === 'W' ? n : -n;
+  }
+
+  const out = emptyNbaGroups();
+
+  for (const t of teams.values()) {
+    const played = t.win + t.loss;
+    if (!played || !t.name) continue;
+
+    const row = {
+      team: { name: t.name },
+      conference: t.conference,
+      division: t.division,
+      win: { total: t.win, percentage: Number((t.win / played).toFixed(3)) },
+      loss: { total: t.loss },
+      streak: calcStreak(t.log),
+      home: `${t.homeWin}-${t.homeLoss}`,
+      away: `${t.awayWin}-${t.awayLoss}`,
+      divisionRecord: `${t.divWin}-${t.divLoss}`,
+      rank: null,
+    };
+
+    const conf = String(t.conference).toLowerCase();
+    if (conf === 'east') out.동부.push(row);
+    else if (conf === 'west') out.서부.push(row);
+  }
+
+  out.동부.sort((a, b) => b.win.percentage - a.win.percentage);
+  out.서부.sort((a, b) => b.win.percentage - a.win.percentage);
+  out.동부.forEach((r, i) => { r.rank = i + 1; });
+  out.서부.forEach((r, i) => { r.rank = i + 1; });
+
+  return out;
 }
 
 async function fetchNba() {
   if (!BALLDONTLIE_KEY) {
     console.warn('[warn] nba: BALLDONTLIE_KEY not set, skipping (will fall back to dummy)');
-    return { 동부: [], 서부: [] };
+    return emptyNbaGroups();
   }
 
   const headers = { Authorization: BALLDONTLIE_KEY };
-  const url = `https://api.balldontlie.io/nba/v1/standings?season=${NBA_SEASON}`;
 
   try {
-    const json = await fetchJson(url, { headers });
-    const rows = extractNbaRows(json);
-
-    if (!rows.length) {
-      console.warn('[warn] nba: empty response');
-      return { 동부: [], 서부: [] };
+    const games = await fetchAllNbaGames(NBA_SEASON, headers);
+    if (!games.length) {
+      console.warn(`[warn] nba: no games returned for season ${NBA_SEASON}`);
+      return emptyNbaGroups();
     }
 
-    const east = rows.filter((r) => String(r.conference).toLowerCase() === 'east')
-      .sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99));
-    const west = rows.filter((r) => String(r.conference).toLowerCase() === 'west')
-      .sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99));
+    const standings = computeNbaStandingsFromGames(games);
+    if (!standings.동부.length && !standings.서부.length) {
+      console.warn('[warn] nba: computed standings empty (no Final games yet?)');
+      return emptyNbaGroups();
+    }
 
-    return { 동부: east, 서부: west };
+    return standings;
   } catch (e) {
     console.warn(`[warn] nba: ${e.message}`);
-    return { 동부: [], 서부: [] };
+    return emptyNbaGroups();
   }
 }
 
