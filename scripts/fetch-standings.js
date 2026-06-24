@@ -1,12 +1,30 @@
 /* eslint-disable no-console */
 /**
- * Fetch standings from API-Sports and persist to /data as static JSON.
+ * Fetch real standings data from free sources and persist to /data as static JSON.
+ *
+ * Sources used (all free tier, current season):
+ *  - football-data.org  : EPL / Bundesliga / LaLiga / SerieA / Ligue1   (needs FOOTBALL_DATA_KEY)
+ *  - statsapi.mlb.com    : MLB                                          (no key needed)
+ *  - balldontlie.io      : NBA                                          (needs BALLDONTLIE_KEY)
+ *
+ * No working free real-data source exists for: K리그, KBO, NPB, KBL, WKBL, V리그(남/여).
+ * Those are intentionally left null/empty so the existing frontend fallback
+ * logic (js/sports-data.js dummy data) kicks in automatically — this is by design,
+ * not a bug.
  */
 
 const fs = require('fs/promises');
 const path = require('path');
 
-const API_KEY = process.env.API_SPORTS_KEY;
+const FOOTBALL_DATA_KEY = process.env.FOOTBALL_DATA_KEY;
+const BALLDONTLIE_KEY = process.env.BALLDONTLIE_KEY;
+
+// MLB는 칼린더 연도 기준 시즌, NBA는 8월 기준으로 시즌 연도가 바뀜
+// (예: 2026년 6월 → MLB season=2026, NBA season=2025(2025-26 시즌))
+// 매년 코드를 직접 고치지 않아도 되도록 현재 날짜 기준으로 자동 계산.
+const NOW = new Date();
+const MLB_SEASON = NOW.getFullYear();
+const NBA_SEASON = NOW.getMonth() >= 7 ? NOW.getFullYear() : NOW.getFullYear() - 1;
 
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
@@ -24,18 +42,7 @@ async function fetchJson(url, { headers } = {}) {
   if (!res.ok) {
     throw new Error(`HTTP ${res.status} from ${url}: ${JSON.stringify(json).slice(0, 200)}`);
   }
-  if (json?.errors && Object.keys(json.errors).length) {
-    console.warn('[warn] API returned errors:', json.errors);
-    throw new Error(`API errors: ${JSON.stringify(json.errors)}`);
-  }
   return json;
-}
-
-function requireKey() {
-  if (!API_KEY) {
-    throw new Error('Missing API_SPORTS_KEY env var.');
-  }
-  return { 'x-apisports-key': API_KEY };
 }
 
 async function ensureDir(dir) {
@@ -51,90 +58,137 @@ function safeArray(v) {
 }
 
 // -----------------------
-// Football
+// 팀명 보정 (football-data.org 표기 → 기존 team-names-ko.js 키와 최대한 맞춤)
+// 100% 일치를 보장할 수 없어 best-effort. 매칭 실패 시 프론트엔드가 영문명을
+// 그대로 보여주는 방식으로 안전하게 동작함 (사이트 동작에는 영향 없음).
 // -----------------------
 
-const FOOTBALL = {
-  host: 'https://v3.football.api-sports.io',
+const FOOTBALL_NAME_ALIASES = {
+  'FC Bayern München': 'Bayern Munich',
+  'Bayern München': 'Bayern Munich',
+  'Club Atlético de Madrid': 'Atletico Madrid',
+  'Atlético de Madrid': 'Atletico Madrid',
+  'Atlético Madrid': 'Atletico Madrid',
+  'Paris Saint-Germain FC': 'Paris Saint Germain',
+  'Paris Saint-Germain': 'Paris Saint Germain',
+  'TSG 1899 Hoffenheim': 'Hoffenheim',
+  'TSG Hoffenheim': 'Hoffenheim',
+  '1. FSV Mainz 05': 'Mainz',
+  'Mainz 05': 'Mainz',
+  '1. FC Köln': 'Köln',
+  'FC Köln': 'Köln',
+  '1. FC Union Berlin': 'Union Berlin',
+  'Hertha BSC': 'Hertha Berlin',
+  'FC Augsburg': 'Augsburg',
+  'VfL Bochum 1848': 'Bochum',
+  'VfL Bochum': 'Bochum',
+  'SV Werder Bremen': 'Werder Bremen',
+  'SV Darmstadt 98': 'Darmstadt',
+  '1. FC Heidenheim 1846': 'Heidenheim',
+  'Internazionale Milano': 'Inter',
+  'FC Internazionale Milano': 'Inter',
+  'AS Monaco FC': 'Monaco',
+  'Olympique de Marseille': 'Marseille',
+  'Olympique Lyonnais': 'Lyon',
+  'Stade Rennais FC 1901': 'Rennes',
+  'OGC Nice': 'Nice',
+  'RC Lens': 'Lens',
+  'Stade Brestois 29': 'Brest',
+  'FC Nantes': 'Nantes',
+  'RC Strasbourg Alsace': 'Strasbourg',
+  'Stade de Reims': 'Reims',
+  'FC Lorient': 'Lorient',
+  'Le Havre AC': 'Le Havre',
+  'FC Metz': 'Metz',
+  'Clermont Foot 63': 'Clermont Foot',
+  'Toulouse FC': 'Toulouse',
+  'Montpellier HSC': 'Montpellier',
+};
+
+function stripClubSuffix(name) {
+  if (!name) return name;
+  return name
+    .replace(/^(FC|CF|AS|AC|SC|SV|RC|VfL|VfB)\s+/i, '')
+    .replace(/\s+(FC|CF|AFC|SAD)\.?$/i, '')
+    .trim();
+}
+
+function koreanizableFootballName(rawName, shortName) {
+  const candidates = [shortName, rawName, stripClubSuffix(shortName), stripClubSuffix(rawName)].filter(Boolean);
+  for (const c of candidates) {
+    if (FOOTBALL_NAME_ALIASES[c]) return FOOTBALL_NAME_ALIASES[c];
+  }
+  return shortName || rawName || null;
+}
+
+// -----------------------
+// Football (football-data.org)
+// -----------------------
+
+const FOOTBALL_DATA = {
+  host: 'https://api.football-data.org/v4',
   leagues: [
-    { key: 'kLeague', id: 292, season: 2026 },
-    { key: 'epl', id: 39, season: 2025 },
-    { key: 'bundesliga', id: 78, season: 2025 },
-    { key: 'ligue1', id: 61, season: 2025 },
-    { key: 'serieA', id: 135, season: 2025 },
-    { key: 'laLiga', id: 140, season: 2025 },
+    { key: 'epl', code: 'PL' },
+    { key: 'bundesliga', code: 'BL1' },
+    { key: 'laLiga', code: 'PD' },
+    { key: 'serieA', code: 'SA' },
+    { key: 'ligue1', code: 'FL1' },
   ],
 };
 
-function extractFootballTeams(payload) {
-  const resp0 = safeArray(payload?.response)[0];
-  const standings = safeArray(resp0?.league?.standings)[0];
-  return safeArray(standings)
-    .map((row) => {
-      const all = row?.all || {};
-      const goals = row?.goals || {};
-      return {
-        rank: row?.rank ?? null,
-        team: { name: row?.team?.name ?? null },
-        all: {
-          played: all.played ?? null,
-          win: all.win ?? null,
-          draw: all.draw ?? null,
-          lose: all.lose ?? null,
-        },
-        goals: { for: goals.for ?? null, against: goals.against ?? null },
-        goalsDiff: row?.goalsDiff ?? null,
-        points: row?.points ?? null,
-        form: row?.form ?? null,
-      };
-    })
-    .filter((t) => t.rank && t.team?.name);
+function extractFootballDataTable(payload) {
+  const groups = safeArray(payload?.standings);
+  const total = groups.find((g) => g?.type === 'TOTAL') || groups[0];
+  return safeArray(total?.table);
 }
 
 async function fetchFootball() {
-  const headers = requireKey();
-  const out = {
-    kLeague: null,
-    epl: null,
-    bundesliga: null,
-    ligue1: null,
-    serieA: null,
-    laLiga: null,
-  };
+  const out = { kLeague: null, epl: null, bundesliga: null, ligue1: null, serieA: null, laLiga: null };
 
-  for (const league of FOOTBALL.leagues) {
-    const url = `${FOOTBALL.host}/standings?league=${league.id}&season=${league.season}`;
+  if (!FOOTBALL_DATA_KEY) {
+    console.warn('[warn] football: FOOTBALL_DATA_KEY not set, skipping (will fall back to dummy)');
+    return out;
+  }
+
+  const headers = { 'X-Auth-Token': FOOTBALL_DATA_KEY };
+
+  for (const league of FOOTBALL_DATA.leagues) {
+    const url = `${FOOTBALL_DATA.host}/competitions/${league.code}/standings`;
     try {
       const json = await fetchJson(url, { headers });
-      const teams = extractFootballTeams(json);
-      if (!teams.length || !safeArray(json?.response).length) {
-        console.warn(`[warn] football ${league.key}: empty response`);
-        out[league.key] = null;
-      } else {
-        out[league.key] = teams;
-      }
+      const rows = extractFootballDataTable(json)
+        .map((row) => ({
+          rank: row?.position ?? null,
+          team: { name: koreanizableFootballName(row?.team?.name, row?.team?.shortName) },
+          all: {
+            played: row?.playedGames ?? null,
+            win: row?.won ?? null,
+            draw: row?.draw ?? null,
+            lose: row?.lost ?? null,
+          },
+          goals: { for: row?.goalsFor ?? null, against: row?.goalsAgainst ?? null },
+          goalsDiff: row?.goalDifference ?? null,
+          points: row?.points ?? null,
+          form: row?.form ?? null,
+        }))
+        .filter((t) => t.rank && t.team?.name);
+
+      out[league.key] = rows.length ? rows : null;
+      if (!rows.length) console.warn(`[warn] football ${league.key}: empty table`);
     } catch (e) {
       console.warn(`[warn] football ${league.key}: ${e.message}`);
       out[league.key] = null;
     }
-    await sleep(500);
+    // football-data.org 무료 플랜 레이트리밋(10req/min) 여유 확보
+    await sleep(7000);
   }
 
   return out;
 }
 
 // -----------------------
-// Baseball
+// Baseball (MLB: statsapi.mlb.com / KBO·NPB: 무료 소스 없음)
 // -----------------------
-
-const BASEBALL = {
-  host: 'https://v1.baseball.api-sports.io',
-  leagues: [
-    { key: 'kbo', id: 6, season: 2026 },
-    { key: 'mlb', id: 1, season: 2026 },
-    { key: 'npb', id: 7, season: 2026 },
-  ],
-};
 
 function emptyMlbGroups() {
   return {
@@ -153,303 +207,128 @@ function emptyNpbGroups() {
   return { 센트럴: [], 퍼시픽: [] };
 }
 
-function extractBaseballRows(payload) {
-  const resp0 = safeArray(payload?.response)[0];
-  const standings = safeArray(resp0?.league?.standings);
-  const flat = [];
-  for (const group of standings) {
-    if (Array.isArray(group)) {
-      for (const row of group) flat.push(row);
-    } else if (group && typeof group === 'object' && Array.isArray(group.standings)) {
-      for (const row of group.standings) {
-        flat.push({ ...row, group: group.group || group.name || row.group });
-      }
-    } else if (group && typeof group === 'object') {
-      flat.push(group);
+// MLB 디비전 id → 그룹 키 (statsapi.mlb.com은 division 객체에 id만 주고 name은 안 줌)
+const MLB_DIVISION_ID_TO_KEY = {
+  200: 'AL서부',
+  201: 'AL동부',
+  202: 'AL중부',
+  203: 'NL서부',
+  204: 'NL동부',
+  205: 'NL중부',
+};
+
+async function fetchMlb() {
+  const out = emptyMlbGroups();
+  try {
+    const url = `https://statsapi.mlb.com/api/v1/standings?leagueId=103,104&season=${MLB_SEASON}&standingsTypes=regularSeason`;
+    const json = await fetchJson(url);
+    const records = safeArray(json?.records);
+
+    if (!records.length) {
+      console.warn('[warn] mlb: empty records');
+      return out;
     }
-  }
-  return flat.length ? flat : safeArray(standings);
-}
 
-function normalizeBaseballTeam(row) {
-  const games = row?.games || {};
-  const wins = row?.wins || {};
-  const loses = row?.loses || {};
-  return {
-    position: row?.position ?? row?.rank ?? null,
-    team: { name: row?.team?.name ?? null },
-    games: { played: games.played ?? null },
-    wins: { total: wins.total ?? null, percentage: wins.percentage ?? null },
-    loses: { total: loses.total ?? null },
-    streak: row?.streak ?? null,
-    batting: { average: row?.batting?.average ?? null },
-    pitching: { era: row?.pitching?.era ?? null },
-    group: row?.group ?? row?.conference ?? row?.division ?? row?.stage ?? null,
-  };
-}
+    for (const record of records) {
+      const divisionId = record?.division?.id;
+      const key = MLB_DIVISION_ID_TO_KEY[divisionId];
+      if (!key) continue;
 
-function groupKeyFromMlbGroupName(name) {
-  if (!name) return null;
-  const s = String(name).toLowerCase();
-  if (s.includes('american') && s.includes('east')) return 'AL동부';
-  if (s.includes('american') && s.includes('central')) return 'AL중부';
-  if (s.includes('american') && s.includes('west')) return 'AL서부';
-  if (s.includes('american') && s.includes('wild')) return 'AL와일드카드';
-  if (s.includes('national') && s.includes('east')) return 'NL동부';
-  if (s.includes('national') && s.includes('central')) return 'NL중부';
-  if (s.includes('national') && s.includes('west')) return 'NL서부';
-  if (s.includes('national') && s.includes('wild')) return 'NL와일드카드';
-  return null;
-}
-
-function groupKeyFromNpbGroupName(name) {
-  if (!name) return null;
-  const s = String(name).toLowerCase();
-  if (s.includes('central')) return '센트럴';
-  if (s.includes('pacific')) return '퍼시픽';
-  return null;
-}
-
-async function fetchBaseball() {
-  const headers = requireKey();
-  const out = { kbo: null, mlb: emptyMlbGroups(), npb: emptyNpbGroups() };
-
-  for (const league of BASEBALL.leagues) {
-    const url = `${BASEBALL.host}/standings?league=${league.id}&season=${league.season}`;
-    try {
-      const json = await fetchJson(url, { headers });
-      const rows = extractBaseballRows(json)
-        .map(normalizeBaseballTeam)
-        .filter((r) => r.position && r.team?.name);
-
-      if (!rows.length || !safeArray(json?.response).length) {
-        console.warn(`[warn] baseball ${league.key}: empty response`);
-        if (league.key === 'kbo') out.kbo = null;
-        if (league.key === 'mlb') out.mlb = emptyMlbGroups();
-        if (league.key === 'npb') out.npb = emptyNpbGroups();
-      } else if (league.key === 'kbo') {
-        out.kbo = rows;
-      } else if (league.key === 'mlb') {
-        const grouped = emptyMlbGroups();
-        for (const r of rows) {
-          const key = groupKeyFromMlbGroupName(r.group);
-          if (key) grouped[key].push(r);
-        }
-        out.mlb = grouped;
-      } else if (league.key === 'npb') {
-        const grouped = emptyNpbGroups();
-        for (const r of rows) {
-          const key = groupKeyFromNpbGroupName(r.group);
-          if (key) grouped[key].push(r);
-        }
-        out.npb = grouped;
+      for (const tr of safeArray(record?.teamRecords)) {
+        out[key].push({
+          position: tr?.divisionRank ? Number(tr.divisionRank) : null,
+          team: { name: tr?.team?.name ?? null },
+          games: { played: tr?.gamesPlayed ?? null },
+          wins: { total: tr?.wins ?? null, percentage: tr?.winningPercentage ?? null },
+          loses: { total: tr?.losses ?? null },
+          streak: tr?.streak?.streakCode ?? null,
+          gamesBack: tr?.gamesBack ?? null,
+        });
       }
-    } catch (e) {
-      console.warn(`[warn] baseball ${league.key}: ${e.message}`);
-      if (league.key === 'kbo') out.kbo = null;
-      if (league.key === 'mlb') out.mlb = emptyMlbGroups();
-      if (league.key === 'npb') out.npb = emptyNpbGroups();
     }
-    await sleep(500);
-  }
 
+    for (const key of Object.keys(out)) {
+      out[key].sort((a, b) => (a.position ?? 99) - (b.position ?? 99));
+    }
+  } catch (e) {
+    console.warn(`[warn] mlb: ${e.message}`);
+    return emptyMlbGroups();
+  }
   return out;
 }
 
+async function fetchBaseball() {
+  const mlb = await fetchMlb();
+  // KBO/NPB: 무료 실데이터 소스 없음 (확인됨) → null, 프론트엔드 더미 fallback 사용
+  return { kbo: null, mlb, npb: emptyNpbGroups() };
+}
+
 // -----------------------
-// NBA
+// NBA (balldontlie.io)
 // -----------------------
 
-const NBA = {
-  host: 'https://v2.nba.api-sports.io',
-  league: 'standard',
-  season: 2025,
-};
-
-function extractNbaTeams(payload) {
-  return safeArray(payload?.response)
+function extractNbaRows(payload) {
+  return safeArray(payload?.data)
     .map((row) => ({
       team: { name: row?.team?.name ?? null },
-      conference: row?.conference?.name ?? row?.conference ?? null,
-      division: row?.division?.name ?? row?.division ?? null,
-      win: { total: row?.win?.total ?? null, percentage: row?.win?.percentage ?? null },
-      loss: { total: row?.loss?.total ?? null },
-      streak: row?.streak ?? null,
-      winStreak: row?.winStreak ?? null,
-      home: row?.home ?? null,
-      away: row?.away ?? null,
-      divisionRecord: row?.divisionRecord ?? null,
-      rank: row?.conference?.rank ?? row?.rank ?? null,
+      conference: row?.team?.conference ?? null,
+      division: row?.team?.division ?? null,
+      win: { total: row?.wins ?? null, percentage: null },
+      loss: { total: row?.losses ?? null },
+      streak: null,
+      winStreak: null,
+      home: row?.home_record ?? null,
+      away: row?.road_record ?? null,
+      divisionRecord: row?.division_record ?? null,
+      rank: row?.conference_rank ?? null,
     }))
     .filter((r) => r.team?.name);
 }
 
 async function fetchNba() {
-  const headers = requireKey();
-  const url = `${NBA.host}/standings?league=${NBA.league}&season=${NBA.season}`;
+  if (!BALLDONTLIE_KEY) {
+    console.warn('[warn] nba: BALLDONTLIE_KEY not set, skipping (will fall back to dummy)');
+    return { 동부: [], 서부: [] };
+  }
+
+  const headers = { Authorization: BALLDONTLIE_KEY };
+  const url = `https://api.balldontlie.io/nba/v1/standings?season=${NBA_SEASON}`;
+
   try {
     const json = await fetchJson(url, { headers });
-    const rows = extractNbaTeams(json);
-    if (!rows.length || !safeArray(json?.response).length) {
+    const rows = extractNbaRows(json);
+
+    if (!rows.length) {
       console.warn('[warn] nba: empty response');
       return { 동부: [], 서부: [] };
     }
 
-    const east = [];
-    const west = [];
-    for (const r of rows) {
-      const conf = String(r.conference || '').toLowerCase();
-      if (conf.includes('east')) east.push(r);
-      else if (conf.includes('west')) west.push(r);
-    }
+    const east = rows.filter((r) => String(r.conference).toLowerCase() === 'east')
+      .sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99));
+    const west = rows.filter((r) => String(r.conference).toLowerCase() === 'west')
+      .sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99));
+
     return { 동부: east, 서부: west };
   } catch (e) {
     console.warn(`[warn] nba: ${e.message}`);
     return { 동부: [], 서부: [] };
-  } finally {
-    await sleep(500);
   }
 }
 
 // -----------------------
-// Basketball KBL/WKBL
+// Basketball KBL/WKBL — 무료 실데이터 소스 없음 (확인됨)
 // -----------------------
 
-const BASKETBALL = {
-  host: 'https://v1.basketball.api-sports.io',
-  season: '2025-2026',
-};
-
-async function findBasketballLeagueId(name, country) {
-  const headers = requireKey();
-  const url = `${BASKETBALL.host}/leagues?name=${encodeURIComponent(name)}&country=${encodeURIComponent(country)}`;
-  const json = await fetchJson(url, { headers });
-  const league = safeArray(json?.response)[0];
-  return league?.id ?? league?.league?.id ?? null;
-}
-
-function extractBasketballStandings(payload) {
-  const resp0 = safeArray(payload?.response)[0];
-  const standings = safeArray(resp0?.standings);
-  const rows = standings.length ? standings : safeArray(payload?.response);
-  return rows
-    .map((row) => ({
-      rank: row?.rank ?? row?.position ?? null,
-      team: { name: row?.team?.name ?? null },
-      games: { played: row?.games?.played ?? null },
-      win: row?.games?.win?.total ?? row?.win?.total ?? null,
-      loss: row?.games?.lose?.total ?? row?.loss?.total ?? null,
-      winRate: row?.games?.win?.percentage ?? row?.win?.percentage ?? null,
-      gamesBack: row?.gamesBack ?? row?.gb ?? null,
-      streak: row?.streak ?? null,
-    }))
-    .filter((r) => r.rank && r.team?.name);
-}
-
-async function fetchKoreanBasketballLeague(name) {
-  const headers = requireKey();
-  try {
-    const id = await findBasketballLeagueId(name, 'South Korea');
-    await sleep(500);
-    if (!id) {
-      console.warn(`[warn] basketball ${name}: league id not found`);
-      return [];
-    }
-    const url = `${BASKETBALL.host}/standings?league=${id}&season=${encodeURIComponent(BASKETBALL.season)}`;
-    const json = await fetchJson(url, { headers });
-    const rows = extractBasketballStandings(json);
-    if (!rows.length || !safeArray(json?.response).length) {
-      console.warn(`[warn] basketball ${name}: empty standings`);
-      return [];
-    }
-    return rows;
-  } catch (e) {
-    console.warn(`[warn] basketball ${name}: ${e.message}`);
-    return [];
-  } finally {
-    await sleep(500);
-  }
+async function fetchKoreanBasketballLeague() {
+  return [];
 }
 
 // -----------------------
-// Volleyball V-League
+// Volleyball V-League(남/여) — 무료 실데이터 소스 없음 (확인됨)
 // -----------------------
-
-const VOLLEYBALL = {
-  host: 'https://v1.volleyball.api-sports.io',
-  season: '2025-2026',
-};
-
-function extractVolleyballStandings(payload) {
-  const resp0 = safeArray(payload?.response)[0];
-  const standings = safeArray(resp0?.standings);
-  const rows = standings.length ? standings : safeArray(payload?.response);
-  return rows
-    .map((row) => ({
-      rank: row?.rank ?? row?.position ?? null,
-      team: { name: row?.team?.name ?? null },
-      points: row?.points ?? null,
-      played: row?.games?.played ?? row?.played ?? null,
-      win: row?.games?.win?.total ?? row?.win?.total ?? null,
-      loss: row?.games?.lose?.total ?? row?.loss?.total ?? null,
-      setRatio: row?.sets?.ratio ?? row?.setRatio ?? null,
-      pointRatio: row?.pointsRatio ?? row?.pointRatio ?? null,
-    }))
-    .filter((r) => r.rank && r.team?.name);
-}
-
-async function fetchVolleyballStandingsByLeagueId(id) {
-  const headers = requireKey();
-  const url = `${VOLLEYBALL.host}/standings?league=${id}&season=${encodeURIComponent(VOLLEYBALL.season)}`;
-  const json = await fetchJson(url, { headers });
-  return extractVolleyballStandings(json);
-}
 
 async function fetchVolleyball() {
-  const headers = requireKey();
-  const out = { vLeagueMen: [], vLeagueWomen: [] };
-
-  try {
-    const url = `${VOLLEYBALL.host}/leagues?country=${encodeURIComponent('South Korea')}`;
-    const json = await fetchJson(url, { headers });
-    await sleep(500);
-
-    const leagues = safeArray(json?.response).filter((l) => {
-      const name = String(l?.name ?? l?.league?.name ?? '');
-      return /v-?league/i.test(name);
-    });
-
-    if (!leagues.length) {
-      console.warn('[warn] volleyball: V-League not found');
-      return out;
-    }
-
-    for (const league of leagues) {
-      const id = league?.id ?? league?.league?.id;
-      const name = String(league?.name ?? league?.league?.name ?? '').toLowerCase();
-      if (!id) continue;
-
-      try {
-        const rows = await fetchVolleyballStandingsByLeagueId(id);
-        if (!rows.length) {
-          console.warn(`[warn] volleyball league ${name}: empty standings`);
-          continue;
-        }
-        if (name.includes('women') || name.includes('woman') || name.includes('여자') || name.includes('female')) {
-          out.vLeagueWomen = rows;
-        } else {
-          out.vLeagueMen = rows;
-        }
-      } catch (e) {
-        console.warn(`[warn] volleyball league ${name}: ${e.message}`);
-      }
-      await sleep(500);
-    }
-  } catch (e) {
-    console.warn(`[warn] volleyball: ${e.message}`);
-  }
-
-  return out;
+  return { vLeagueMen: [], vLeagueWomen: [] };
 }
 
 async function main() {
@@ -459,8 +338,8 @@ async function main() {
   const football = await fetchFootball();
   const baseball = await fetchBaseball();
   const nba = await fetchNba();
-  const kbl = await fetchKoreanBasketballLeague('KBL');
-  const wkbl = await fetchKoreanBasketballLeague('WKBL');
+  const kbl = await fetchKoreanBasketballLeague();
+  const wkbl = await fetchKoreanBasketballLeague();
   const volleyball = await fetchVolleyball();
 
   const basketball = { nba, kbl, wkbl };

@@ -1,4 +1,4 @@
-name: Fetch standings (API-Sports)
+name: Fetch standings (free data sources)
 
 on:
   schedule:
@@ -25,7 +25,8 @@ jobs:
 
       - name: Fetch standings data
         env:
-          API_SPORTS_KEY: ${{ secrets.API_SPORTS_KEY }}
+          FOOTBALL_DATA_KEY: ${{ secrets.FOOTBALL_DATA_KEY }}
+          BALLDONTLIE_KEY: ${{ secrets.BALLDONTLIE_KEY }}
         run: node scripts/fetch-standings.js
 
       - name: Commit & push if changed
@@ -40,4 +41,3 @@ jobs:
           else
             echo "No data changes; skip commit."
           fi
-
