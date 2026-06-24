@@ -2,159 +2,173 @@
   "vLeagueMen": [
     {
       "rank": 1,
-      "team": "대한항공",
-      "points": 69,
-      "played": 36,
+      "team": {
+        "name": "대한항공"
+      },
       "win": 23,
-      "lose": 13,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "loss": 13,
+      "played": 36,
+      "points": 69,
+      "setRatio": 1.473,
+      "pointRatio": 1.051
     },
     {
       "rank": 2,
-      "team": "현대캐피탈",
-      "points": 69,
-      "played": 36,
+      "team": {
+        "name": "현대캐피탈"
+      },
       "win": 22,
-      "lose": 14,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "loss": 14,
+      "played": 36,
+      "points": 69,
+      "setRatio": 1.509,
+      "pointRatio": 1.05
     },
     {
       "rank": 3,
-      "team": "KB손해보험",
-      "points": 58,
-      "played": 36,
+      "team": {
+        "name": "KB손해보험"
+      },
       "win": 19,
-      "lose": 17,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "loss": 17,
+      "played": 36,
+      "points": 58,
+      "setRatio": 1.029,
+      "pointRatio": 0.996
     },
     {
       "rank": 4,
-      "team": "우리카드",
-      "points": 57,
-      "played": 36,
+      "team": {
+        "name": "우리카드"
+      },
       "win": 20,
-      "lose": 16,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "loss": 16,
+      "played": 36,
+      "points": 57,
+      "setRatio": 1.119,
+      "pointRatio": 1.014
     },
     {
       "rank": 5,
-      "team": "한국전력",
-      "points": 56,
-      "played": 36,
+      "team": {
+        "name": "한국전력"
+      },
       "win": 19,
-      "lose": 17,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "loss": 17,
+      "played": 36,
+      "points": 56,
+      "setRatio": 1.075,
+      "pointRatio": 1.025
     },
     {
       "rank": 6,
-      "team": "OK저축은행",
-      "points": null,
-      "played": null,
-      "win": null,
-      "lose": null,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "team": {
+        "name": "OK저축은행"
+      },
+      "win": 17,
+      "loss": 19,
+      "played": 36,
+      "points": 50,
+      "setRatio": 0.897,
+      "pointRatio": 0.986
     },
     {
       "rank": 7,
-      "team": "삼성화재",
-      "points": null,
-      "played": null,
-      "win": null,
-      "lose": null,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "team": {
+        "name": "삼성화재"
+      },
+      "win": 6,
+      "loss": 30,
+      "played": 36,
+      "points": 19,
+      "setRatio": 0.388,
+      "pointRatio": 0.887
     }
   ],
   "vLeagueWomen": [
     {
       "rank": 1,
-      "team": "한국도로공사",
-      "points": null,
-      "played": null,
-      "win": null,
-      "lose": null,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "team": {
+        "name": "한국도로공사"
+      },
+      "win": 24,
+      "loss": 12,
+      "played": 36,
+      "points": 69,
+      "setRatio": 1.474,
+      "pointRatio": 1.038
     },
     {
       "rank": 2,
-      "team": "현대건설",
-      "points": null,
-      "played": null,
-      "win": null,
-      "lose": null,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "team": {
+        "name": "현대건설"
+      },
+      "win": 22,
+      "loss": 14,
+      "played": 36,
+      "points": 65,
+      "setRatio": 1.254,
+      "pointRatio": 1.04
     },
     {
       "rank": 3,
-      "team": "GS칼텍스",
-      "points": 57,
-      "played": 36,
+      "team": {
+        "name": "GS칼텍스"
+      },
       "win": 19,
-      "lose": 17,
-      "set_ratio": 1.106,
-      "score_ratio": null,
-      "recent5": []
+      "loss": 17,
+      "played": 36,
+      "points": 57,
+      "setRatio": 1.106,
+      "pointRatio": 1.021
     },
     {
       "rank": 4,
-      "team": "흥국생명",
-      "points": 57,
-      "played": 36,
+      "team": {
+        "name": "흥국생명"
+      },
       "win": 19,
-      "lose": 17,
-      "set_ratio": 1.072,
-      "score_ratio": null,
-      "recent5": []
+      "loss": 17,
+      "played": 36,
+      "points": 57,
+      "setRatio": 1.072,
+      "pointRatio": 0.988
     },
     {
       "rank": 5,
-      "team": "IBK기업은행",
-      "points": 57,
-      "played": 36,
+      "team": {
+        "name": "IBK기업은행"
+      },
       "win": 18,
-      "lose": 18,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "loss": 18,
+      "played": 36,
+      "points": 57,
+      "setRatio": 1.121,
+      "pointRatio": 1.021
     },
     {
       "rank": 6,
-      "team": "페퍼저축은행",
-      "points": null,
-      "played": null,
-      "win": null,
-      "lose": null,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "team": {
+        "name": "페퍼저축은행"
+      },
+      "win": 16,
+      "loss": 20,
+      "played": 36,
+      "points": 47,
+      "setRatio": 0.813,
+      "pointRatio": 0.982
     },
     {
       "rank": 7,
-      "team": "정관장",
-      "points": null,
-      "played": null,
-      "win": null,
-      "lose": null,
-      "set_ratio": null,
-      "score_ratio": null,
-      "recent5": []
+      "team": {
+        "name": "정관장"
+      },
+      "win": 8,
+      "loss": 28,
+      "played": 36,
+      "points": 26,
+      "setRatio": 0.462,
+      "pointRatio": 0.911
     }
   ]
 }

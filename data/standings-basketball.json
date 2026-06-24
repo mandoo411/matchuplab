@@ -2,637 +2,652 @@
   "nba": {
     "동부": [
       {
-        "rank": 1,
-        "team": "디트로이트 피스톤스",
-        "win_rate": 0.732,
-        "played": 82,
-        "win": 60,
-        "lose": 22,
-        "game_behind": "-",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Detroit Pistons"
+        },
+        "conference": "East",
+        "division": "Central",
+        "win": {
+          "total": 60,
+          "percentage": 0.732
+        },
+        "loss": {
+          "total": 22
+        },
+        "streak": 3,
         "home": "32-9",
         "away": "28-13",
-        "division": "센트럴",
-        "div_record": "12-4"
+        "divisionRecord": "12-4",
+        "rank": 1
       },
       {
-        "rank": 2,
-        "team": "보스턴 셀틱스",
-        "win_rate": 0.683,
-        "played": 82,
-        "win": 56,
-        "lose": 26,
-        "game_behind": "4.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Boston Celtics"
+        },
+        "conference": "East",
+        "division": "Atlantic",
+        "win": {
+          "total": 56,
+          "percentage": 0.683
+        },
+        "loss": {
+          "total": 26
+        },
+        "streak": 2,
         "home": "30-11",
         "away": "26-15",
-        "division": "애틀랜틱",
-        "div_record": "10-6"
+        "divisionRecord": "10-6",
+        "rank": 2
       },
       {
-        "rank": 3,
-        "team": "뉴욕 닉스",
-        "win_rate": 0.646,
-        "played": 82,
-        "win": 53,
-        "lose": 29,
-        "game_behind": "7.0",
-        "streak": "",
-        "recent5": [],
-        "home": "30-10",
+        "team": {
+          "name": "New York Knicks"
+        },
+        "conference": "East",
+        "division": "Atlantic",
+        "win": {
+          "total": 54,
+          "percentage": 0.651
+        },
+        "loss": {
+          "total": 29
+        },
+        "streak": -1,
+        "home": "31-10",
         "away": "23-19",
-        "division": "애틀랜틱",
-        "div_record": "14-3"
+        "divisionRecord": "14-3",
+        "rank": 3
       },
       {
-        "rank": 4,
-        "team": "클리블랜드 캐벌리어스",
-        "win_rate": 0.634,
-        "played": 82,
-        "win": 52,
-        "lose": 30,
-        "game_behind": "8.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Cleveland Cavaliers"
+        },
+        "conference": "East",
+        "division": "Central",
+        "win": {
+          "total": 52,
+          "percentage": 0.634
+        },
+        "loss": {
+          "total": 30
+        },
+        "streak": 1,
         "home": "27-14",
         "away": "25-16",
-        "division": "센트럴",
-        "div_record": "10-5"
+        "divisionRecord": "11-5",
+        "rank": 4
       },
       {
-        "rank": 5,
-        "team": "토론토 랩터스",
-        "win_rate": 0.561,
-        "played": 82,
-        "win": 46,
-        "lose": 36,
-        "game_behind": "14.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Atlanta Hawks"
+        },
+        "conference": "East",
+        "division": "Southeast",
+        "win": {
+          "total": 46,
+          "percentage": 0.561
+        },
+        "loss": {
+          "total": 36
+        },
+        "streak": -1,
         "home": "24-17",
         "away": "22-19",
-        "division": "애틀랜틱",
-        "div_record": "5-12"
+        "divisionRecord": "9-7",
+        "rank": 5
       },
       {
-        "rank": 6,
-        "team": "애틀랜타 호크스",
-        "win_rate": 0.561,
-        "played": 82,
-        "win": 46,
-        "lose": 36,
-        "game_behind": "14.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Toronto Raptors"
+        },
+        "conference": "East",
+        "division": "Atlantic",
+        "win": {
+          "total": 46,
+          "percentage": 0.561
+        },
+        "loss": {
+          "total": 36
+        },
+        "streak": 1,
         "home": "24-17",
         "away": "22-19",
-        "division": "사우스이스트",
-        "div_record": "9-7"
+        "divisionRecord": "5-12",
+        "rank": 6
       },
       {
-        "rank": 7,
-        "team": "필라델피아 세븐티식서스",
-        "win_rate": 0.549,
-        "played": 82,
-        "win": 45,
-        "lose": 37,
-        "game_behind": "15.0",
-        "streak": "",
-        "recent5": [],
-        "home": "23-18",
+        "team": {
+          "name": "Philadelphia 76ers"
+        },
+        "conference": "East",
+        "division": "Atlantic",
+        "win": {
+          "total": 46,
+          "percentage": 0.554
+        },
+        "loss": {
+          "total": 37
+        },
+        "streak": 3,
+        "home": "24-18",
         "away": "22-19",
-        "division": "애틀랜틱",
-        "div_record": "9-7"
+        "divisionRecord": "9-7",
+        "rank": 7
       },
       {
-        "rank": 8,
-        "team": "올랜도 매직",
-        "win_rate": 0.549,
-        "played": 82,
-        "win": 45,
-        "lose": 37,
-        "game_behind": "15.0",
-        "streak": "",
-        "recent5": [],
-        "home": "26-16",
-        "away": "19-21",
-        "division": "사우스이스트",
-        "div_record": "9-8"
+        "team": {
+          "name": "Orlando Magic"
+        },
+        "conference": "East",
+        "division": "Southeast",
+        "win": {
+          "total": 46,
+          "percentage": 0.548
+        },
+        "loss": {
+          "total": 38
+        },
+        "streak": 1,
+        "home": "27-16",
+        "away": "19-22",
+        "divisionRecord": "10-8",
+        "rank": 8
       },
       {
-        "rank": 9,
-        "team": "샬럿 호네츠",
-        "win_rate": 0.537,
-        "played": 82,
-        "win": 44,
-        "lose": 38,
-        "game_behind": "16.0",
-        "streak": "",
-        "recent5": [],
-        "home": "21-20",
-        "away": "23-18",
-        "division": "사우스이스트",
-        "div_record": "11-5"
+        "team": {
+          "name": "Charlotte Hornets"
+        },
+        "conference": "East",
+        "division": "Southeast",
+        "win": {
+          "total": 45,
+          "percentage": 0.536
+        },
+        "loss": {
+          "total": 39
+        },
+        "streak": -1,
+        "home": "22-20",
+        "away": "23-19",
+        "divisionRecord": "12-6",
+        "rank": 9
       },
       {
-        "rank": 10,
-        "team": "마이애미 히트",
-        "win_rate": 0.524,
-        "played": 82,
-        "win": 43,
-        "lose": 39,
-        "game_behind": "17.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Miami Heat"
+        },
+        "conference": "East",
+        "division": "Southeast",
+        "win": {
+          "total": 43,
+          "percentage": 0.518
+        },
+        "loss": {
+          "total": 40
+        },
+        "streak": -1,
         "home": "26-15",
-        "away": "17-24",
-        "division": "사우스이스트",
-        "div_record": "10-7"
+        "away": "17-25",
+        "divisionRecord": "10-8",
+        "rank": 10
       },
       {
-        "rank": 11,
-        "team": "밀워키 벅스",
-        "win_rate": 0.390,
-        "played": 82,
-        "win": 32,
-        "lose": 50,
-        "game_behind": "28.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Milwaukee Bucks"
+        },
+        "conference": "East",
+        "division": "Central",
+        "win": {
+          "total": 32,
+          "percentage": 0.39
+        },
+        "loss": {
+          "total": 50
+        },
+        "streak": -1,
         "home": "19-22",
         "away": "13-28",
-        "division": "센트럴",
-        "div_record": "9-7"
+        "divisionRecord": "9-7",
+        "rank": 11
       },
       {
-        "rank": 12,
-        "team": "시카고 불스",
-        "win_rate": 0.378,
-        "played": 82,
-        "win": 31,
-        "lose": 51,
-        "game_behind": "29.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Chicago Bulls"
+        },
+        "conference": "East",
+        "division": "Central",
+        "win": {
+          "total": 31,
+          "percentage": 0.378
+        },
+        "loss": {
+          "total": 51
+        },
+        "streak": -2,
         "home": "18-23",
         "away": "13-28",
-        "division": "센트럴",
-        "div_record": "4-12"
+        "divisionRecord": "4-12",
+        "rank": 12
       },
       {
-        "rank": 13,
-        "team": "브루클린 네츠",
-        "win_rate": 0.244,
-        "played": 82,
-        "win": 20,
-        "lose": 62,
-        "game_behind": "40.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Brooklyn Nets"
+        },
+        "conference": "East",
+        "division": "Atlantic",
+        "win": {
+          "total": 20,
+          "percentage": 0.244
+        },
+        "loss": {
+          "total": 62
+        },
+        "streak": -3,
         "home": "12-29",
         "away": "8-33",
-        "division": "애틀랜틱",
-        "div_record": "3-13"
+        "divisionRecord": "3-13",
+        "rank": 13
       },
       {
-        "rank": 14,
-        "team": "인디애나 페이서스",
-        "win_rate": 0.232,
-        "played": 82,
-        "win": 19,
-        "lose": 63,
-        "game_behind": "41.0",
-        "streak": "",
-        "recent5": [],
-        "home": "11-29",
-        "away": "8-34",
-        "division": "센트럴",
-        "div_record": "4-12"
+        "team": {
+          "name": "Indiana Pacers"
+        },
+        "conference": "East",
+        "division": "Central",
+        "win": {
+          "total": 19,
+          "percentage": 0.232
+        },
+        "loss": {
+          "total": 63
+        },
+        "streak": -2,
+        "home": "11-30",
+        "away": "8-33",
+        "divisionRecord": "4-12",
+        "rank": 14
       },
       {
-        "rank": 15,
-        "team": "워싱턴 위저즈",
-        "win_rate": 0.207,
-        "played": 82,
-        "win": 17,
-        "lose": 65,
-        "game_behind": "43.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Washington Wizards"
+        },
+        "conference": "East",
+        "division": "Southeast",
+        "win": {
+          "total": 17,
+          "percentage": 0.207
+        },
+        "loss": {
+          "total": 65
+        },
+        "streak": -10,
         "home": "11-30",
         "away": "6-35",
-        "division": "사우스이스트",
-        "div_record": "2-14"
+        "divisionRecord": "2-14",
+        "rank": 15
       }
     ],
     "서부": [
       {
-        "rank": 1,
-        "team": "오클라호마시티 썬더",
-        "win_rate": 0.780,
-        "played": 82,
-        "win": 64,
-        "lose": 18,
-        "game_behind": "-",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Oklahoma City Thunder"
+        },
+        "conference": "West",
+        "division": "Northwest",
+        "win": {
+          "total": 64,
+          "percentage": 0.78
+        },
+        "loss": {
+          "total": 18
+        },
+        "streak": -2,
         "home": "34-8",
         "away": "30-10",
-        "division": "노스웨스트",
-        "div_record": "12-4"
+        "divisionRecord": "12-4",
+        "rank": 1
       },
       {
-        "rank": 2,
-        "team": "산안토니오 스퍼스",
-        "win_rate": 0.756,
-        "played": 82,
-        "win": 62,
-        "lose": 20,
-        "game_behind": "2.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "San Antonio Spurs"
+        },
+        "conference": "West",
+        "division": "Southwest",
+        "win": {
+          "total": 62,
+          "percentage": 0.747
+        },
+        "loss": {
+          "total": 21
+        },
+        "streak": -1,
         "home": "32-8",
-        "away": "30-12",
-        "division": "사우스웨스트",
-        "div_record": "13-3"
+        "away": "30-13",
+        "divisionRecord": "13-3",
+        "rank": 2
       },
       {
-        "rank": 3,
-        "team": "덴버 너기츠",
-        "win_rate": 0.659,
-        "played": 82,
-        "win": 54,
-        "lose": 28,
-        "game_behind": "10.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Denver Nuggets"
+        },
+        "conference": "West",
+        "division": "Northwest",
+        "win": {
+          "total": 54,
+          "percentage": 0.659
+        },
+        "loss": {
+          "total": 28
+        },
+        "streak": 12,
         "home": "28-13",
         "away": "26-15",
-        "division": "노스웨스트",
-        "div_record": "11-5"
+        "divisionRecord": "11-5",
+        "rank": 3
       },
       {
-        "rank": 4,
-        "team": "로스앤젤레스 레이커스",
-        "win_rate": 0.646,
-        "played": 82,
-        "win": 53,
-        "lose": 29,
-        "game_behind": "11.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Los Angeles Lakers"
+        },
+        "conference": "West",
+        "division": "Pacific",
+        "win": {
+          "total": 53,
+          "percentage": 0.646
+        },
+        "loss": {
+          "total": 29
+        },
+        "streak": 3,
         "home": "28-13",
         "away": "25-16",
-        "division": "퍼시픽",
-        "div_record": "9-7"
+        "divisionRecord": "10-7",
+        "rank": 4
       },
       {
-        "rank": 5,
-        "team": "휴스턴 로키츠",
-        "win_rate": 0.634,
-        "played": 82,
-        "win": 52,
-        "lose": 30,
-        "game_behind": "12.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Houston Rockets"
+        },
+        "conference": "West",
+        "division": "Southwest",
+        "win": {
+          "total": 52,
+          "percentage": 0.634
+        },
+        "loss": {
+          "total": 30
+        },
+        "streak": 1,
         "home": "30-11",
         "away": "22-19",
-        "division": "사우스웨스트",
-        "div_record": "10-6"
+        "divisionRecord": "10-6",
+        "rank": 5
       },
       {
-        "rank": 6,
-        "team": "미네소타 팀버울브스",
-        "win_rate": 0.598,
-        "played": 82,
-        "win": 49,
-        "lose": 33,
-        "game_behind": "15.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Minnesota Timberwolves"
+        },
+        "conference": "West",
+        "division": "Northwest",
+        "win": {
+          "total": 49,
+          "percentage": 0.598
+        },
+        "loss": {
+          "total": 33
+        },
+        "streak": 2,
         "home": "26-15",
         "away": "23-18",
-        "division": "노스웨스트",
-        "div_record": "9-7"
+        "divisionRecord": "9-7",
+        "rank": 6
       },
       {
-        "rank": 7,
-        "team": "피닉스 선즈",
-        "win_rate": 0.549,
-        "played": 82,
-        "win": 45,
-        "lose": 37,
-        "game_behind": "19.0",
-        "streak": "",
-        "recent5": [],
-        "home": "25-16",
+        "team": {
+          "name": "Phoenix Suns"
+        },
+        "conference": "West",
+        "division": "Pacific",
+        "win": {
+          "total": 46,
+          "percentage": 0.548
+        },
+        "loss": {
+          "total": 38
+        },
+        "streak": 1,
+        "home": "26-17",
         "away": "20-21",
-        "division": "퍼시픽",
-        "div_record": "10-6"
+        "divisionRecord": "11-7",
+        "rank": 7
       },
       {
-        "rank": 8,
-        "team": "포틀랜드 트레일블레이저스",
-        "win_rate": 0.512,
-        "played": 82,
-        "win": 42,
-        "lose": 40,
-        "game_behind": "22.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Portland Trail Blazers"
+        },
+        "conference": "West",
+        "division": "Northwest",
+        "win": {
+          "total": 43,
+          "percentage": 0.518
+        },
+        "loss": {
+          "total": 40
+        },
+        "streak": 3,
         "home": "24-17",
-        "away": "18-23",
-        "division": "노스웨스트",
-        "div_record": "7-9"
+        "away": "19-23",
+        "divisionRecord": "7-9",
+        "rank": 8
       },
       {
-        "rank": 9,
-        "team": "로스앤젤레스 클리퍼스",
-        "win_rate": 0.512,
-        "played": 82,
-        "win": 42,
-        "lose": 40,
-        "game_behind": "22.0",
-        "streak": "",
-        "recent5": [],
-        "home": "23-18",
+        "team": {
+          "name": "LA Clippers"
+        },
+        "conference": "West",
+        "division": "Pacific",
+        "win": {
+          "total": 42,
+          "percentage": 0.506
+        },
+        "loss": {
+          "total": 41
+        },
+        "streak": -1,
+        "home": "23-19",
         "away": "19-22",
-        "division": "퍼시픽",
-        "div_record": "10-6"
+        "divisionRecord": "10-7",
+        "rank": 9
       },
       {
-        "rank": 10,
-        "team": "골든스테이트 워리어스",
-        "win_rate": 0.451,
-        "played": 82,
-        "win": 37,
-        "lose": 45,
-        "game_behind": "27.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Golden State Warriors"
+        },
+        "conference": "West",
+        "division": "Pacific",
+        "win": {
+          "total": 38,
+          "percentage": 0.452
+        },
+        "loss": {
+          "total": 46
+        },
+        "streak": -1,
         "home": "22-19",
-        "away": "15-26",
-        "division": "퍼시픽",
-        "div_record": "7-9"
+        "away": "16-27",
+        "divisionRecord": "8-10",
+        "rank": 10
       },
       {
-        "rank": 11,
-        "team": "뉴올리언스 펠리컨스",
-        "win_rate": 0.317,
-        "played": 82,
-        "win": 26,
-        "lose": 56,
-        "game_behind": "38.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "New Orleans Pelicans"
+        },
+        "conference": "West",
+        "division": "Southwest",
+        "win": {
+          "total": 26,
+          "percentage": 0.317
+        },
+        "loss": {
+          "total": 56
+        },
+        "streak": -2,
         "home": "17-24",
         "away": "9-32",
-        "division": "사우스웨스트",
-        "div_record": "7-9"
+        "divisionRecord": "7-9",
+        "rank": 11
       },
       {
-        "rank": 12,
-        "team": "댈러스 매버릭스",
-        "win_rate": 0.317,
-        "played": 82,
-        "win": 26,
-        "lose": 56,
-        "game_behind": "38.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Dallas Mavericks"
+        },
+        "conference": "West",
+        "division": "Southwest",
+        "win": {
+          "total": 26,
+          "percentage": 0.317
+        },
+        "loss": {
+          "total": 56
+        },
+        "streak": 1,
         "home": "16-25",
         "away": "10-31",
-        "division": "사우스웨스트",
-        "div_record": "4-12"
+        "divisionRecord": "4-12",
+        "rank": 12
       },
       {
-        "rank": 13,
-        "team": "멤피스 그리즐리스",
-        "win_rate": 0.305,
-        "played": 82,
-        "win": 25,
-        "lose": 57,
-        "game_behind": "39.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Memphis Grizzlies"
+        },
+        "conference": "West",
+        "division": "Southwest",
+        "win": {
+          "total": 25,
+          "percentage": 0.305
+        },
+        "loss": {
+          "total": 57
+        },
+        "streak": -8,
         "home": "14-27",
         "away": "11-30",
-        "division": "사우스웨스트",
-        "div_record": "6-10"
+        "divisionRecord": "6-10",
+        "rank": 13
       },
       {
-        "rank": 14,
-        "team": "새크라멘토 킹스",
-        "win_rate": 0.268,
-        "played": 82,
-        "win": 22,
-        "lose": 60,
-        "game_behind": "42.0",
-        "streak": "",
-        "recent5": [],
-        "home": "15-26",
-        "away": "7-34",
-        "division": "퍼시픽",
-        "div_record": "4-12"
-      },
-      {
-        "rank": 15,
-        "team": "유타 재즈",
-        "win_rate": 0.268,
-        "played": 82,
-        "win": 22,
-        "lose": 60,
-        "game_behind": "42.0",
-        "streak": "",
-        "recent5": [],
+        "team": {
+          "name": "Utah Jazz"
+        },
+        "conference": "West",
+        "division": "Northwest",
+        "win": {
+          "total": 22,
+          "percentage": 0.268
+        },
+        "loss": {
+          "total": 60
+        },
+        "streak": -1,
         "home": "14-27",
         "away": "8-33",
-        "division": "노스웨스트",
-        "div_record": "1-15"
+        "divisionRecord": "1-15",
+        "rank": 14
+      },
+      {
+        "team": {
+          "name": "Sacramento Kings"
+        },
+        "conference": "West",
+        "division": "Pacific",
+        "win": {
+          "total": 22,
+          "percentage": 0.268
+        },
+        "loss": {
+          "total": 60
+        },
+        "streak": -1,
+        "home": "15-26",
+        "away": "7-34",
+        "divisionRecord": "4-12",
+        "rank": 15
       }
     ]
   },
-  "kbl": [
-    {
-      "rank": 1,
-      "team": "창원 LG세이커스",
-      "win_rate": 0.667,
-      "played": 54,
-      "win": 36,
-      "lose": 18,
-      "game_behind": "-",
-      "streak": "",
-      "recent5": []
-    },
-    {
-      "rank": 2,
-      "team": "안양 정관장 레드부스터스",
-      "win_rate": 0.648,
-      "played": 54,
-      "win": 35,
-      "lose": 19,
-      "game_behind": "1.0",
-      "streak": "",
-      "recent5": []
-    },
-    {
-      "rank": 3,
-      "team": "원주 DB프로미",
-      "win_rate": 0.611,
-      "played": 54,
-      "win": 33,
-      "lose": 21,
-      "game_behind": "3.0",
-      "streak": "",
-      "recent5": []
-    },
-    {
-      "rank": 4,
-      "team": "서울 SK나이츠",
-      "win_rate": 0.593,
-      "played": 54,
-      "win": 32,
-      "lose": 22,
-      "game_behind": "4.0",
-      "streak": "",
-      "recent5": []
-    },
-    {
-      "rank": 5,
-      "team": "고양 소노 스카이거너스",
-      "win_rate": 0.519,
-      "played": 54,
-      "win": 28,
-      "lose": 26,
-      "game_behind": "8.0",
-      "streak": "",
-      "recent5": []
-    },
-    {
-      "rank": 6,
-      "team": "부산 KCC이지스",
-      "win_rate": 0.519,
-      "played": 54,
-      "win": 28,
-      "lose": 26,
-      "game_behind": "8.0",
-      "streak": "",
-      "recent5": []
-    },
-    {
-      "rank": 7,
-      "team": "수원 KT소닉붐",
-      "win_rate": 0.500,
-      "played": 54,
-      "win": 27,
-      "lose": 27,
-      "game_behind": "9.0",
-      "streak": "",
-      "recent5": []
-    },
-    {
-      "rank": 8,
-      "team": "울산 현대모비스 피버스",
-      "win_rate": 0.333,
-      "played": 54,
-      "win": 18,
-      "lose": 36,
-      "game_behind": "18.0",
-      "streak": "",
-      "recent5": []
-    },
-    {
-      "rank": 9,
-      "team": "대구 한국가스공사 페가수스",
-      "win_rate": 0.315,
-      "played": 54,
-      "win": 17,
-      "lose": 37,
-      "game_behind": "19.0",
-      "streak": "",
-      "recent5": []
-    },
-    {
-      "rank": 10,
-      "team": "서울 삼성 썬더스",
-      "win_rate": 0.296,
-      "played": 54,
-      "win": 16,
-      "lose": 38,
-      "game_behind": "20.0",
-      "streak": "",
-      "recent5": []
-    }
-  ],
+  "kbl": [],
   "wkbl": [
     {
       "rank": 1,
-      "team": "청주 KB스타즈",
-      "win_rate": 0.700,
-      "played": 30,
+      "team": {
+        "name": "KB스타즈"
+      },
       "win": 21,
-      "lose": 9,
-      "game_behind": "-",
-      "streak": "",
-      "recent5": []
+      "loss": 9,
+      "played": 30,
+      "win_rate": "70.0",
+      "gamesBack": "0.0",
+      "streak": "W2"
     },
     {
       "rank": 2,
-      "team": "부천 하나은행",
-      "win_rate": 0.667,
-      "played": 30,
+      "team": {
+        "name": "하나은행"
+      },
       "win": 20,
-      "lose": 10,
-      "game_behind": "1.0",
-      "streak": "",
-      "recent5": []
+      "loss": 10,
+      "played": 30,
+      "win_rate": "66.7",
+      "gamesBack": "1.0",
+      "streak": "L1"
     },
     {
       "rank": 3,
-      "team": "용인 삼성생명",
-      "win_rate": 0.467,
-      "played": 30,
+      "team": {
+        "name": "삼성생명 블루밍스"
+      },
       "win": 14,
-      "lose": 16,
-      "game_behind": "7.0",
-      "streak": "",
-      "recent5": []
+      "loss": 16,
+      "played": 30,
+      "win_rate": "46.7",
+      "gamesBack": "7.0",
+      "streak": "L3"
     },
     {
       "rank": 4,
-      "team": "아산 우리은행",
-      "win_rate": 0.433,
-      "played": 30,
+      "team": {
+        "name": "우리은행 우리WON"
+      },
       "win": 13,
-      "lose": 17,
-      "game_behind": "8.0",
-      "streak": "",
-      "recent5": []
+      "loss": 17,
+      "played": 30,
+      "win_rate": "43.3",
+      "gamesBack": "8.0",
+      "streak": "W1"
     },
     {
       "rank": 5,
-      "team": "부산 BNK썸",
-      "win_rate": 0.433,
-      "played": 30,
+      "team": {
+        "name": "BNK 썸"
+      },
       "win": 13,
-      "lose": 17,
-      "game_behind": "8.0",
-      "streak": "",
-      "recent5": []
+      "loss": 17,
+      "played": 30,
+      "win_rate": "43.3",
+      "gamesBack": "8.0",
+      "streak": "L2"
     },
     {
       "rank": 6,
-      "team": "인천 신한은행 에스버드",
-      "win_rate": 0.300,
-      "played": 30,
+      "team": {
+        "name": "신한은행 에스버드"
+      },
       "win": 9,
-      "lose": 21,
-      "game_behind": "12.0",
-      "streak": "",
-      "recent5": []
+      "loss": 21,
+      "played": 30,
+      "win_rate": "30.0",
+      "gamesBack": "12.0",
+      "streak": "W3"
     }
   ]
 }
