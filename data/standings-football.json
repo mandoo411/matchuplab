@@ -1,8 +1,1837 @@
 {
   "kLeague": null,
-  "epl": null,
-  "bundesliga": null,
-  "ligue1": null,
-  "serieA": null,
-  "laLiga": null
+  "epl": [
+    {
+      "rank": 1,
+      "team": {
+        "name": "Bournemouth"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Arsenal"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Aston Villa"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Brentford"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Brighton Hove"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Chelsea"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Coventry City"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Crystal Palace"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Everton"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Fulham"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Hull City"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Ipswich Town"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Leeds United"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Liverpool"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Man City"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Man United"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Newcastle"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Nottingham"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Sunderland"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Tottenham"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    }
+  ],
+  "bundesliga": [
+    {
+      "rank": 1,
+      "team": {
+        "name": "Bayern Munich"
+      },
+      "all": {
+        "played": 34,
+        "win": 28,
+        "draw": 5,
+        "lose": 1
+      },
+      "goals": {
+        "for": 122,
+        "against": 36
+      },
+      "goalsDiff": 86,
+      "points": 89,
+      "form": null
+    },
+    {
+      "rank": 2,
+      "team": {
+        "name": "Dortmund"
+      },
+      "all": {
+        "played": 34,
+        "win": 22,
+        "draw": 7,
+        "lose": 5
+      },
+      "goals": {
+        "for": 70,
+        "against": 34
+      },
+      "goalsDiff": 36,
+      "points": 73,
+      "form": null
+    },
+    {
+      "rank": 3,
+      "team": {
+        "name": "RB Leipzig"
+      },
+      "all": {
+        "played": 34,
+        "win": 20,
+        "draw": 5,
+        "lose": 9
+      },
+      "goals": {
+        "for": 66,
+        "against": 47
+      },
+      "goalsDiff": 19,
+      "points": 65,
+      "form": null
+    },
+    {
+      "rank": 4,
+      "team": {
+        "name": "Stuttgart"
+      },
+      "all": {
+        "played": 34,
+        "win": 18,
+        "draw": 8,
+        "lose": 8
+      },
+      "goals": {
+        "for": 71,
+        "against": 49
+      },
+      "goalsDiff": 22,
+      "points": 62,
+      "form": null
+    },
+    {
+      "rank": 5,
+      "team": {
+        "name": "Hoffenheim"
+      },
+      "all": {
+        "played": 34,
+        "win": 18,
+        "draw": 7,
+        "lose": 9
+      },
+      "goals": {
+        "for": 65,
+        "against": 52
+      },
+      "goalsDiff": 13,
+      "points": 61,
+      "form": null
+    },
+    {
+      "rank": 6,
+      "team": {
+        "name": "Leverkusen"
+      },
+      "all": {
+        "played": 34,
+        "win": 17,
+        "draw": 8,
+        "lose": 9
+      },
+      "goals": {
+        "for": 68,
+        "against": 47
+      },
+      "goalsDiff": 21,
+      "points": 59,
+      "form": null
+    },
+    {
+      "rank": 7,
+      "team": {
+        "name": "Freiburg"
+      },
+      "all": {
+        "played": 34,
+        "win": 13,
+        "draw": 8,
+        "lose": 13
+      },
+      "goals": {
+        "for": 51,
+        "against": 57
+      },
+      "goalsDiff": -6,
+      "points": 47,
+      "form": null
+    },
+    {
+      "rank": 8,
+      "team": {
+        "name": "Frankfurt"
+      },
+      "all": {
+        "played": 34,
+        "win": 11,
+        "draw": 11,
+        "lose": 12
+      },
+      "goals": {
+        "for": 61,
+        "against": 65
+      },
+      "goalsDiff": -4,
+      "points": 44,
+      "form": null
+    },
+    {
+      "rank": 9,
+      "team": {
+        "name": "Augsburg"
+      },
+      "all": {
+        "played": 34,
+        "win": 12,
+        "draw": 7,
+        "lose": 15
+      },
+      "goals": {
+        "for": 45,
+        "against": 61
+      },
+      "goalsDiff": -16,
+      "points": 43,
+      "form": null
+    },
+    {
+      "rank": 10,
+      "team": {
+        "name": "Mainz"
+      },
+      "all": {
+        "played": 34,
+        "win": 10,
+        "draw": 10,
+        "lose": 14
+      },
+      "goals": {
+        "for": 44,
+        "against": 53
+      },
+      "goalsDiff": -9,
+      "points": 40,
+      "form": null
+    },
+    {
+      "rank": 11,
+      "team": {
+        "name": "Union Berlin"
+      },
+      "all": {
+        "played": 34,
+        "win": 10,
+        "draw": 9,
+        "lose": 15
+      },
+      "goals": {
+        "for": 44,
+        "against": 58
+      },
+      "goalsDiff": -14,
+      "points": 39,
+      "form": null
+    },
+    {
+      "rank": 12,
+      "team": {
+        "name": "M'gladbach"
+      },
+      "all": {
+        "played": 34,
+        "win": 9,
+        "draw": 11,
+        "lose": 14
+      },
+      "goals": {
+        "for": 42,
+        "against": 53
+      },
+      "goalsDiff": -11,
+      "points": 38,
+      "form": null
+    },
+    {
+      "rank": 13,
+      "team": {
+        "name": "HSV"
+      },
+      "all": {
+        "played": 34,
+        "win": 9,
+        "draw": 11,
+        "lose": 14
+      },
+      "goals": {
+        "for": 40,
+        "against": 54
+      },
+      "goalsDiff": -14,
+      "points": 38,
+      "form": null
+    },
+    {
+      "rank": 14,
+      "team": {
+        "name": "Köln"
+      },
+      "all": {
+        "played": 34,
+        "win": 7,
+        "draw": 11,
+        "lose": 16
+      },
+      "goals": {
+        "for": 49,
+        "against": 63
+      },
+      "goalsDiff": -14,
+      "points": 32,
+      "form": null
+    },
+    {
+      "rank": 15,
+      "team": {
+        "name": "Werder Bremen"
+      },
+      "all": {
+        "played": 34,
+        "win": 8,
+        "draw": 8,
+        "lose": 18
+      },
+      "goals": {
+        "for": 37,
+        "against": 60
+      },
+      "goalsDiff": -23,
+      "points": 32,
+      "form": null
+    },
+    {
+      "rank": 16,
+      "team": {
+        "name": "Wolfsburg"
+      },
+      "all": {
+        "played": 34,
+        "win": 7,
+        "draw": 8,
+        "lose": 19
+      },
+      "goals": {
+        "for": 45,
+        "against": 69
+      },
+      "goalsDiff": -24,
+      "points": 29,
+      "form": null
+    },
+    {
+      "rank": 17,
+      "team": {
+        "name": "Heidenheim"
+      },
+      "all": {
+        "played": 34,
+        "win": 6,
+        "draw": 8,
+        "lose": 20
+      },
+      "goals": {
+        "for": 41,
+        "against": 72
+      },
+      "goalsDiff": -31,
+      "points": 26,
+      "form": null
+    },
+    {
+      "rank": 18,
+      "team": {
+        "name": "St. Pauli"
+      },
+      "all": {
+        "played": 34,
+        "win": 6,
+        "draw": 8,
+        "lose": 20
+      },
+      "goals": {
+        "for": 29,
+        "against": 60
+      },
+      "goalsDiff": -31,
+      "points": 26,
+      "form": null
+    }
+  ],
+  "ligue1": [
+    {
+      "rank": 1,
+      "team": {
+        "name": "Auxerre"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Angers SCO"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Monaco"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Troyes"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Lorient"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Le Havre"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Le Mans"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Lille"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Nice"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Lyon"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Marseille"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Paris FC"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Paris Saint Germain"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Strasbourg"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Lens"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Brest"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Rennes"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    },
+    {
+      "rank": 1,
+      "team": {
+        "name": "Toulouse"
+      },
+      "all": {
+        "played": 0,
+        "win": 0,
+        "draw": 0,
+        "lose": 0
+      },
+      "goals": {
+        "for": 0,
+        "against": 0
+      },
+      "goalsDiff": 0,
+      "points": 0,
+      "form": null
+    }
+  ],
+  "serieA": [
+    {
+      "rank": 1,
+      "team": {
+        "name": "Inter"
+      },
+      "all": {
+        "played": 38,
+        "win": 27,
+        "draw": 6,
+        "lose": 5
+      },
+      "goals": {
+        "for": 89,
+        "against": 35
+      },
+      "goalsDiff": 54,
+      "points": 87,
+      "form": null
+    },
+    {
+      "rank": 2,
+      "team": {
+        "name": "Napoli"
+      },
+      "all": {
+        "played": 38,
+        "win": 23,
+        "draw": 7,
+        "lose": 8
+      },
+      "goals": {
+        "for": 58,
+        "against": 36
+      },
+      "goalsDiff": 22,
+      "points": 76,
+      "form": null
+    },
+    {
+      "rank": 3,
+      "team": {
+        "name": "Roma"
+      },
+      "all": {
+        "played": 38,
+        "win": 23,
+        "draw": 4,
+        "lose": 11
+      },
+      "goals": {
+        "for": 59,
+        "against": 31
+      },
+      "goalsDiff": 28,
+      "points": 73,
+      "form": null
+    },
+    {
+      "rank": 4,
+      "team": {
+        "name": "Como 1907"
+      },
+      "all": {
+        "played": 38,
+        "win": 20,
+        "draw": 11,
+        "lose": 7
+      },
+      "goals": {
+        "for": 65,
+        "against": 29
+      },
+      "goalsDiff": 36,
+      "points": 71,
+      "form": null
+    },
+    {
+      "rank": 5,
+      "team": {
+        "name": "Milan"
+      },
+      "all": {
+        "played": 38,
+        "win": 20,
+        "draw": 10,
+        "lose": 8
+      },
+      "goals": {
+        "for": 53,
+        "against": 35
+      },
+      "goalsDiff": 18,
+      "points": 70,
+      "form": null
+    },
+    {
+      "rank": 6,
+      "team": {
+        "name": "Juventus"
+      },
+      "all": {
+        "played": 38,
+        "win": 19,
+        "draw": 12,
+        "lose": 7
+      },
+      "goals": {
+        "for": 61,
+        "against": 34
+      },
+      "goalsDiff": 27,
+      "points": 69,
+      "form": null
+    },
+    {
+      "rank": 7,
+      "team": {
+        "name": "Atalanta"
+      },
+      "all": {
+        "played": 38,
+        "win": 15,
+        "draw": 14,
+        "lose": 9
+      },
+      "goals": {
+        "for": 51,
+        "against": 36
+      },
+      "goalsDiff": 15,
+      "points": 59,
+      "form": null
+    },
+    {
+      "rank": 8,
+      "team": {
+        "name": "Bologna"
+      },
+      "all": {
+        "played": 38,
+        "win": 16,
+        "draw": 8,
+        "lose": 14
+      },
+      "goals": {
+        "for": 49,
+        "against": 46
+      },
+      "goalsDiff": 3,
+      "points": 56,
+      "form": null
+    },
+    {
+      "rank": 9,
+      "team": {
+        "name": "Lazio"
+      },
+      "all": {
+        "played": 38,
+        "win": 14,
+        "draw": 12,
+        "lose": 12
+      },
+      "goals": {
+        "for": 41,
+        "against": 40
+      },
+      "goalsDiff": 1,
+      "points": 54,
+      "form": null
+    },
+    {
+      "rank": 10,
+      "team": {
+        "name": "Udinese"
+      },
+      "all": {
+        "played": 38,
+        "win": 14,
+        "draw": 8,
+        "lose": 16
+      },
+      "goals": {
+        "for": 45,
+        "against": 48
+      },
+      "goalsDiff": -3,
+      "points": 50,
+      "form": null
+    },
+    {
+      "rank": 11,
+      "team": {
+        "name": "Sassuolo"
+      },
+      "all": {
+        "played": 38,
+        "win": 14,
+        "draw": 7,
+        "lose": 17
+      },
+      "goals": {
+        "for": 46,
+        "against": 50
+      },
+      "goalsDiff": -4,
+      "points": 49,
+      "form": null
+    },
+    {
+      "rank": 12,
+      "team": {
+        "name": "Torino"
+      },
+      "all": {
+        "played": 38,
+        "win": 12,
+        "draw": 9,
+        "lose": 17
+      },
+      "goals": {
+        "for": 44,
+        "against": 63
+      },
+      "goalsDiff": -19,
+      "points": 45,
+      "form": null
+    },
+    {
+      "rank": 13,
+      "team": {
+        "name": "Parma"
+      },
+      "all": {
+        "played": 38,
+        "win": 11,
+        "draw": 12,
+        "lose": 15
+      },
+      "goals": {
+        "for": 28,
+        "against": 46
+      },
+      "goalsDiff": -18,
+      "points": 45,
+      "form": null
+    },
+    {
+      "rank": 14,
+      "team": {
+        "name": "Cagliari"
+      },
+      "all": {
+        "played": 38,
+        "win": 11,
+        "draw": 10,
+        "lose": 17
+      },
+      "goals": {
+        "for": 40,
+        "against": 53
+      },
+      "goalsDiff": -13,
+      "points": 43,
+      "form": null
+    },
+    {
+      "rank": 15,
+      "team": {
+        "name": "Fiorentina"
+      },
+      "all": {
+        "played": 38,
+        "win": 9,
+        "draw": 15,
+        "lose": 14
+      },
+      "goals": {
+        "for": 41,
+        "against": 50
+      },
+      "goalsDiff": -9,
+      "points": 42,
+      "form": null
+    },
+    {
+      "rank": 16,
+      "team": {
+        "name": "Genoa"
+      },
+      "all": {
+        "played": 38,
+        "win": 10,
+        "draw": 11,
+        "lose": 17
+      },
+      "goals": {
+        "for": 41,
+        "against": 51
+      },
+      "goalsDiff": -10,
+      "points": 41,
+      "form": null
+    },
+    {
+      "rank": 17,
+      "team": {
+        "name": "Lecce"
+      },
+      "all": {
+        "played": 38,
+        "win": 10,
+        "draw": 8,
+        "lose": 20
+      },
+      "goals": {
+        "for": 28,
+        "against": 50
+      },
+      "goalsDiff": -22,
+      "points": 38,
+      "form": null
+    },
+    {
+      "rank": 18,
+      "team": {
+        "name": "Cremonese"
+      },
+      "all": {
+        "played": 38,
+        "win": 8,
+        "draw": 10,
+        "lose": 20
+      },
+      "goals": {
+        "for": 32,
+        "against": 57
+      },
+      "goalsDiff": -25,
+      "points": 34,
+      "form": null
+    },
+    {
+      "rank": 19,
+      "team": {
+        "name": "Verona"
+      },
+      "all": {
+        "played": 38,
+        "win": 3,
+        "draw": 12,
+        "lose": 23
+      },
+      "goals": {
+        "for": 25,
+        "against": 61
+      },
+      "goalsDiff": -36,
+      "points": 21,
+      "form": null
+    },
+    {
+      "rank": 20,
+      "team": {
+        "name": "AC Pisa"
+      },
+      "all": {
+        "played": 38,
+        "win": 2,
+        "draw": 12,
+        "lose": 24
+      },
+      "goals": {
+        "for": 26,
+        "against": 71
+      },
+      "goalsDiff": -45,
+      "points": 18,
+      "form": null
+    }
+  ],
+  "laLiga": [
+    {
+      "rank": 1,
+      "team": {
+        "name": "Barça"
+      },
+      "all": {
+        "played": 38,
+        "win": 31,
+        "draw": 1,
+        "lose": 6
+      },
+      "goals": {
+        "for": 95,
+        "against": 36
+      },
+      "goalsDiff": 59,
+      "points": 94,
+      "form": null
+    },
+    {
+      "rank": 2,
+      "team": {
+        "name": "Real Madrid"
+      },
+      "all": {
+        "played": 38,
+        "win": 27,
+        "draw": 5,
+        "lose": 6
+      },
+      "goals": {
+        "for": 77,
+        "against": 35
+      },
+      "goalsDiff": 42,
+      "points": 86,
+      "form": null
+    },
+    {
+      "rank": 3,
+      "team": {
+        "name": "Villarreal"
+      },
+      "all": {
+        "played": 38,
+        "win": 22,
+        "draw": 6,
+        "lose": 10
+      },
+      "goals": {
+        "for": 72,
+        "against": 46
+      },
+      "goalsDiff": 26,
+      "points": 72,
+      "form": null
+    },
+    {
+      "rank": 4,
+      "team": {
+        "name": "Atletico Madrid"
+      },
+      "all": {
+        "played": 38,
+        "win": 21,
+        "draw": 6,
+        "lose": 11
+      },
+      "goals": {
+        "for": 62,
+        "against": 44
+      },
+      "goalsDiff": 18,
+      "points": 69,
+      "form": null
+    },
+    {
+      "rank": 5,
+      "team": {
+        "name": "Real Betis"
+      },
+      "all": {
+        "played": 38,
+        "win": 15,
+        "draw": 15,
+        "lose": 8
+      },
+      "goals": {
+        "for": 59,
+        "against": 48
+      },
+      "goalsDiff": 11,
+      "points": 60,
+      "form": null
+    },
+    {
+      "rank": 6,
+      "team": {
+        "name": "Celta"
+      },
+      "all": {
+        "played": 38,
+        "win": 14,
+        "draw": 12,
+        "lose": 12
+      },
+      "goals": {
+        "for": 53,
+        "against": 48
+      },
+      "goalsDiff": 5,
+      "points": 54,
+      "form": null
+    },
+    {
+      "rank": 7,
+      "team": {
+        "name": "Getafe"
+      },
+      "all": {
+        "played": 38,
+        "win": 15,
+        "draw": 6,
+        "lose": 17
+      },
+      "goals": {
+        "for": 32,
+        "against": 38
+      },
+      "goalsDiff": -6,
+      "points": 51,
+      "form": null
+    },
+    {
+      "rank": 8,
+      "team": {
+        "name": "Rayo Vallecano"
+      },
+      "all": {
+        "played": 38,
+        "win": 12,
+        "draw": 14,
+        "lose": 12
+      },
+      "goals": {
+        "for": 41,
+        "against": 44
+      },
+      "goalsDiff": -3,
+      "points": 50,
+      "form": null
+    },
+    {
+      "rank": 9,
+      "team": {
+        "name": "Valencia"
+      },
+      "all": {
+        "played": 38,
+        "win": 13,
+        "draw": 10,
+        "lose": 15
+      },
+      "goals": {
+        "for": 46,
+        "against": 55
+      },
+      "goalsDiff": -9,
+      "points": 49,
+      "form": null
+    },
+    {
+      "rank": 10,
+      "team": {
+        "name": "Real Sociedad"
+      },
+      "all": {
+        "played": 38,
+        "win": 11,
+        "draw": 13,
+        "lose": 14
+      },
+      "goals": {
+        "for": 59,
+        "against": 61
+      },
+      "goalsDiff": -2,
+      "points": 46,
+      "form": null
+    },
+    {
+      "rank": 11,
+      "team": {
+        "name": "Espanyol"
+      },
+      "all": {
+        "played": 38,
+        "win": 12,
+        "draw": 10,
+        "lose": 16
+      },
+      "goals": {
+        "for": 43,
+        "against": 55
+      },
+      "goalsDiff": -12,
+      "points": 46,
+      "form": null
+    },
+    {
+      "rank": 12,
+      "team": {
+        "name": "Athletic"
+      },
+      "all": {
+        "played": 38,
+        "win": 13,
+        "draw": 6,
+        "lose": 19
+      },
+      "goals": {
+        "for": 43,
+        "against": 58
+      },
+      "goalsDiff": -15,
+      "points": 45,
+      "form": null
+    },
+    {
+      "rank": 13,
+      "team": {
+        "name": "Sevilla FC"
+      },
+      "all": {
+        "played": 38,
+        "win": 12,
+        "draw": 7,
+        "lose": 19
+      },
+      "goals": {
+        "for": 46,
+        "against": 60
+      },
+      "goalsDiff": -14,
+      "points": 43,
+      "form": null
+    },
+    {
+      "rank": 14,
+      "team": {
+        "name": "Alavés"
+      },
+      "all": {
+        "played": 38,
+        "win": 11,
+        "draw": 10,
+        "lose": 17
+      },
+      "goals": {
+        "for": 44,
+        "against": 56
+      },
+      "goalsDiff": -12,
+      "points": 43,
+      "form": null
+    },
+    {
+      "rank": 15,
+      "team": {
+        "name": "Elche"
+      },
+      "all": {
+        "played": 38,
+        "win": 10,
+        "draw": 13,
+        "lose": 15
+      },
+      "goals": {
+        "for": 49,
+        "against": 57
+      },
+      "goalsDiff": -8,
+      "points": 43,
+      "form": null
+    },
+    {
+      "rank": 16,
+      "team": {
+        "name": "Levante"
+      },
+      "all": {
+        "played": 38,
+        "win": 11,
+        "draw": 9,
+        "lose": 18
+      },
+      "goals": {
+        "for": 47,
+        "against": 61
+      },
+      "goalsDiff": -14,
+      "points": 42,
+      "form": null
+    },
+    {
+      "rank": 17,
+      "team": {
+        "name": "Osasuna"
+      },
+      "all": {
+        "played": 38,
+        "win": 11,
+        "draw": 9,
+        "lose": 18
+      },
+      "goals": {
+        "for": 44,
+        "against": 50
+      },
+      "goalsDiff": -6,
+      "points": 42,
+      "form": null
+    },
+    {
+      "rank": 18,
+      "team": {
+        "name": "Mallorca"
+      },
+      "all": {
+        "played": 38,
+        "win": 11,
+        "draw": 9,
+        "lose": 18
+      },
+      "goals": {
+        "for": 47,
+        "against": 57
+      },
+      "goalsDiff": -10,
+      "points": 42,
+      "form": null
+    },
+    {
+      "rank": 19,
+      "team": {
+        "name": "Girona"
+      },
+      "all": {
+        "played": 38,
+        "win": 9,
+        "draw": 14,
+        "lose": 15
+      },
+      "goals": {
+        "for": 39,
+        "against": 55
+      },
+      "goalsDiff": -16,
+      "points": 41,
+      "form": null
+    },
+    {
+      "rank": 20,
+      "team": {
+        "name": "Real Oviedo"
+      },
+      "all": {
+        "played": 38,
+        "win": 6,
+        "draw": 11,
+        "lose": 21
+      },
+      "goals": {
+        "for": 26,
+        "against": 60
+      },
+      "goalsDiff": -34,
+      "points": 29,
+      "form": null
+    }
+  ]
 }
