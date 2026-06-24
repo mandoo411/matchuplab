@@ -97,7 +97,7 @@
     {"rank":19,"team":"엘라스 베로나","played":38,"win":3,"draw":12,"lose":23,"goals_for":0,"goals_against":0,"goal_diff":-36,"points":21,"recent5":[]},
     {"rank":20,"team":"피사","played":38,"win":2,"draw":12,"lose":24,"goals_for":0,"goals_against":0,"goal_diff":-45,"points":18,"recent5":[]}
   ],
-  "laliga": [
+  "laLiga": [
     {"rank":1,"team":"FC바르셀로나","played":38,"win":31,"draw":1,"lose":6,"goals_for":95,"goals_against":36,"goal_diff":59,"points":94,"recent5":[]},
     {"rank":2,"team":"레알 마드리드","played":38,"win":27,"draw":5,"lose":6,"goals_for":77,"goals_against":35,"goal_diff":42,"points":86,"recent5":[]},
     {"rank":3,"team":"비야레알","played":38,"win":22,"draw":6,"lose":10,"goals_for":72,"goals_against":46,"goal_diff":26,"points":72,"recent5":[]},

@@ -327,11 +327,26 @@ const MatchUpStandingsLoader = (function () {
     }));
   }
 
+  const FOOTBALL_LEAGUE_API_KEYS = {
+    laLiga: ['laLiga', 'laliga'],
+  };
+
+  function getFootballLeagueRows(api, key) {
+    const aliases = FOOTBALL_LEAGUE_API_KEYS[key];
+    if (aliases) {
+      for (const alias of aliases) {
+        if (api?.[alias] != null) return api[alias];
+      }
+      return null;
+    }
+    return api?.[key] ?? null;
+  }
+
   function mergeFootball(api, fallback) {
     const out = {};
     const keys = ['kLeague', 'epl', 'bundesliga', 'ligue1', 'serieA', 'laLiga'];
     keys.forEach((key) => {
-      const apiRows = api?.[key];
+      const apiRows = getFootballLeagueRows(api, key);
       if (isEmptyData(apiRows)) {
         out[key] = fallback.football[key];
       } else {

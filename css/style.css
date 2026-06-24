@@ -1647,7 +1647,7 @@ button {
   /* --- standings: 테이블 가독성 & sticky --- */
   :root {
     --standings-rank-col-width: 52px;
-    --standings-team-col-width: 104px;
+    --standings-team-col-width: 140px;
   }
 
   .standings-table-wrap {
@@ -1691,8 +1691,8 @@ button {
   }
 
   .standings-table .col-sticky-team.team-name {
-    overflow: visible;
-    text-overflow: unset;
+    overflow: hidden;
+    text-overflow: clip;
     white-space: nowrap;
   }
 
@@ -1854,6 +1854,6 @@ button {
   }
 
   .standings-table .col-sticky-team {
-    --standings-team-col-width: 88px;
+    --standings-team-col-width: 120px;
   }
 }
