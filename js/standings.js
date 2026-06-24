@@ -106,9 +106,11 @@
 
         return `
           <section class="standings-division-section">
-            <h3 class="standings-division-title">${section.title}</h3>
-            <div class="standings-table-wrap standings-table-wrap--nested">
-              ${buildBaseballTableHtml(teams, false, `${leagueName} ${section.title} (${teams.length}팀)`)}
+            <div class="standings-division-card">
+              <h3 class="standings-division-title">${section.title}</h3>
+              <div class="standings-table-wrap standings-table-wrap--nested">
+                ${buildBaseballTableHtml(teams, false, `${leagueName} ${section.title} (${teams.length}팀)`)}
+              </div>
             </div>
           </section>`;
       })
