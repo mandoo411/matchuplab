@@ -1691,8 +1691,9 @@ button {
   }
 
   .standings-table .col-sticky-team.team-name {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: visible;
+    text-overflow: unset;
+    white-space: nowrap;
   }
 
   .standings-table .next-match {

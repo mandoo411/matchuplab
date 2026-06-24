@@ -7,6 +7,26 @@
 
   const standingsTableWrap = document.getElementById('standings-table-wrap');
 
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function getDisplayTeamName(name) {
+    const full = typeof normalizeTeamName === 'function' ? normalizeTeamName(name) : name;
+    const short = typeof shortenTeamName === 'function' ? shortenTeamName(full) : full;
+    return { full, short };
+  }
+
+  function buildTeamNameCell(name) {
+    const { full, short } = getDisplayTeamName(name);
+    const titleAttr = full !== short ? ` title="${escapeHtml(full)}"` : '';
+    return `<td class="col-sticky col-sticky-team team-name"${titleAttr}>${escapeHtml(short)}</td>`;
+  }
+
   function usesFootballColumns(sport) {
     return sport === 'football';
   }
@@ -125,7 +145,7 @@
     return `
       <tr>
         <td class="col-sticky col-sticky-rank">${team.rank}</td>
-        <td class="col-sticky col-sticky-team team-name">${team.name}</td>
+        ${buildTeamNameCell(team.name)}
         <td>${team.played}</td>
         <td>${team.win}</td>
         <td>${team.draw}</td>
@@ -144,7 +164,7 @@
     return `
       <tr>
         <td class="col-sticky col-sticky-rank">${team.rank}</td>
-        <td class="col-sticky col-sticky-team team-name">${team.name}</td>
+        ${buildTeamNameCell(team.name)}
         <td>${team.played}</td>
         <td>${team.win}</td>
         <td>${team.loss}</td>
@@ -174,7 +194,7 @@
     return `
       <tr>
         <td class="col-sticky col-sticky-rank">${team.rank}</td>
-        <td class="col-sticky col-sticky-team team-name">${team.name}</td>
+        ${buildTeamNameCell(team.name)}
         <td><strong>${team.winRate}</strong></td>
         <td>${team.played}</td>
         <td>${team.win}</td>
@@ -206,7 +226,7 @@
     return `
       <tr>
         <td class="col-sticky col-sticky-rank">${team.rank}</td>
-        <td class="col-sticky col-sticky-team team-name">${team.name}</td>
+        ${buildTeamNameCell(team.name)}
         <td><strong>${team.winRate}</strong></td>
         <td>${team.played}</td>
         <td>${team.win}</td>
@@ -238,7 +258,7 @@
     return `
       <tr>
         <td class="col-sticky col-sticky-rank">${team.rank}</td>
-        <td class="col-sticky col-sticky-team team-name">${team.name}</td>
+        ${buildTeamNameCell(team.name)}
         <td><strong>${team.points}</strong></td>
         <td>${team.played}</td>
         <td>${team.win}</td>
@@ -261,7 +281,7 @@
     return `
       <tr>
         <td class="col-sticky col-sticky-rank">${team.rank}</td>
-        <td class="col-sticky col-sticky-team team-name">${team.name}</td>
+        ${buildTeamNameCell(team.name)}
         <td>${team.winRate}</td>
         <td class="${gbClass}">${formatGamesBack(team)}</td>
         <td>${team.win}</td>

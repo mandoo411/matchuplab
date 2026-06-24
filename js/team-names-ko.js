@@ -1,5 +1,5 @@
 /**
- * MatchUp LAB - API 영문 팀명 → 한글 매핑
+ * MatchUp LAB - 팀명 한글 변환 · 정규화 · 표시용 축약
  */
 const TEAM_NAMES_KO = {
   kLeague: {
@@ -29,15 +29,20 @@ const TEAM_NAMES_KO = {
     Liverpool: '리버풀',
     Chelsea: '첼시',
     Tottenham: '토트넘',
+    'Tottenham Hotspur': '토트넘',
     'Manchester United': '맨체스터 유나이티드',
     Newcastle: '뉴캐슬',
+    'Newcastle United': '뉴캐슬',
     'Aston Villa': '아스톤 빌라',
     'West Ham': '웨스트햄',
+    'West Ham United': '웨스트햄',
     Brighton: '브라이턴',
-    Brentford: '브렌트퍼드',
+    'Brighton and Hove Albion': '브라이턴',
+    Brentford: '브렌트포드',
     Fulham: '풀럼',
     'Crystal Palace': '크리스탈 팰리스',
     Wolves: '울버햄튼',
+    'Wolverhampton Wanderers': '울버햄튼',
     'Nottingham Forest': '노팅엄 포레스트',
     Everton: '에버턴',
     Burnley: '번리',
@@ -47,6 +52,8 @@ const TEAM_NAMES_KO = {
     Ipswich: '입스위치',
     Leicester: '레스터',
     Southampton: '사우샘프턴',
+    Sunderland: '선덜랜드',
+    'Leeds United': '리즈 유나이티드',
   },
   bundesliga: {
     'Dortmund': '보루시아 도르트문트',
@@ -88,13 +95,13 @@ const TEAM_NAMES_KO = {
     'Elche': '엘체',
     'Levante': '레반테',
     'Real Madrid': '레알 마드리드',
-    Barcelona: '바르셀로나',
+    Barcelona: 'FC바르셀로나',
     'Atletico Madrid': '아틀레티코 마드리드',
     Sevilla: '세비야',
     'Real Sociedad': '레알 소시에다드',
     'Real Betis': '레알 베티스',
     Villarreal: '비야레알',
-    'Athletic Club': '아틀레틱 클럽',
+    'Athletic Club': '아틀레틱 빌바오',
     Valencia: '발렌시아',
     Osasuna: '오사수나',
     'Celta Vigo': '셀타 비고',
@@ -165,35 +172,65 @@ const TEAM_NAMES_KO = {
   },
   mlb: {
     'New York Yankees': '뉴욕 양키스',
+    Yankees: '뉴욕 양키스',
+    양키스: '뉴욕 양키스',
     'Boston Red Sox': '보스턴 레드삭스',
+    레드삭스: '보스턴 레드삭스',
     'Tampa Bay Rays': '탬파베이 레이스',
+    레이스: '탬파베이 레이스',
     'Toronto Blue Jays': '토론토 블루제이스',
+    블루제이스: '토론토 블루제이스',
     'Baltimore Orioles': '볼티모어 오리올스',
+    오리올스: '볼티모어 오리올스',
     'Cleveland Guardians': '클리블랜드 가디언스',
+    가디언스: '클리블랜드 가디언스',
     'Chicago White Sox': '시카고 화이트삭스',
+    화이트삭스: '시카고 화이트삭스',
     'Minnesota Twins': '미네소타 트윈스',
+    트윈스: '미네소타 트윈스',
     'Detroit Tigers': '디트로이트 타이거스',
+    타이거스: '디트로이트 타이거스',
     'Kansas City Royals': '캔자스시티 로열스',
+    로열스: '캔자스시티 로열스',
     'Houston Astros': '휴스턴 애스트로스',
+    애스트로스: '휴스턴 애스트로스',
     'Seattle Mariners': '시애틀 매리너스',
+    매리너스: '시애틀 매리너스',
     'Texas Rangers': '텍사스 레인저스',
+    레인저스: '텍사스 레인저스',
     'Los Angeles Angels': 'LA 에인절스',
+    에인절스: 'LA 에인절스',
     'Oakland Athletics': '애슬레틱스',
     'Los Angeles Dodgers': 'LA 다저스',
+    다저스: 'LA 다저스',
     'San Francisco Giants': '샌프란시스코 자이언츠',
+    자이언츠: '샌프란시스코 자이언츠',
     'San Diego Padres': '샌디에이고 파드레스',
+    파드리스: '샌디에이고 파드레스',
     'Arizona Diamondbacks': '애리조나 다이아몬드백스',
+    다이아몬드백스: '애리조나 다이아몬드백스',
     'Colorado Rockies': '콜로라도 로키스',
+    로키스: '콜로라도 로키스',
     'Atlanta Braves': '애틀랜타 브레이브스',
+    브레이브스: '애틀랜타 브레이브스',
     'New York Mets': '뉴욕 메츠',
+    메츠: '뉴욕 메츠',
     'Philadelphia Phillies': '필라델피아 필리스',
+    필리스: '필라델피아 필리스',
     'Miami Marlins': '마이애미 말린스',
+    마린스: '마이애미 말린스',
     'Washington Nationals': '워싱턴 내셔널스',
+    내셔널스: '워싱턴 내셔널스',
     'Milwaukee Brewers': '밀워키 브루어스',
+    브루어스: '밀워키 브루어스',
     'Chicago Cubs': '시카고 컵스',
+    컵스: '시카고 컵스',
     'St. Louis Cardinals': '세인트루이스 카디널스',
+    카디널스: '세인트루이스 카디널스',
     'Pittsburgh Pirates': '피츠버그 파이리츠',
+    파이리츠: '피츠버그 파이리츠',
     'Cincinnati Reds': '신시내티 레즈',
+    레즈: '신시내티 레즈',
   },
   kbo: {
     'LG Twins': 'LG 트윈스',
@@ -255,9 +292,91 @@ const TEAM_NAMES_KO = {
   },
 };
 
+/** API/데이터 변형명 → 표준 한글명 */
+const TEAM_ALIASES = {
+  울산HD: '울산 HD',
+  전북현대모터스: '전북 현대',
+  포항스틸러스: '포항 스틸러스',
+  강원FC: '강원 FC',
+  인천유나이티드: '인천 유나이티드',
+  대전하나시티즌: '대전 FC',
+  김천상무: '김천 상무',
+  부천FC1995: '부천 FC',
+  제주SK: '제주 유나이티드',
+  '뉴캐슬 유나이티드': '뉴캐슬',
+  '웨스트햄 유나이티드': '웨스트햄',
+  '토트넘 핫스퍼': '토트넘',
+  '울버햄튼 원더러스': '울버햄튼',
+  브라이튼: '브라이턴',
+  'RB라이프치히': 'RB 라이프치히',
+  'VfB슈투트가르트': '슈투트가르트',
+  'TSG호펜하임': '호펜하임',
+  'SC프라이부르크': '프라이부르크',
+  'FC아우크스부르크': '아우크스부르크',
+  'FSV마인츠05': '마인츠',
+  'VfL볼프스부르크': '볼프스부르크',
+  'FC쾰른': '쾰른',
+  'FC하이덴하임': '하이덴하임',
+  'FC상파울리': '상파울리',
+  '함부르크SV': '함부르크',
+  AS로마: 'AS 로마',
+  AC밀란: 'AC 밀란',
+  '필라델피아 세븐티식서스': '필라델피아 76ers',
+  '디트로이트 피스톤스': '디트로이트 피스턴스',
+  '샬럿 호네츠': '샬럿 호넷츠',
+  '덴버 너기츠': '덴버 너게츠',
+  '산안토니오 스퍼스': '샌안토니오 스퍼스',
+  '로스앤젤레스 레이커스': 'LA 레이커스',
+  '로스앤젤레스 클리퍼스': 'LA 클리퍼스',
+};
+
+/** 순위표 표시용 축약명 (긴 팀명 → 짧은 표기) */
+const TEAM_SHORT_NAMES = {
+  '포틀랜드 트레일블레이저스': '포틀랜드',
+  '아인트라흐트 프랑크푸르트': '프랑크푸르트',
+  '보루시아 묀헨글라드바흐': '묀헨글라드바흐',
+  '보루시아 도르트문트': '도르트문트',
+  '맨체스터 유나이티드': '맨유',
+  '맨체스터 시티': '맨시티',
+  '노팅엄 포레스트': '노팅엄',
+  '크리스탈 팰리스': '팰리스',
+  '울버햄튼 원더러스': '울버햄튼',
+  '웨스트햄 유나이티드': '웨스트햄',
+  '토트넘 핫스퍼': '토트넘',
+  '뉴캐슬 유나이티드': '뉴캐슬',
+  '리즈 유나이티드': '리즈',
+  '아스톤 빌라': '아스톤빌라',
+  '레알 소시에다드': '소시에다드',
+  '아틀레티코 마드리드': '아틀레티코',
+  '클리블랜드 캐벌리어스': '클리블랜드',
+  '오클라호마시티 썬더': 'OKC',
+  '미네소타 팀버울브스': '미네소타',
+  '골든스테이트 워리어스': '골든스테이트',
+  '새크라멘토 킹스': '새크라멘토',
+  '뉴올리언스 펠리컨스': '뉴올리언스',
+  '필라델피아 76ers': '필라델피아',
+  '인디애나 페이서스': '인디애나',
+  '디트로이트 피스턴스': '디트로이트',
+  '바이에른 뮌헨': '바이에른',
+  '바이어 레버쿠젠': '레버쿠젠',
+  '세인트루이스 카디널스': '세인트루이스',
+  '샌프란시스코 자이언츠': '샌프란시스코',
+  '애리조나 다이아몬드백스': '애리조나',
+  '캔자스시티 로열스': '캔자스시티',
+  '클리블랜드 가디언스': '클리블랜드',
+  '시카고 화이트삭스': '화이트삭스',
+  '전북 현대': '전북',
+  '포항 스틸러스': '포항',
+  '제주 유나이티드': '제주',
+  '대전하나시티즌': '대전',
+  '대전 FC': '대전',
+  '전북현대모터스': '전북',
+};
+
 /** 리그 키별 매핑 + 전체 통합 검색 (+ 부분일치 보조 매칭) */
 function translateTeamName(name, leagueKey) {
   if (!name) return name;
+  if (TEAM_ALIASES[name]) return TEAM_ALIASES[name];
   if (leagueKey && TEAM_NAMES_KO[leagueKey] && TEAM_NAMES_KO[leagueKey][name]) {
     return TEAM_NAMES_KO[leagueKey][name];
   }
@@ -284,5 +403,28 @@ function translateTeamName(name, leagueKey) {
     const hit = tryPartial(map);
     if (hit) return hit;
   }
+  return name;
+}
+
+function normalizeTeamName(name, leagueKey) {
+  return translateTeamName(String(name).trim(), leagueKey);
+}
+
+function shortenTeamName(name) {
+  if (!name) return name;
+  if (TEAM_SHORT_NAMES[name]) return TEAM_SHORT_NAMES[name];
+
+  const parts = name.split(/\s+/);
+  if (parts.length <= 1) return name;
+
+  const skipPrefixes = ['보루시아', '바이어', '아인트라흐트', 'FC', 'SC', 'VfB', 'VfL', 'TSG', 'RB', 'AC', 'AS'];
+  if (skipPrefixes.includes(parts[0])) {
+    return parts.slice(1).join(' ');
+  }
+
+  if (name.length > 8) {
+    return parts[0];
+  }
+
   return name;
 }
