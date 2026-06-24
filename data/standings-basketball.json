@@ -1,7 +1,579 @@
 {
   "nba": {
-    "동부": [],
-    "서부": []
+    "동부": [
+      {
+        "team": {
+          "name": "Detroit Pistons"
+        },
+        "conference": "East",
+        "division": "Central",
+        "win": {
+          "total": 60,
+          "percentage": 0.732
+        },
+        "loss": {
+          "total": 22
+        },
+        "streak": 3,
+        "home": "32-9",
+        "away": "28-13",
+        "divisionRecord": "12-4",
+        "rank": 1
+      },
+      {
+        "team": {
+          "name": "Boston Celtics"
+        },
+        "conference": "East",
+        "division": "Atlantic",
+        "win": {
+          "total": 56,
+          "percentage": 0.683
+        },
+        "loss": {
+          "total": 26
+        },
+        "streak": 2,
+        "home": "30-11",
+        "away": "26-15",
+        "divisionRecord": "10-6",
+        "rank": 2
+      },
+      {
+        "team": {
+          "name": "New York Knicks"
+        },
+        "conference": "East",
+        "division": "Atlantic",
+        "win": {
+          "total": 54,
+          "percentage": 0.651
+        },
+        "loss": {
+          "total": 29
+        },
+        "streak": -1,
+        "home": "31-10",
+        "away": "23-19",
+        "divisionRecord": "14-3",
+        "rank": 3
+      },
+      {
+        "team": {
+          "name": "Cleveland Cavaliers"
+        },
+        "conference": "East",
+        "division": "Central",
+        "win": {
+          "total": 52,
+          "percentage": 0.634
+        },
+        "loss": {
+          "total": 30
+        },
+        "streak": 1,
+        "home": "27-14",
+        "away": "25-16",
+        "divisionRecord": "11-5",
+        "rank": 4
+      },
+      {
+        "team": {
+          "name": "Atlanta Hawks"
+        },
+        "conference": "East",
+        "division": "Southeast",
+        "win": {
+          "total": 46,
+          "percentage": 0.561
+        },
+        "loss": {
+          "total": 36
+        },
+        "streak": -1,
+        "home": "24-17",
+        "away": "22-19",
+        "divisionRecord": "9-7",
+        "rank": 5
+      },
+      {
+        "team": {
+          "name": "Toronto Raptors"
+        },
+        "conference": "East",
+        "division": "Atlantic",
+        "win": {
+          "total": 46,
+          "percentage": 0.561
+        },
+        "loss": {
+          "total": 36
+        },
+        "streak": 1,
+        "home": "24-17",
+        "away": "22-19",
+        "divisionRecord": "5-12",
+        "rank": 6
+      },
+      {
+        "team": {
+          "name": "Philadelphia 76ers"
+        },
+        "conference": "East",
+        "division": "Atlantic",
+        "win": {
+          "total": 46,
+          "percentage": 0.554
+        },
+        "loss": {
+          "total": 37
+        },
+        "streak": 3,
+        "home": "24-18",
+        "away": "22-19",
+        "divisionRecord": "9-7",
+        "rank": 7
+      },
+      {
+        "team": {
+          "name": "Orlando Magic"
+        },
+        "conference": "East",
+        "division": "Southeast",
+        "win": {
+          "total": 46,
+          "percentage": 0.548
+        },
+        "loss": {
+          "total": 38
+        },
+        "streak": 1,
+        "home": "27-16",
+        "away": "19-22",
+        "divisionRecord": "10-8",
+        "rank": 8
+      },
+      {
+        "team": {
+          "name": "Charlotte Hornets"
+        },
+        "conference": "East",
+        "division": "Southeast",
+        "win": {
+          "total": 45,
+          "percentage": 0.536
+        },
+        "loss": {
+          "total": 39
+        },
+        "streak": -1,
+        "home": "22-20",
+        "away": "23-19",
+        "divisionRecord": "12-6",
+        "rank": 9
+      },
+      {
+        "team": {
+          "name": "Miami Heat"
+        },
+        "conference": "East",
+        "division": "Southeast",
+        "win": {
+          "total": 43,
+          "percentage": 0.518
+        },
+        "loss": {
+          "total": 40
+        },
+        "streak": -1,
+        "home": "26-15",
+        "away": "17-25",
+        "divisionRecord": "10-8",
+        "rank": 10
+      },
+      {
+        "team": {
+          "name": "Milwaukee Bucks"
+        },
+        "conference": "East",
+        "division": "Central",
+        "win": {
+          "total": 32,
+          "percentage": 0.39
+        },
+        "loss": {
+          "total": 50
+        },
+        "streak": -1,
+        "home": "19-22",
+        "away": "13-28",
+        "divisionRecord": "9-7",
+        "rank": 11
+      },
+      {
+        "team": {
+          "name": "Chicago Bulls"
+        },
+        "conference": "East",
+        "division": "Central",
+        "win": {
+          "total": 31,
+          "percentage": 0.378
+        },
+        "loss": {
+          "total": 51
+        },
+        "streak": -2,
+        "home": "18-23",
+        "away": "13-28",
+        "divisionRecord": "4-12",
+        "rank": 12
+      },
+      {
+        "team": {
+          "name": "Brooklyn Nets"
+        },
+        "conference": "East",
+        "division": "Atlantic",
+        "win": {
+          "total": 20,
+          "percentage": 0.244
+        },
+        "loss": {
+          "total": 62
+        },
+        "streak": -3,
+        "home": "12-29",
+        "away": "8-33",
+        "divisionRecord": "3-13",
+        "rank": 13
+      },
+      {
+        "team": {
+          "name": "Indiana Pacers"
+        },
+        "conference": "East",
+        "division": "Central",
+        "win": {
+          "total": 19,
+          "percentage": 0.232
+        },
+        "loss": {
+          "total": 63
+        },
+        "streak": -2,
+        "home": "11-30",
+        "away": "8-33",
+        "divisionRecord": "4-12",
+        "rank": 14
+      },
+      {
+        "team": {
+          "name": "Washington Wizards"
+        },
+        "conference": "East",
+        "division": "Southeast",
+        "win": {
+          "total": 17,
+          "percentage": 0.207
+        },
+        "loss": {
+          "total": 65
+        },
+        "streak": -10,
+        "home": "11-30",
+        "away": "6-35",
+        "divisionRecord": "2-14",
+        "rank": 15
+      }
+    ],
+    "서부": [
+      {
+        "team": {
+          "name": "Oklahoma City Thunder"
+        },
+        "conference": "West",
+        "division": "Northwest",
+        "win": {
+          "total": 64,
+          "percentage": 0.78
+        },
+        "loss": {
+          "total": 18
+        },
+        "streak": -2,
+        "home": "34-8",
+        "away": "30-10",
+        "divisionRecord": "12-4",
+        "rank": 1
+      },
+      {
+        "team": {
+          "name": "San Antonio Spurs"
+        },
+        "conference": "West",
+        "division": "Southwest",
+        "win": {
+          "total": 62,
+          "percentage": 0.747
+        },
+        "loss": {
+          "total": 21
+        },
+        "streak": -1,
+        "home": "32-8",
+        "away": "30-13",
+        "divisionRecord": "13-3",
+        "rank": 2
+      },
+      {
+        "team": {
+          "name": "Denver Nuggets"
+        },
+        "conference": "West",
+        "division": "Northwest",
+        "win": {
+          "total": 54,
+          "percentage": 0.659
+        },
+        "loss": {
+          "total": 28
+        },
+        "streak": 12,
+        "home": "28-13",
+        "away": "26-15",
+        "divisionRecord": "11-5",
+        "rank": 3
+      },
+      {
+        "team": {
+          "name": "Los Angeles Lakers"
+        },
+        "conference": "West",
+        "division": "Pacific",
+        "win": {
+          "total": 53,
+          "percentage": 0.646
+        },
+        "loss": {
+          "total": 29
+        },
+        "streak": 3,
+        "home": "28-13",
+        "away": "25-16",
+        "divisionRecord": "10-7",
+        "rank": 4
+      },
+      {
+        "team": {
+          "name": "Houston Rockets"
+        },
+        "conference": "West",
+        "division": "Southwest",
+        "win": {
+          "total": 52,
+          "percentage": 0.634
+        },
+        "loss": {
+          "total": 30
+        },
+        "streak": 1,
+        "home": "30-11",
+        "away": "22-19",
+        "divisionRecord": "10-6",
+        "rank": 5
+      },
+      {
+        "team": {
+          "name": "Minnesota Timberwolves"
+        },
+        "conference": "West",
+        "division": "Northwest",
+        "win": {
+          "total": 49,
+          "percentage": 0.598
+        },
+        "loss": {
+          "total": 33
+        },
+        "streak": 2,
+        "home": "26-15",
+        "away": "23-18",
+        "divisionRecord": "9-7",
+        "rank": 6
+      },
+      {
+        "team": {
+          "name": "Phoenix Suns"
+        },
+        "conference": "West",
+        "division": "Pacific",
+        "win": {
+          "total": 46,
+          "percentage": 0.548
+        },
+        "loss": {
+          "total": 38
+        },
+        "streak": 1,
+        "home": "26-17",
+        "away": "20-21",
+        "divisionRecord": "11-7",
+        "rank": 7
+      },
+      {
+        "team": {
+          "name": "Portland Trail Blazers"
+        },
+        "conference": "West",
+        "division": "Northwest",
+        "win": {
+          "total": 43,
+          "percentage": 0.518
+        },
+        "loss": {
+          "total": 40
+        },
+        "streak": 3,
+        "home": "24-17",
+        "away": "19-23",
+        "divisionRecord": "7-9",
+        "rank": 8
+      },
+      {
+        "team": {
+          "name": "LA Clippers"
+        },
+        "conference": "West",
+        "division": "Pacific",
+        "win": {
+          "total": 42,
+          "percentage": 0.506
+        },
+        "loss": {
+          "total": 41
+        },
+        "streak": -1,
+        "home": "23-19",
+        "away": "19-22",
+        "divisionRecord": "10-7",
+        "rank": 9
+      },
+      {
+        "team": {
+          "name": "Golden State Warriors"
+        },
+        "conference": "West",
+        "division": "Pacific",
+        "win": {
+          "total": 38,
+          "percentage": 0.452
+        },
+        "loss": {
+          "total": 46
+        },
+        "streak": -1,
+        "home": "22-19",
+        "away": "16-27",
+        "divisionRecord": "8-10",
+        "rank": 10
+      },
+      {
+        "team": {
+          "name": "New Orleans Pelicans"
+        },
+        "conference": "West",
+        "division": "Southwest",
+        "win": {
+          "total": 26,
+          "percentage": 0.317
+        },
+        "loss": {
+          "total": 56
+        },
+        "streak": -2,
+        "home": "17-24",
+        "away": "9-32",
+        "divisionRecord": "7-9",
+        "rank": 11
+      },
+      {
+        "team": {
+          "name": "Dallas Mavericks"
+        },
+        "conference": "West",
+        "division": "Southwest",
+        "win": {
+          "total": 26,
+          "percentage": 0.317
+        },
+        "loss": {
+          "total": 56
+        },
+        "streak": 1,
+        "home": "16-25",
+        "away": "10-31",
+        "divisionRecord": "4-12",
+        "rank": 12
+      },
+      {
+        "team": {
+          "name": "Memphis Grizzlies"
+        },
+        "conference": "West",
+        "division": "Southwest",
+        "win": {
+          "total": 25,
+          "percentage": 0.305
+        },
+        "loss": {
+          "total": 57
+        },
+        "streak": -8,
+        "home": "14-27",
+        "away": "11-30",
+        "divisionRecord": "6-10",
+        "rank": 13
+      },
+      {
+        "team": {
+          "name": "Utah Jazz"
+        },
+        "conference": "West",
+        "division": "Northwest",
+        "win": {
+          "total": 22,
+          "percentage": 0.268
+        },
+        "loss": {
+          "total": 60
+        },
+        "streak": -1,
+        "home": "14-27",
+        "away": "8-33",
+        "divisionRecord": "1-15",
+        "rank": 14
+      },
+      {
+        "team": {
+          "name": "Sacramento Kings"
+        },
+        "conference": "West",
+        "division": "Pacific",
+        "win": {
+          "total": 22,
+          "percentage": 0.268
+        },
+        "loss": {
+          "total": 60
+        },
+        "streak": -1,
+        "home": "15-26",
+        "away": "7-34",
+        "divisionRecord": "4-12",
+        "rank": 15
+      }
+    ]
   },
   "kbl": [],
   "wkbl": []
