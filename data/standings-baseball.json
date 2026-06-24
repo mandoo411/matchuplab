@@ -211,17 +211,17 @@
           "name": "Red Sox"
         },
         "games": {
-          "played": 77
+          "played": 78
         },
         "wins": {
           "total": 32,
-          "percentage": ".416"
+          "percentage": ".410"
         },
         "loses": {
-          "total": 45
+          "total": 46
         },
-        "streak": "W1",
-        "gamesBack": "14.5"
+        "streak": "L1",
+        "gamesBack": "15.0"
       }
     ],
     "AL중부": [
@@ -359,17 +359,17 @@
           "name": "Rangers"
         },
         "games": {
-          "played": 79
+          "played": 80
         },
         "wins": {
           "total": 38,
-          "percentage": ".481"
+          "percentage": ".475"
         },
         "loses": {
-          "total": 41
+          "total": 42
         },
-        "streak": "L1",
-        "gamesBack": "2.5"
+        "streak": "L2",
+        "gamesBack": "3.0"
       },
       {
         "position": 4,
@@ -452,17 +452,17 @@
           "name": "Marlins"
         },
         "games": {
-          "played": 80
+          "played": 81
         },
         "wins": {
-          "total": 41,
-          "percentage": ".513"
+          "total": 42,
+          "percentage": ".519"
         },
         "loses": {
           "total": 39
         },
-        "streak": "W1",
-        "gamesBack": "8.0"
+        "streak": "W2",
+        "gamesBack": "7.5"
       },
       {
         "position": 4,
@@ -488,17 +488,17 @@
           "name": "Mets"
         },
         "games": {
-          "played": 78
+          "played": 79
         },
         "wins": {
           "total": 34,
-          "percentage": ".436"
+          "percentage": ".430"
         },
         "loses": {
-          "total": 44
+          "total": 45
         },
-        "streak": "L3",
-        "gamesBack": "14.0"
+        "streak": "L4",
+        "gamesBack": "14.5"
       }
     ],
     "NL중부": [
@@ -544,17 +544,17 @@
           "name": "Cubs"
         },
         "games": {
-          "played": 78
+          "played": 79
         },
         "wins": {
-          "total": 41,
-          "percentage": ".526"
+          "total": 42,
+          "percentage": ".532"
         },
         "loses": {
           "total": 37
         },
-        "streak": "W1",
-        "gamesBack": "7.5"
+        "streak": "W2",
+        "gamesBack": "7.0"
       },
       {
         "position": 4,
@@ -672,17 +672,17 @@
           "name": "Rockies"
         },
         "games": {
-          "played": 80
+          "played": 81
         },
         "wins": {
-          "total": 31,
-          "percentage": ".388"
+          "total": 32,
+          "percentage": ".395"
         },
         "loses": {
           "total": 49
         },
-        "streak": "L1",
-        "gamesBack": "20.0"
+        "streak": "W1",
+        "gamesBack": "19.5"
       }
     ],
     "NL와일드카드": []
