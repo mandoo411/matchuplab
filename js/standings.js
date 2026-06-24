@@ -6,6 +6,7 @@
   'use strict';
 
   const standingsTableWrap = document.getElementById('standings-table-wrap');
+  let currentLeagueKey = null;
 
   function escapeHtml(str) {
     return String(str)
@@ -16,7 +17,10 @@
   }
 
   function getDisplayTeamName(name) {
-    const full = typeof normalizeTeamName === 'function' ? normalizeTeamName(name) : name;
+    const full =
+      typeof normalizeTeamName === 'function'
+        ? normalizeTeamName(name, currentLeagueKey)
+        : name;
     const short = typeof shortenTeamName === 'function' ? shortenTeamName(full) : full;
     return { full, short };
   }
@@ -328,6 +332,7 @@
     if (!standingsTableWrap) return;
 
     const { sport, league, subLeague } = MatchUpTabs.getState();
+    currentLeagueKey = league;
     const leagueName = MatchUpTabs.getLeagueName();
     const teams = getStandingsTeams(sport, league, subLeague);
     const football = usesFootballColumns(sport);

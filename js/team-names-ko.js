@@ -367,21 +367,38 @@ function shortenTeamName(name) {
   return parts[0];
 }
 
+/** 한글 포함 여부 */
+function hasHangul(str) {
+  return /[\uAC00-\uD7A3]/.test(str);
+}
+
+/** 이미 정규화된 한글 팀명이면 그대로 반환 */
+function isCanonicalTeamName(name) {
+  for (const map of Object.values(TEAM_NAMES_KO)) {
+    if (Object.values(map).includes(name)) return true;
+  }
+  return false;
+}
+
 /** 리그 키별 매핑 + 전체 통합 검색 (+ 부분일치 보조 매칭) */
 function translateTeamName(name, leagueKey) {
   if (!name) return name;
   if (TEAM_ALIASES[name]) return TEAM_ALIASES[name];
+  if (isCanonicalTeamName(name)) return name;
   if (leagueKey && TEAM_NAMES_KO[leagueKey] && TEAM_NAMES_KO[leagueKey][name]) {
     return TEAM_NAMES_KO[leagueKey][name];
   }
   for (const map of Object.values(TEAM_NAMES_KO)) {
     if (map[name]) return map[name];
   }
-  // 정확히 일치하는 키가 없으면, 리그 내에서 포함관계(부분일치)로 한 번 더 시도
   const tryPartial = (map) => {
     const lower = name.toLowerCase();
+    const inputHasHangul = hasHangul(name);
     for (const key of Object.keys(map)) {
       const keyLower = key.toLowerCase();
+      if (lower === keyLower) return map[key];
+      // 한글 팀명이 MLB/NPB 접미사(트윈스·자이언츠 등)에 잘못 매칭되는 것 방지
+      if (inputHasHangul && hasHangul(key)) continue;
       if (lower.includes(keyLower) || keyLower.includes(lower)) {
         return map[key];
       }
