@@ -330,48 +330,42 @@ const TEAM_ALIASES = {
   '로스앤젤레스 클리퍼스': 'LA 클리퍼스',
 };
 
-/** 순위표 표시용 축약명 (긴 팀명 → 짧은 표기) */
+/** 순위표 표시용 축약명 (10글자 초과 팀만) */
 const TEAM_SHORT_NAMES = {
   '포틀랜드 트레일블레이저스': '포틀랜드',
   '아인트라흐트 프랑크푸르트': '프랑크푸르트',
   '보루시아 묀헨글라드바흐': '묀헨글라드바흐',
   '보루시아 도르트문트': '도르트문트',
   '맨체스터 유나이티드': '맨유',
-  '맨체스터 시티': '맨시티',
-  '노팅엄 포레스트': '노팅엄',
-  '크리스탈 팰리스': '팰리스',
   '울버햄튼 원더러스': '울버햄튼',
   '웨스트햄 유나이티드': '웨스트햄',
-  '토트넘 핫스퍼': '토트넘',
-  '뉴캐슬 유나이티드': '뉴캐슬',
-  '리즈 유나이티드': '리즈',
-  '아스톤 빌라': '아스톤빌라',
-  '레알 소시에다드': '소시에다드',
   '아틀레티코 마드리드': '아틀레티코',
   '클리블랜드 캐벌리어스': '클리블랜드',
   '오클라호마시티 썬더': 'OKC',
   '미네소타 팀버울브스': '미네소타',
   '골든스테이트 워리어스': '골든스테이트',
-  '새크라멘토 킹스': '새크라멘토',
-  '뉴올리언스 펠리컨스': '뉴올리언스',
   '필라델피아 76ers': '필라델피아',
-  '인디애나 페이서스': '인디애나',
-  '디트로이트 피스턴스': '디트로이트',
-  '바이에른 뮌헨': '바이에른',
-  '바이어 레버쿠젠': '레버쿠젠',
   '세인트루이스 카디널스': '세인트루이스',
-  '샌프란시스코 자이언츠': '샌프란시스코',
   '애리조나 다이아몬드백스': '애리조나',
-  '캔자스시티 로열스': '캔자스시티',
-  '클리블랜드 가디언스': '클리블랜드',
-  '시카고 화이트삭스': '화이트삭스',
-  '전북 현대': '전북',
-  '포항 스틸러스': '포항',
-  '제주 유나이티드': '제주',
-  '대전하나시티즌': '대전',
-  '대전 FC': '대전',
-  '전북현대모터스': '전북',
 };
+
+const TEAM_NAME_SHORTEN_THRESHOLD = 10;
+
+function shortenTeamName(name) {
+  if (!name || name.length <= TEAM_NAME_SHORTEN_THRESHOLD) return name;
+
+  if (TEAM_SHORT_NAMES[name]) return TEAM_SHORT_NAMES[name];
+
+  const parts = name.split(/\s+/);
+  if (parts.length <= 1) return name;
+
+  const skipPrefixes = ['보루시아', '바이어', '아인트라흐트', 'FC', 'SC', 'VfB', 'VfL', 'TSG', 'RB', 'AC', 'AS'];
+  if (skipPrefixes.includes(parts[0])) {
+    return parts.slice(1).join(' ');
+  }
+
+  return parts[0];
+}
 
 /** 리그 키별 매핑 + 전체 통합 검색 (+ 부분일치 보조 매칭) */
 function translateTeamName(name, leagueKey) {
@@ -384,7 +378,6 @@ function translateTeamName(name, leagueKey) {
     if (map[name]) return map[name];
   }
   // 정확히 일치하는 키가 없으면, 리그 내에서 포함관계(부분일치)로 한 번 더 시도
-  // 예: "Man City" ↔ "Manchester City", "Dortmund" ↔ "Borussia Dortmund"
   const tryPartial = (map) => {
     const lower = name.toLowerCase();
     for (const key of Object.keys(map)) {
@@ -408,23 +401,4 @@ function translateTeamName(name, leagueKey) {
 
 function normalizeTeamName(name, leagueKey) {
   return translateTeamName(String(name).trim(), leagueKey);
-}
-
-function shortenTeamName(name) {
-  if (!name) return name;
-  if (TEAM_SHORT_NAMES[name]) return TEAM_SHORT_NAMES[name];
-
-  const parts = name.split(/\s+/);
-  if (parts.length <= 1) return name;
-
-  const skipPrefixes = ['보루시아', '바이어', '아인트라흐트', 'FC', 'SC', 'VfB', 'VfL', 'TSG', 'RB', 'AC', 'AS'];
-  if (skipPrefixes.includes(parts[0])) {
-    return parts.slice(1).join(' ');
-  }
-
-  if (name.length > 8) {
-    return parts[0];
-  }
-
-  return name;
 }
