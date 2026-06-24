@@ -23,9 +23,8 @@
  *  - KBO   : koreabaseball.com 팀 순위 페이지 (서버사이드 렌더링 HTML 테이블, 인증 불필요)
  *  - WKBL  : wkbl.or.kr 내부 AJAX 엔드포인트 (POST, 인증 불필요)
  *  - KOVO  : kovo.co.kr 메인페이지가 쓰는 공개 JSON API (인증 불필요)
- * KBL(남자프로농구)은 api.kbl.or.kr가 자체 발급 헤더를 요구해서(스푸핑 방지) 보류 —
- * 헤더 없이 호출하면 "필수 헤더 정보가 누락되었습니다" 에러를 반환함. 추후 헤더를
- * 알아내거나 다른 소스를 찾으면 채울 것 (지금은 빈 배열 유지).
+ *  - KBL   : api.kbl.or.kr 팀순위 API (Channel/TeamCode/lang 정적 헤더 필요 — 비밀값
+ *            아님, kbl.or.kr 사이트 JS가 모든 방문자에게 동일하게 보내는 값)
  */
 
 const fs = require('fs/promises');
@@ -522,12 +521,56 @@ async function fetchNba() {
 }
 
 // -----------------------
-// Basketball KBL (api.kbl.or.kr) — 자체 인증 헤더 요구로 보류, 빈 배열 유지
-// (헤더 없이 호출 시 "필수 헤더 정보가 누락되었습니다" 에러. 추후 재시도 대상)
+// Basketball KBL (api.kbl.or.kr) — 사이트 JS가 쓰는 공개 JSON API
+// Channel/TeamCode/lang 헤더가 없으면 "필수 헤더 정보가 누락되었습니다" 에러가 나는데,
+// 이 값들은 비밀 토큰/쿠키가 아니라 kbl.or.kr 프론트엔드 코드에 고정으로 박혀있는 정적
+// 값(모든 방문자가 동일하게 보냄) — Chrome 네트워크 탭에서 실제 요청을 확인해서 알아냄.
 // -----------------------
 
 async function fetchKbl() {
-  return [];
+  try {
+    const json = await fetchJson('https://api.kbl.or.kr/league/rank/team?', {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        Channel: 'WEB',
+        TeamCode: 'XX',
+        lang: 'ko',
+        'X-Requested-With': 'XMLHttpRequest',
+        'User-Agent': 'Mozilla/5.0 (compatible; MatchUpLabBot/1.0; +https://matchuplab-six.vercel.app)',
+      },
+    });
+    const rows = safeArray(json);
+    if (!rows.length) throw new Error('empty team rank list');
+
+    const teams = rows
+      .map((row) => {
+        const rankNum = Number(row?.rank);
+        const teamName = row?.tname;
+        if (!rankNum || !teamName) return null;
+        const win = Number(row?.win) || 0;
+        const loss = Number(row?.loss) || 0;
+        const contiWin = Number(row?.contiWin) || 0;
+        const contiLoss = Number(row?.contiLoss) || 0;
+        const streak = contiWin > 0 ? `${contiWin}승` : contiLoss > 0 ? `${contiLoss}패` : null;
+        return {
+          rank: rankNum,
+          team: { name: teamName },
+          win,
+          loss,
+          played: win + loss,
+          win_rate: win + loss ? Number((win / (win + loss)).toFixed(3)) : 0,
+          gamesBack: formatGamesBackNum(row?.winDiff),
+          streak,
+        };
+      })
+      .filter(Boolean);
+
+    if (!teams.length) throw new Error('teams empty after parsing');
+    return teams;
+  } catch (e) {
+    console.warn(`[warn] kbl: ${e.message}`);
+    return [];
+  }
 }
 
 // -----------------------
