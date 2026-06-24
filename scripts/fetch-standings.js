@@ -14,10 +14,18 @@
  * games for the season and calculate win/loss standings ourselves. This stays
  * fully free and does not depend on any paid upgrade.
  *
- * No working free real-data source exists for: K리그, KBO, NPB, KBL, WKBL, V리그(남/여).
+ * No working free real-data source exists for: K리그, NPB.
  * Those are intentionally left null/empty so the existing frontend fallback
  * logic (js/sports-data.js dummy data) kicks in automatically — this is by design,
  * not a bug.
+ *
+ * KBO / WKBL / V리그(KOVO) are scraped directly from the official sites:
+ *  - KBO   : koreabaseball.com 팀 순위 페이지 (서버사이드 렌더링 HTML 테이블, 인증 불필요)
+ *  - WKBL  : wkbl.or.kr 내부 AJAX 엔드포인트 (POST, 인증 불필요)
+ *  - KOVO  : kovo.co.kr 메인페이지가 쓰는 공개 JSON API (인증 불필요)
+ * KBL(남자프로농구)은 api.kbl.or.kr가 자체 발급 헤더를 요구해서(스푸핑 방지) 보류 —
+ * 헤더 없이 호출하면 "필수 헤더 정보가 누락되었습니다" 에러를 반환함. 추후 헤더를
+ * 알아내거나 다른 소스를 찾으면 채울 것 (지금은 빈 배열 유지).
  */
 
 const fs = require('fs/promises');
@@ -264,10 +272,99 @@ async function fetchMlb() {
   return out;
 }
 
+// -----------------------
+// KBO (koreabaseball.com 팀 순위 - 서버사이드 렌더링 HTML 테이블, 인증/키 불필요)
+// -----------------------
+
+const KBO_TEAM_FULL_NAME = {
+  LG: 'LG 트윈스',
+  KT: 'KT 위즈',
+  삼성: '삼성 라이온즈',
+  KIA: 'KIA 타이거즈',
+  두산: '두산 베어스',
+  한화: '한화 이글스',
+  NC: 'NC 다이노스',
+  롯데: '롯데 자이언츠',
+  SSG: 'SSG 랜더스',
+  키움: '키움 히어로즈',
+};
+
+function stripTags(html) {
+  return html.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim();
+}
+
+// 범용 HTML 테이블 파서: class에 classHint가 포함된 첫 번째 <table>을 찾아
+// 각 행을 셀 텍스트 배열로 반환 (중첩 마크업은 제거한 순수 텍스트만 추출).
+function parseHtmlTableRows(html, classHint) {
+  const tableRegex = new RegExp(`<table[^>]*class="[^"]*${classHint}[^"]*"[^>]*>([\\s\\S]*?)<\\/table>`, 'i');
+  const tableMatch = html.match(tableRegex);
+  if (!tableMatch) return [];
+
+  const rows = [];
+  const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
+  let rowMatch;
+  while ((rowMatch = rowRegex.exec(tableMatch[1]))) {
+    const cells = [];
+    const cellRegex = /<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi;
+    let cellMatch;
+    while ((cellMatch = cellRegex.exec(rowMatch[1]))) {
+      cells.push(stripTags(cellMatch[1]));
+    }
+    if (cells.length) rows.push(cells);
+  }
+  return rows;
+}
+
+function formatGamesBackNum(v) {
+  if (v == null || v === '') return '0.0';
+  const n = parseFloat(String(v).replace(/[^0-9.\-]/g, ''));
+  return Number.isNaN(n) ? String(v) : n.toFixed(1);
+}
+
+async function fetchKbo() {
+  try {
+    const res = await fetch('https://www.koreabaseball.com/Record/TeamRank/TeamRank.aspx', {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MatchUpLabBot/1.0; +https://matchuplab-six.vercel.app)' },
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const html = await res.text();
+    const rows = parseHtmlTableRows(html, 'tData');
+    // 첫 행은 헤더(순위/팀명/경기/승/패/무/승률/게임차/최근10경기/연속/홈/방문)
+    const dataRows = rows.slice(1).filter((r) => r.length >= 10);
+    if (!dataRows.length) throw new Error('no data rows parsed');
+
+    const teams = dataRows
+      .map((cells) => {
+        const [rank, teamRaw, games, win, loss, draw, winRate, gamesBack, , streak] = cells;
+        const rankNum = Number(rank);
+        if (!rankNum || !teamRaw) return null;
+        return {
+          rank: rankNum,
+          team: { name: KBO_TEAM_FULL_NAME[teamRaw] || teamRaw },
+          win: Number(win) || 0,
+          loss: Number(loss) || 0,
+          draw: Number(draw) || 0,
+          played: Number(games) || 0,
+          win_rate: winRate,
+          gamesBack: formatGamesBackNum(gamesBack),
+          streak: streak || null,
+        };
+      })
+      .filter(Boolean);
+
+    if (!teams.length) throw new Error('teams empty after parsing');
+    return teams;
+  } catch (e) {
+    console.warn(`[warn] kbo: ${e.message}`);
+    return null;
+  }
+}
+
 async function fetchBaseball() {
   const mlb = await fetchMlb();
-  // KBO/NPB: 무료 실데이터 소스 없음 (확인됨) → null, 프론트엔드 더미 fallback 사용
-  return { kbo: null, mlb, npb: emptyNpbGroups() };
+  const kbo = await fetchKbo();
+  // NPB: 무료 실데이터 소스 없음 (확인됨) → null, 프론트엔드 더미 fallback 사용
+  return { kbo, mlb, npb: emptyNpbGroups() };
 }
 
 // -----------------------
@@ -425,19 +522,116 @@ async function fetchNba() {
 }
 
 // -----------------------
-// Basketball KBL/WKBL — 무료 실데이터 소스 없음 (확인됨)
+// Basketball KBL (api.kbl.or.kr) — 자체 인증 헤더 요구로 보류, 빈 배열 유지
+// (헤더 없이 호출 시 "필수 헤더 정보가 누락되었습니다" 에러. 추후 재시도 대상)
 // -----------------------
 
-async function fetchKoreanBasketballLeague() {
+async function fetchKbl() {
   return [];
 }
 
 // -----------------------
-// Volleyball V-League(남/여) — 무료 실데이터 소스 없음 (확인됨)
+// Basketball WKBL (wkbl.or.kr 내부 AJAX, 인증/키 불필요)
 // -----------------------
 
+async function fetchWkbl() {
+  try {
+    const res = await fetch('https://www.wkbl.or.kr/game/ajax/ajax_team_rank.asp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'Mozilla/5.0 (compatible; MatchUpLabBot/1.0; +https://matchuplab-six.vercel.app)',
+      },
+      body: 'gun=1',
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const html = await res.text();
+
+    const rows = [];
+    const rowRegex = /<tr class="team_rnak_table">([\s\S]*?)<\/tr>/gi;
+    let rowMatch;
+    while ((rowMatch = rowRegex.exec(html))) {
+      const cells = [];
+      const cellRegex = /<td[^>]*>([\s\S]*?)<\/td>/gi;
+      let cellMatch;
+      while ((cellMatch = cellRegex.exec(rowMatch[1]))) {
+        cells.push(stripTags(cellMatch[1]));
+      }
+      if (cells.length) rows.push(cells);
+    }
+
+    const teams = rows
+      .map((cells) => {
+        // [순위, 팀명, 경기, "21승 9패", 승률(0-100), 게임차, 홈, 원정, 중립, 최근5, 연속]
+        const [rank, teamName, games, record, winRate, gamesBack, , , , , streak] = cells;
+        const rankNum = Number(rank);
+        if (!rankNum || !teamName) return null;
+        const m = String(record || '').match(/(\d+)\s*승\s*(\d+)\s*패/);
+        const win = m ? Number(m[1]) : 0;
+        const loss = m ? Number(m[2]) : 0;
+        return {
+          rank: rankNum,
+          team: { name: teamName },
+          win,
+          loss,
+          played: Number(games) || win + loss,
+          win_rate: winRate,
+          gamesBack: formatGamesBackNum(gamesBack),
+          streak: streak || null,
+        };
+      })
+      .filter(Boolean);
+
+    if (!teams.length) throw new Error('no teams parsed');
+    return teams;
+  } catch (e) {
+    console.warn(`[warn] wkbl: ${e.message}`);
+    return [];
+  }
+}
+
+// -----------------------
+// Volleyball V-League(남/여) — kovo.co.kr 메인페이지가 쓰는 공개 JSON API
+// (인증/키 불필요, leagueCode=201은 정규시즌 고정 코드로 추정 — 시즌은 서버가 자동 최신화)
+// -----------------------
+
+async function fetchKovoTeamRank(teamType) {
+  const url = `https://user-api.kovo.co.kr/main/game/league/team-rank?teamType=${teamType}&page=0&size=30&leagueCode=201`;
+  const json = await fetchJson(url, {
+    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MatchUpLabBot/1.0; +https://matchuplab-six.vercel.app)' },
+  });
+  const payload = safeArray(json?.payload);
+
+  return payload
+    .map((t) => {
+      if (!t?.rank || !t?.tsname) return null;
+      return {
+        rank: t.rank,
+        team: { name: t.tsname },
+        win: t.win ?? 0,
+        loss: t.lost ?? 0,
+        played: (t.win ?? 0) + (t.lost ?? 0),
+        points: t.winp ?? 0, // KOVO API의 winp는 승률(%)이 아니라 실제 승점(누적)
+        setRatio: t.slost ? Number((t.swin / t.slost).toFixed(3)) : t.swin || 0,
+        pointRatio: t.lpoint ? Number((t.point / t.lpoint).toFixed(3)) : t.point || 0,
+      };
+    })
+    .filter(Boolean);
+}
+
 async function fetchVolleyball() {
-  return { vLeagueMen: [], vLeagueWomen: [] };
+  const out = { vLeagueMen: [], vLeagueWomen: [] };
+  try {
+    out.vLeagueMen = await fetchKovoTeamRank('MEN');
+  } catch (e) {
+    console.warn(`[warn] vLeagueMen(kovo): ${e.message}`);
+  }
+  try {
+    out.vLeagueWomen = await fetchKovoTeamRank('WOMEN');
+  } catch (e) {
+    console.warn(`[warn] vLeagueWomen(kovo): ${e.message}`);
+  }
+  return out;
 }
 
 async function main() {
@@ -447,8 +641,8 @@ async function main() {
   const football = await fetchFootball();
   const baseball = await fetchBaseball();
   const nba = await fetchNba();
-  const kbl = await fetchKoreanBasketballLeague();
-  const wkbl = await fetchKoreanBasketballLeague();
+  const kbl = await fetchKbl();
+  const wkbl = await fetchWkbl();
   const volleyball = await fetchVolleyball();
 
   const basketball = { nba, kbl, wkbl };
