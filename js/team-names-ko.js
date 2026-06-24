@@ -17,6 +17,13 @@ const TEAM_NAMES_KO = {
     'Daejeon Citizen': '대전 FC',
   },
   epl: {
+    'Man City': '맨체스터 시티',
+    'Man United': '맨체스터 유나이티드',
+    'Brighton Hove': '브라이턴',
+    'Nottingham': '노팅엄 포레스트',
+    'Leeds United': '리즈 유나이티드',
+    'Hull City': '헐 시티',
+    'Coventry City': '코번트리 시티',
     Arsenal: '아스널',
     'Manchester City': '맨체스터 시티',
     Liverpool: '리버풀',
@@ -42,6 +49,15 @@ const TEAM_NAMES_KO = {
     Southampton: '사우샘프턴',
   },
   bundesliga: {
+    'Dortmund': '보루시아 도르트문트',
+    'Leverkusen': '바이어 레버쿠젠',
+    'Frankfurt': '아인트라흐트 프랑크푸르트',
+    'Wolfsburg': '볼프스부르크',
+    'Freiburg': '프라이부르크',
+    "M'gladbach": '보루시아 묀헨글라드바흐',
+    'Stuttgart': '슈투트가르트',
+    'HSV': '함부르크 SV',
+    'St. Pauli': 'FC 장크트파울리',
     'Bayern Munich': '바이에른 뮌헨',
     'Borussia Dortmund': '보루시아 도르트문트',
     'RB Leipzig': 'RB 라이프치히',
@@ -63,6 +79,14 @@ const TEAM_NAMES_KO = {
     Bochum: '보쿰',
   },
   laLiga: {
+    'Barça': '바르셀로나',
+    'Athletic': '아틀레틱 클럽',
+    'Sevilla FC': '세비야',
+    'Celta': '셀타 비고',
+    'Alavés': '알라베스',
+    'Real Oviedo': '레알 오비에도',
+    'Elche': '엘체',
+    'Levante': '레반테',
     'Real Madrid': '레알 마드리드',
     Barcelona: '바르셀로나',
     'Atletico Madrid': '아틀레티코 마드리드',
@@ -85,6 +109,14 @@ const TEAM_NAMES_KO = {
     Alaves: '알라베스',
   },
   serieA: {
+    'Roma': 'AS 로마',
+    'Milan': 'AC 밀란',
+    'Hellas Verona': '엘라스 베로나',
+    'Verona': '엘라스 베로나',
+    'Como 1907': '코모 1907',
+    'Parma': '파르마',
+    'Cremonese': '크레모네세',
+    'AC Pisa': '피사',
     Inter: '인터 밀란',
     'AC Milan': 'AC 밀란',
     Juventus: '유벤투스',
@@ -107,6 +139,11 @@ const TEAM_NAMES_KO = {
     Salernitana: '살레르니타나',
   },
   ligue1: {
+    'Angers SCO': '앙제',
+    'Paris FC': '파리 FC',
+    'Auxerre': '오세르',
+    'Troyes': '트루아',
+    'Le Mans': '르망',
     'Paris Saint Germain': '파리 생제르맹',
     Monaco: '모나코',
     Marseille: '마르세유',
@@ -218,7 +255,7 @@ const TEAM_NAMES_KO = {
   },
 };
 
-/** 리그 키별 매핑 + 전체 통합 검색 */
+/** 리그 키별 매핑 + 전체 통합 검색 (+ 부분일치 보조 매칭) */
 function translateTeamName(name, leagueKey) {
   if (!name) return name;
   if (leagueKey && TEAM_NAMES_KO[leagueKey] && TEAM_NAMES_KO[leagueKey][name]) {
@@ -226,6 +263,26 @@ function translateTeamName(name, leagueKey) {
   }
   for (const map of Object.values(TEAM_NAMES_KO)) {
     if (map[name]) return map[name];
+  }
+  // 정확히 일치하는 키가 없으면, 리그 내에서 포함관계(부분일치)로 한 번 더 시도
+  // 예: "Man City" ↔ "Manchester City", "Dortmund" ↔ "Borussia Dortmund"
+  const tryPartial = (map) => {
+    const lower = name.toLowerCase();
+    for (const key of Object.keys(map)) {
+      const keyLower = key.toLowerCase();
+      if (lower.includes(keyLower) || keyLower.includes(lower)) {
+        return map[key];
+      }
+    }
+    return null;
+  };
+  if (leagueKey && TEAM_NAMES_KO[leagueKey]) {
+    const hit = tryPartial(TEAM_NAMES_KO[leagueKey]);
+    if (hit) return hit;
+  }
+  for (const map of Object.values(TEAM_NAMES_KO)) {
+    const hit = tryPartial(map);
+    if (hit) return hit;
   }
   return name;
 }
