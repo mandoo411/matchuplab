@@ -881,6 +881,18 @@ button {
   gap: 6px;
 }
 
+.page-header .division-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 108px;
+  width: 108px;
+  padding: 8px 10px;
+  font-size: 0.8125rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 .page-header .section-title {
   margin-bottom: 4px;
 }
@@ -1540,6 +1552,14 @@ button {
 
   .page-header .division-subtabs {
     min-width: 0;
+  }
+
+  .page-header .division-tab {
+    min-width: 96px;
+    width: 96px;
+    min-height: 40px;
+    padding: 8px 6px;
+    font-size: 0.8125rem;
   }
 
   .page-header .section-desc {
