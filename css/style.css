@@ -860,14 +860,15 @@ button {
 .page-header-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px 16px;
+  justify-content: flex-start;
+  gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 4px;
 }
 
 .page-header-row .section-title {
   margin-bottom: 0;
+  flex-shrink: 0;
 }
 
 .page-header .division-subtabs {
@@ -875,8 +876,9 @@ button {
   max-width: none;
   margin: 0;
   padding: 0;
-  flex: 1 1 auto;
-  justify-content: flex-end;
+  flex: 0 0 auto;
+  justify-content: flex-start;
+  gap: 6px;
 }
 
 .page-header .section-title {
@@ -1533,11 +1535,10 @@ button {
   }
 
   .page-header-row {
-    gap: 8px 12px;
+    gap: 8px;
   }
 
   .page-header .division-subtabs {
-    justify-content: flex-start;
     min-width: 0;
   }
 
