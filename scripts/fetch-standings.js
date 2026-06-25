@@ -14,17 +14,23 @@
  * games for the season and calculate win/loss standings ourselves. This stays
  * fully free and does not depend on any paid upgrade.
  *
- * No working free real-data source exists for: K리그, NPB.
- * Those are intentionally left null/empty so the existing frontend fallback
+ * No working free real-data source exists for: K리그.
+ * It is intentionally left null/empty so the existing frontend fallback
  * logic (js/sports-data.js dummy data) kicks in automatically — this is by design,
  * not a bug.
  *
- * KBO / WKBL / V리그(KOVO) are scraped directly from the official sites:
+ * KBO / WKBL / V리그(KOVO) / NPB are scraped directly from the official sites:
  *  - KBO   : koreabaseball.com 팀 순위 페이지 (서버사이드 렌더링 HTML 테이블, 인증 불필요)
  *  - WKBL  : wkbl.or.kr 내부 AJAX 엔드포인트 (POST, 인증 불필요)
  *  - KOVO  : kovo.co.kr 메인페이지가 쓰는 공개 JSON API (인증 불필요)
  *  - KBL   : api.kbl.or.kr 팀순위 API (Channel/TeamCode/lang 정적 헤더 필요 — 비밀값
  *            아님, kbl.or.kr 사이트 JS가 모든 방문자에게 동일하게 보내는 값)
+ *  - NPB   : npb.jp 공식 영문 순위 페이지 (서버사이드 렌더링 HTML 테이블, 인증 불필요)
+ *
+ * 시즌 전(경기 0개) 처리: football-data.org는 새 시즌이 생성되면 전 팀 played=0인
+ * 테이블을 반환하는데, 이 경우 그대로 보여주면 전부 0으로 보여 의미가 없으므로
+ * 직전 시즌 최종 순위를 ?season= 파라미터로 재조회해 대체한다 (fetchFootball 참고).
+ * NPB도 동일한 이유로 오프시즌엔 직전 연도 페이지로 자동 폴백한다 (fetchNpb 참고).
  */
 
 const fs = require('fs/promises');
@@ -156,6 +162,33 @@ function extractFootballDataTable(payload) {
   return safeArray(total?.table);
 }
 
+function mapFootballTable(table) {
+  return table
+    .map((row) => ({
+      rank: row?.position ?? null,
+      team: { name: koreanizableFootballName(row?.team?.name, row?.team?.shortName) },
+      all: {
+        played: row?.playedGames ?? null,
+        win: row?.won ?? null,
+        draw: row?.draw ?? null,
+        lose: row?.lost ?? null,
+      },
+      goals: { for: row?.goalsFor ?? null, against: row?.goalsAgainst ?? null },
+      goalsDiff: row?.goalDifference ?? null,
+      points: row?.points ?? null,
+      form: row?.form ?? null,
+    }))
+    .filter((t) => t.rank && t.team?.name);
+}
+
+async function fetchFootballStandings(code, headers, seasonYear) {
+  const url = seasonYear
+    ? `${FOOTBALL_DATA.host}/competitions/${code}/standings?season=${seasonYear}`
+    : `${FOOTBALL_DATA.host}/competitions/${code}/standings`;
+  const json = await fetchJson(url, { headers });
+  return { json, rows: mapFootballTable(extractFootballDataTable(json)) };
+}
+
 async function fetchFootball() {
   const out = { kLeague: null, epl: null, bundesliga: null, ligue1: null, serieA: null, laLiga: null };
 
@@ -167,25 +200,27 @@ async function fetchFootball() {
   const headers = { 'X-Auth-Token': FOOTBALL_DATA_KEY };
 
   for (const league of FOOTBALL_DATA.leagues) {
-    const url = `${FOOTBALL_DATA.host}/competitions/${league.code}/standings`;
     try {
-      const json = await fetchJson(url, { headers });
-      const rows = extractFootballDataTable(json)
-        .map((row) => ({
-          rank: row?.position ?? null,
-          team: { name: koreanizableFootballName(row?.team?.name, row?.team?.shortName) },
-          all: {
-            played: row?.playedGames ?? null,
-            win: row?.won ?? null,
-            draw: row?.draw ?? null,
-            lose: row?.lost ?? null,
-          },
-          goals: { for: row?.goalsFor ?? null, against: row?.goalsAgainst ?? null },
-          goalsDiff: row?.goalDifference ?? null,
-          points: row?.points ?? null,
-          form: row?.form ?? null,
-        }))
-        .filter((t) => t.rank && t.team?.name);
+      let { json, rows } = await fetchFootballStandings(league.code, headers);
+      const totalPlayed = rows.reduce((sum, r) => sum + (r.all.played || 0), 0);
+
+      // 새 시즌이 막 생성되어 전 팀 played=0인 경우(시즌 시작 전) → 직전 시즌
+      // 최종 순위로 대체. 그렇지 않으면 사이트에 의미 없는 전부-0 테이블이 노출됨.
+      if (rows.length && totalPlayed === 0) {
+        const startYear = json?.season?.startDate ? Number(String(json.season.startDate).slice(0, 4)) : null;
+        if (startYear) {
+          console.warn(
+            `[warn] football ${league.key}: season ${startYear} not started yet (played=0), falling back to ${startYear - 1} final standings`
+          );
+          await sleep(7000);
+          try {
+            const prev = await fetchFootballStandings(league.code, headers, startYear - 1);
+            if (prev.rows.length) rows = prev.rows;
+          } catch (e2) {
+            console.warn(`[warn] football ${league.key}: prev-season fallback failed: ${e2.message}`);
+          }
+        }
+      }
 
       out[league.key] = rows.length ? rows : null;
       if (!rows.length) console.warn(`[warn] football ${league.key}: empty table`);
@@ -359,11 +394,70 @@ async function fetchKbo() {
   }
 }
 
+// -----------------------
+// NPB (npb.jp 공식 영문 순위 페이지 - 서버사이드 렌더링 HTML 테이블, 인증/키 불필요)
+// 오프시즌(다음 시즌 페이지가 아직 없음)에는 직전 연도 페이지로 자동 폴백한다.
+// -----------------------
+
+const NPB_LEAGUE_CODES = { 센트럴: 'c', 퍼시픽: 'p' };
+
+async function fetchNpbLeagueTable(year, code) {
+  const url = `https://npb.jp/bis/eng/${year}/stats/std_${code}.html`;
+  const res = await fetch(url, {
+    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MatchUpLabBot/1.0; +https://matchuplab-six.vercel.app)' },
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status} from ${url}`);
+  const html = await res.text();
+
+  // npb.jp 순위 테이블은 class="tablefix2" (첫 번째 매치 = 정규시즌 순위표,
+  // 두 번째는 교류전 표 — parseHtmlTableRows는 첫 매치만 사용하므로 안전함)
+  const rows = parseHtmlTableRows(html, 'tablefix2');
+  const dataRows = rows.filter((r) => r.length >= 6 && r[0] && !Number.isNaN(Number(r[1])) && Number(r[1]) > 0);
+  if (!dataRows.length) throw new Error('no data rows parsed');
+
+  return dataRows.map((cells, i) => {
+    // [팀명, G, W, L, T, PCT, GB, ...(리그마다 다른 상대전적 컬럼들)]
+    const [teamName, g, w, l] = cells;
+    const win = Number(w) || 0;
+    const loss = Number(l) || 0;
+    return {
+      position: i + 1,
+      team: { name: teamName.trim() },
+      games: { played: Number(g) || win + loss },
+      wins: { total: win, percentage: cells[5] ?? null },
+      loses: { total: loss },
+      streak: null,
+    };
+  });
+}
+
+async function fetchNpb() {
+  const out = emptyNpbGroups();
+  const year = NOW.getFullYear();
+
+  for (const [groupKey, code] of Object.entries(NPB_LEAGUE_CODES)) {
+    try {
+      out[groupKey] = await fetchNpbLeagueTable(year, code);
+    } catch (e) {
+      console.warn(`[warn] npb ${groupKey} (${year}): ${e.message}`);
+      // 오프시즌이라 해당 연도 페이지가 아직 없는 경우 직전 연도 최종 순위로 대체
+      try {
+        out[groupKey] = await fetchNpbLeagueTable(year - 1, code);
+      } catch (e2) {
+        console.warn(`[warn] npb ${groupKey} (${year - 1} fallback): ${e2.message}`);
+      }
+    }
+    await sleep(2000);
+  }
+
+  return out;
+}
+
 async function fetchBaseball() {
   const mlb = await fetchMlb();
   const kbo = await fetchKbo();
-  // NPB: 무료 실데이터 소스 없음 (확인됨) → null, 프론트엔드 더미 fallback 사용
-  return { kbo, mlb, npb: emptyNpbGroups() };
+  const npb = await fetchNpb();
+  return { kbo, mlb, npb };
 }
 
 // -----------------------
