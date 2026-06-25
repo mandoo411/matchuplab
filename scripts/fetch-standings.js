@@ -14,12 +14,9 @@
  * games for the season and calculate win/loss standings ourselves. This stays
  * fully free and does not depend on any paid upgrade.
  *
- * No working free real-data source exists for: K리그.
- * It is intentionally left null/empty so the existing frontend fallback
- * logic (js/sports-data.js dummy data) kicks in automatically — this is by design,
- * not a bug.
- *
- * KBO / WKBL / V리그(KOVO) / NPB are scraped directly from the official sites:
+ * KBO / WKBL / V리그(KOVO) / NPB / K리그 are scraped directly from the official sites:
+ *  - K리그 : kleague.com 공식 팀순위 API (GET, 인증 불필요, K리그1 12개 구단만 사용 —
+ *            K리그2는 프론트엔드에 별도 탭이 없어 현재는 미사용)
  *  - KBO   : koreabaseball.com 팀 순위 페이지 (서버사이드 렌더링 HTML 테이블, 인증 불필요)
  *  - WKBL  : wkbl.or.kr 내부 AJAX 엔드포인트 (POST, 인증 불필요)
  *  - KOVO  : kovo.co.kr 메인페이지가 쓰는 공개 JSON API (인증 불필요)
@@ -31,6 +28,7 @@
  * 테이블을 반환하는데, 이 경우 그대로 보여주면 전부 0으로 보여 의미가 없으므로
  * 직전 시즌 최종 순위를 ?season= 파라미터로 재조회해 대체한다 (fetchFootball 참고).
  * NPB도 동일한 이유로 오프시즌엔 직전 연도 페이지로 자동 폴백한다 (fetchNpb 참고).
+ * K리그도 시즌 전이라 데이터가 없으면 직전 연도로 폴백한다 (fetchKLeague 참고).
  */
 
 const fs = require('fs/promises');
@@ -189,8 +187,78 @@ async function fetchFootballStandings(code, headers, seasonYear) {
   return { json, rows: mapFootballTable(extractFootballDataTable(json)) };
 }
 
+// -----------------------
+// K League (kleague.com 공식 팀순위 API)
+// -----------------------
+
+// teamId -> 정식 한글 구단명 (kleague.com 응답의 teamName은 축약형이라 직접 매핑).
+// K리그1(leagueId=1) 12개 구단만 포함 — K리그2는 프론트엔드에 탭이 없어 미사용.
+const KLEAGUE_TEAM_NAMES = {
+  K09: 'FC서울',
+  K01: '울산 HD',
+  K05: '전북 현대',
+  K21: '강원 FC',
+  K03: '포항 스틸러스',
+  K18: '인천 유나이티드',
+  K27: 'FC안양',
+  K04: '제주SK FC',
+  K26: '부천 FC',
+  K10: '대전 하나 시티즌',
+  K35: '김천 상무',
+  K22: '광주 FC',
+};
+
+const KLEAGUE_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (compatible; MatchUpLabBot/1.0; +https://matchuplab-six.vercel.app)',
+  Referer: 'https://www.kleague.com/record/team.do',
+};
+
+function mapKLeagueTable(rows) {
+  return rows
+    .map((r) => ({
+      rank: r?.rank ?? null,
+      team: { name: KLEAGUE_TEAM_NAMES[r?.teamId] || r?.teamName || null },
+      all: {
+        played: r?.gameCount ?? null,
+        win: r?.winCnt ?? null,
+        draw: r?.tieCnt ?? null,
+        lose: r?.lossCnt ?? null,
+      },
+      goals: { for: r?.gainGoal ?? null, against: r?.lossGoal ?? null },
+      goalsDiff: r?.gapCnt ?? null,
+      points: r?.gainPoint ?? null,
+      form: null,
+    }))
+    .filter((t) => t.rank && t.team?.name);
+}
+
+async function fetchKLeagueDivision(year) {
+  const url = `https://www.kleague.com/record/teamRank.do?leagueId=1&year=${year}&stadium=all&recordType=rank`;
+  const json = await fetchJson(url, { headers: KLEAGUE_HEADERS });
+  if (json?.resultCode !== '200') throw new Error(`kleague resultCode=${json?.resultCode}`);
+  return mapKLeagueTable(safeArray(json?.data?.teamRank));
+}
+
+async function fetchKLeague() {
+  const year = NOW.getFullYear();
+  try {
+    let rows = await fetchKLeagueDivision(year);
+    // 시즌 시작 전이라 당해년도 데이터가 비어있으면 직전 시즌 최종 순위로 대체
+    if (!rows.length) {
+      console.warn(`[warn] kleague: ${year} season has no rows yet, falling back to ${year - 1}`);
+      rows = await fetchKLeagueDivision(year - 1);
+    }
+    return rows.length ? rows : null;
+  } catch (e) {
+    console.warn(`[warn] kleague: ${e.message}`);
+    return null;
+  }
+}
+
 async function fetchFootball() {
   const out = { kLeague: null, epl: null, bundesliga: null, ligue1: null, serieA: null, laLiga: null };
+
+  out.kLeague = await fetchKLeague();
 
   if (!FOOTBALL_DATA_KEY) {
     console.warn('[warn] football: FOOTBALL_DATA_KEY not set, skipping (will fall back to dummy)');
