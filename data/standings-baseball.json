@@ -6,64 +6,64 @@
         "name": "LG 트윈스"
       },
       "win": 47,
-      "loss": 26,
+      "loss": 27,
       "draw": 0,
-      "played": 73,
-      "win_rate": "0.644",
+      "played": 74,
+      "win_rate": "0.635",
       "gamesBack": "0.0",
-      "streak": "5승"
+      "streak": "1패"
     },
     {
       "rank": 2,
       "team": {
         "name": "KT 위즈"
       },
-      "win": 42,
+      "win": 43,
       "loss": 29,
       "draw": 1,
-      "played": 72,
-      "win_rate": "0.592",
-      "gamesBack": "4.0",
-      "streak": "1패"
+      "played": 73,
+      "win_rate": "0.597",
+      "gamesBack": "3.0",
+      "streak": "1승"
     },
     {
       "rank": 3,
       "team": {
         "name": "삼성 라이온즈"
       },
-      "win": 40,
+      "win": 41,
       "loss": 30,
       "draw": 2,
-      "played": 72,
-      "win_rate": "0.571",
-      "gamesBack": "5.5",
-      "streak": "2패"
+      "played": 73,
+      "win_rate": "0.577",
+      "gamesBack": "4.5",
+      "streak": "1승"
     },
     {
       "rank": 4,
       "team": {
         "name": "KIA 타이거즈"
       },
-      "win": 40,
+      "win": 41,
       "loss": 33,
       "draw": 1,
-      "played": 74,
-      "win_rate": "0.548",
-      "gamesBack": "7.0",
-      "streak": "3승"
+      "played": 75,
+      "win_rate": "0.554",
+      "gamesBack": "6.0",
+      "streak": "4승"
     },
     {
       "rank": 5,
       "team": {
         "name": "두산 베어스"
       },
-      "win": 35,
+      "win": 36,
       "loss": 37,
       "draw": 2,
-      "played": 74,
-      "win_rate": "0.486",
-      "gamesBack": "11.5",
-      "streak": "1승"
+      "played": 75,
+      "win_rate": "0.493",
+      "gamesBack": "10.5",
+      "streak": "2승"
     },
     {
       "rank": 6,
@@ -71,25 +71,25 @@
         "name": "한화 이글스"
       },
       "win": 34,
-      "loss": 36,
+      "loss": 37,
       "draw": 2,
-      "played": 72,
-      "win_rate": "0.486",
+      "played": 73,
+      "win_rate": "0.479",
       "gamesBack": "11.5",
-      "streak": "1패"
+      "streak": "2패"
     },
     {
       "rank": 7,
       "team": {
         "name": "NC 다이노스"
       },
-      "win": 32,
+      "win": 33,
       "loss": 38,
       "draw": 1,
-      "played": 71,
-      "win_rate": "0.457",
-      "gamesBack": "13.5",
-      "streak": "4패"
+      "played": 72,
+      "win_rate": "0.465",
+      "gamesBack": "12.5",
+      "streak": "1승"
     },
     {
       "rank": 8,
@@ -97,12 +97,12 @@
         "name": "롯데 자이언츠"
       },
       "win": 31,
-      "loss": 39,
+      "loss": 40,
       "draw": 2,
-      "played": 72,
-      "win_rate": "0.443",
+      "played": 73,
+      "win_rate": "0.437",
       "gamesBack": "14.5",
-      "streak": "7승"
+      "streak": "1패"
     },
     {
       "rank": 9,
@@ -110,12 +110,12 @@
         "name": "SSG 랜더스"
       },
       "win": 30,
-      "loss": 41,
+      "loss": 42,
       "draw": 2,
-      "played": 73,
-      "win_rate": "0.423",
+      "played": 74,
+      "win_rate": "0.417",
       "gamesBack": "16.0",
-      "streak": "1승"
+      "streak": "1패"
     },
     {
       "rank": 10,
@@ -123,12 +123,12 @@
         "name": "키움 히어로즈"
       },
       "win": 26,
-      "loss": 48,
+      "loss": 49,
       "draw": 1,
-      "played": 75,
-      "win_rate": "0.351",
+      "played": 76,
+      "win_rate": "0.347",
       "gamesBack": "21.5",
-      "streak": "8패"
+      "streak": "9패"
     }
   ],
   "mlb": {
@@ -157,17 +157,17 @@
           "name": "Rays"
         },
         "games": {
-          "played": 77
+          "played": 78
         },
         "wins": {
-          "total": 44,
-          "percentage": ".571"
+          "total": 45,
+          "percentage": ".577"
         },
         "loses": {
           "total": 33
         },
-        "streak": "W1",
-        "gamesBack": "3.0"
+        "streak": "W2",
+        "gamesBack": "2.5"
       },
       {
         "position": 3,
@@ -303,17 +303,17 @@
           "name": "Royals"
         },
         "games": {
-          "played": 81
+          "played": 82
         },
         "wins": {
           "total": 34,
-          "percentage": ".420"
+          "percentage": ".415"
         },
         "loses": {
-          "total": 47
+          "total": 48
         },
-        "streak": "L1",
-        "gamesBack": "8.0"
+        "streak": "L2",
+        "gamesBack": "8.5"
       }
     ],
     "AL서부": [
@@ -323,16 +323,16 @@
           "name": "Mariners"
         },
         "games": {
-          "played": 81
+          "played": 82
         },
         "wins": {
           "total": 41,
-          "percentage": ".506"
+          "percentage": ".500"
         },
         "loses": {
-          "total": 40
+          "total": 41
         },
-        "streak": "L1",
+        "streak": "L2",
         "gamesBack": "-"
       },
       {
@@ -351,7 +351,7 @@
           "total": 43
         },
         "streak": "W2",
-        "gamesBack": "2.5"
+        "gamesBack": "2.0"
       },
       {
         "position": 3,
@@ -369,7 +369,7 @@
           "total": 42
         },
         "streak": "L4",
-        "gamesBack": "2.5"
+        "gamesBack": "2.0"
       },
       {
         "position": 4,
@@ -387,7 +387,7 @@
           "total": 42
         },
         "streak": "L2",
-        "gamesBack": "2.5"
+        "gamesBack": "2.0"
       },
       {
         "position": 5,
@@ -405,7 +405,7 @@
           "total": 48
         },
         "streak": "W2",
-        "gamesBack": "7.5"
+        "gamesBack": "7.0"
       }
     ],
     "AL와일드카드": [],
@@ -562,17 +562,17 @@
           "name": "Pirates"
         },
         "games": {
-          "played": 80
+          "played": 81
         },
         "wins": {
-          "total": 40,
-          "percentage": ".500"
+          "total": 41,
+          "percentage": ".506"
         },
         "loses": {
           "total": 40
         },
-        "streak": "W1",
-        "gamesBack": "10.0"
+        "streak": "W2",
+        "gamesBack": "9.5"
       },
       {
         "position": 5,
@@ -746,14 +746,14 @@
           "name": "YOKOHAMA DeNA BAYSTARS"
         },
         "games": {
-          "played": 68
+          "played": 69
         },
         "wins": {
           "total": 27,
-          "percentage": ".409"
+          "percentage": ".403"
         },
         "loses": {
-          "total": 39
+          "total": 40
         },
         "streak": null
       },
@@ -780,11 +780,11 @@
           "name": "Chunichi Dragons"
         },
         "games": {
-          "played": 69
+          "played": 70
         },
         "wins": {
-          "total": 25,
-          "percentage": ".368"
+          "total": 26,
+          "percentage": ".377"
         },
         "loses": {
           "total": 43
@@ -799,14 +799,14 @@
           "name": "Saitama Seibu Lions"
         },
         "games": {
-          "played": 71
+          "played": 72
         },
         "wins": {
           "total": 43,
-          "percentage": ".623"
+          "percentage": ".614"
         },
         "loses": {
-          "total": 26
+          "total": 27
         },
         "streak": null
       },
@@ -816,11 +816,11 @@
           "name": "Fukuoka SoftBank Hawks"
         },
         "games": {
-          "played": 68
+          "played": 69
         },
         "wins": {
-          "total": 40,
-          "percentage": ".588"
+          "total": 41,
+          "percentage": ".594"
         },
         "loses": {
           "total": 28
@@ -850,14 +850,14 @@
           "name": "ORIX Buffaloes"
         },
         "games": {
-          "played": 69
+          "played": 70
         },
         "wins": {
           "total": 37,
-          "percentage": ".544"
+          "percentage": ".536"
         },
         "loses": {
-          "total": 31
+          "total": 32
         },
         "streak": null
       },
@@ -884,11 +884,11 @@
           "name": "Tohoku Rakuten Golden Eagles"
         },
         "games": {
-          "played": 68
+          "played": 69
         },
         "wins": {
-          "total": 25,
-          "percentage": ".373"
+          "total": 26,
+          "percentage": ".382"
         },
         "loses": {
           "total": 42
