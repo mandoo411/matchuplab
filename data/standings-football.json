@@ -4,382 +4,382 @@
     {
       "rank": 1,
       "team": {
-        "name": "Bournemouth"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
         "name": "Arsenal"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 38,
+        "win": 26,
+        "draw": 7,
+        "lose": 5
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 71,
+        "against": 27
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": 44,
+      "points": 85,
+      "form": "W,W,W,W,W"
     },
     {
-      "rank": 1,
-      "team": {
-        "name": "Aston Villa"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Brentford"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Brighton Hove"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Chelsea"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Coventry City"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Crystal Palace"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Everton"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Fulham"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Hull City"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Ipswich Town"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Leeds United"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Liverpool"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
+      "rank": 2,
       "team": {
         "name": "Man City"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 38,
+        "win": 23,
+        "draw": 9,
+        "lose": 6
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 77,
+        "against": 35
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": 42,
+      "points": 78,
+      "form": "L,D,W,W,D"
     },
     {
-      "rank": 1,
+      "rank": 3,
       "team": {
         "name": "Man United"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 38,
+        "win": 20,
+        "draw": 11,
+        "lose": 7
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 69,
+        "against": 50
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": 19,
+      "points": 71,
+      "form": "W,W,D,W,W"
     },
     {
-      "rank": 1,
+      "rank": 4,
       "team": {
-        "name": "Newcastle"
+        "name": "Aston Villa"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 38,
+        "win": 19,
+        "draw": 8,
+        "lose": 11
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 56,
+        "against": 49
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": 7,
+      "points": 65,
+      "form": "W,W,D,L,L"
     },
     {
-      "rank": 1,
+      "rank": 5,
       "team": {
-        "name": "Nottingham"
+        "name": "Liverpool"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 38,
+        "win": 17,
+        "draw": 9,
+        "lose": 12
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 63,
+        "against": 53
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": 10,
+      "points": 60,
+      "form": "D,L,D,L,W"
     },
     {
-      "rank": 1,
+      "rank": 6,
+      "team": {
+        "name": "Bournemouth"
+      },
+      "all": {
+        "played": 38,
+        "win": 13,
+        "draw": 18,
+        "lose": 7
+      },
+      "goals": {
+        "for": 58,
+        "against": 54
+      },
+      "goalsDiff": 4,
+      "points": 57,
+      "form": "D,D,W,W,D"
+    },
+    {
+      "rank": 7,
       "team": {
         "name": "Sunderland"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 38,
+        "win": 14,
+        "draw": 12,
+        "lose": 12
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 42,
+        "against": 48
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": -6,
+      "points": 54,
+      "form": "W,W,D,D,L"
     },
     {
-      "rank": 1,
+      "rank": 8,
+      "team": {
+        "name": "Brighton Hove"
+      },
+      "all": {
+        "played": 38,
+        "win": 14,
+        "draw": 11,
+        "lose": 13
+      },
+      "goals": {
+        "for": 52,
+        "against": 46
+      },
+      "goalsDiff": 6,
+      "points": 53,
+      "form": "L,L,W,L,W"
+    },
+    {
+      "rank": 9,
+      "team": {
+        "name": "Brentford"
+      },
+      "all": {
+        "played": 38,
+        "win": 14,
+        "draw": 11,
+        "lose": 13
+      },
+      "goals": {
+        "for": 55,
+        "against": 52
+      },
+      "goalsDiff": 3,
+      "points": 53,
+      "form": "D,D,L,W,L"
+    },
+    {
+      "rank": 10,
+      "team": {
+        "name": "Chelsea"
+      },
+      "all": {
+        "played": 38,
+        "win": 14,
+        "draw": 10,
+        "lose": 14
+      },
+      "goals": {
+        "for": 58,
+        "against": 52
+      },
+      "goalsDiff": 6,
+      "points": 52,
+      "form": "L,W,D,L,L"
+    },
+    {
+      "rank": 11,
+      "team": {
+        "name": "Fulham"
+      },
+      "all": {
+        "played": 38,
+        "win": 15,
+        "draw": 7,
+        "lose": 16
+      },
+      "goals": {
+        "for": 47,
+        "against": 51
+      },
+      "goalsDiff": -4,
+      "points": 52,
+      "form": "W,D,L,L,W"
+    },
+    {
+      "rank": 12,
+      "team": {
+        "name": "Newcastle"
+      },
+      "all": {
+        "played": 38,
+        "win": 14,
+        "draw": 7,
+        "lose": 17
+      },
+      "goals": {
+        "for": 53,
+        "against": 55
+      },
+      "goalsDiff": -2,
+      "points": 49,
+      "form": "L,W,D,W,L"
+    },
+    {
+      "rank": 13,
+      "team": {
+        "name": "Everton"
+      },
+      "all": {
+        "played": 38,
+        "win": 13,
+        "draw": 10,
+        "lose": 15
+      },
+      "goals": {
+        "for": 47,
+        "against": 50
+      },
+      "goalsDiff": -3,
+      "points": 49,
+      "form": "L,L,D,D,L"
+    },
+    {
+      "rank": 14,
+      "team": {
+        "name": "Leeds United"
+      },
+      "all": {
+        "played": 38,
+        "win": 11,
+        "draw": 14,
+        "lose": 13
+      },
+      "goals": {
+        "for": 49,
+        "against": 56
+      },
+      "goalsDiff": -7,
+      "points": 47,
+      "form": "L,W,D,W,D"
+    },
+    {
+      "rank": 15,
+      "team": {
+        "name": "Crystal Palace"
+      },
+      "all": {
+        "played": 38,
+        "win": 11,
+        "draw": 12,
+        "lose": 15
+      },
+      "goals": {
+        "for": 41,
+        "against": 51
+      },
+      "goalsDiff": -10,
+      "points": 45,
+      "form": "L,D,L,D,L"
+    },
+    {
+      "rank": 16,
+      "team": {
+        "name": "Nottingham"
+      },
+      "all": {
+        "played": 38,
+        "win": 11,
+        "draw": 11,
+        "lose": 16
+      },
+      "goals": {
+        "for": 48,
+        "against": 51
+      },
+      "goalsDiff": -3,
+      "points": 44,
+      "form": "D,L,D,W,W"
+    },
+    {
+      "rank": 17,
       "team": {
         "name": "Tottenham"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 38,
+        "win": 10,
+        "draw": 11,
+        "lose": 17
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 48,
+        "against": 57
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": -9,
+      "points": 41,
+      "form": "W,L,D,W,W"
+    },
+    {
+      "rank": 18,
+      "team": {
+        "name": "West Ham"
+      },
+      "all": {
+        "played": 38,
+        "win": 10,
+        "draw": 9,
+        "lose": 19
+      },
+      "goals": {
+        "for": 46,
+        "against": 65
+      },
+      "goalsDiff": -19,
+      "points": 39,
+      "form": "W,L,L,L,W"
+    },
+    {
+      "rank": 19,
+      "team": {
+        "name": "Burnley"
+      },
+      "all": {
+        "played": 38,
+        "win": 4,
+        "draw": 10,
+        "lose": 24
+      },
+      "goals": {
+        "for": 38,
+        "against": 75
+      },
+      "goalsDiff": -37,
+      "points": 22,
+      "form": "D,L,D,L,L"
+    },
+    {
+      "rank": 20,
+      "team": {
+        "name": "Wolverhampton"
+      },
+      "all": {
+        "played": 38,
+        "win": 3,
+        "draw": 11,
+        "lose": 24
+      },
+      "goals": {
+        "for": 27,
+        "against": 68
+      },
+      "goalsDiff": -41,
+      "points": 20,
+      "form": "D,D,L,D,L"
     }
   ],
   "bundesliga": [
@@ -730,344 +730,344 @@
     {
       "rank": 1,
       "team": {
-        "name": "Auxerre"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Angers SCO"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Monaco"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Troyes"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Lorient"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Le Havre"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Le Mans"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Lille"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Nice"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Lyon"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Marseille"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
-        "name": "Paris FC"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
-      "team": {
         "name": "Paris Saint Germain"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 34,
+        "win": 24,
+        "draw": 4,
+        "lose": 6
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 74,
+        "against": 29
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": 45,
+      "points": 76,
+      "form": "L,W,W,D,W"
     },
     {
-      "rank": 1,
-      "team": {
-        "name": "Strasbourg"
-      },
-      "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
-      },
-      "goals": {
-        "for": 0,
-        "against": 0
-      },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
-    },
-    {
-      "rank": 1,
+      "rank": 2,
       "team": {
         "name": "Lens"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 34,
+        "win": 22,
+        "draw": 4,
+        "lose": 8
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 66,
+        "against": 35
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": 31,
+      "points": 70,
+      "form": "W,L,W,D,D"
     },
     {
-      "rank": 1,
+      "rank": 3,
       "team": {
-        "name": "Brest"
+        "name": "Lille"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 34,
+        "win": 18,
+        "draw": 7,
+        "lose": 9
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 52,
+        "against": 37
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": 15,
+      "points": 61,
+      "form": "L,W,D,W,D"
     },
     {
-      "rank": 1,
+      "rank": 4,
+      "team": {
+        "name": "Lyon"
+      },
+      "all": {
+        "played": 34,
+        "win": 18,
+        "draw": 6,
+        "lose": 10
+      },
+      "goals": {
+        "for": 53,
+        "against": 40
+      },
+      "goalsDiff": 13,
+      "points": 60,
+      "form": "L,L,W,W,W"
+    },
+    {
+      "rank": 5,
+      "team": {
+        "name": "Marseille"
+      },
+      "all": {
+        "played": 34,
+        "win": 18,
+        "draw": 5,
+        "lose": 11
+      },
+      "goals": {
+        "for": 63,
+        "against": 45
+      },
+      "goalsDiff": 18,
+      "points": 59,
+      "form": "W,W,L,D,L"
+    },
+    {
+      "rank": 6,
       "team": {
         "name": "Rennes"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 34,
+        "win": 17,
+        "draw": 8,
+        "lose": 9
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 59,
+        "against": 50
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": 9,
+      "points": 59,
+      "form": "L,W,L,W,W"
     },
     {
-      "rank": 1,
+      "rank": 7,
+      "team": {
+        "name": "Monaco"
+      },
+      "all": {
+        "played": 34,
+        "win": 16,
+        "draw": 6,
+        "lose": 12
+      },
+      "goals": {
+        "for": 60,
+        "against": 54
+      },
+      "goalsDiff": 6,
+      "points": 54,
+      "form": "L,L,W,D,D"
+    },
+    {
+      "rank": 8,
+      "team": {
+        "name": "Strasbourg"
+      },
+      "all": {
+        "played": 34,
+        "win": 15,
+        "draw": 8,
+        "lose": 11
+      },
+      "goals": {
+        "for": 58,
+        "against": 47
+      },
+      "goalsDiff": 11,
+      "points": 53,
+      "form": "W,W,D,L,W"
+    },
+    {
+      "rank": 9,
+      "team": {
+        "name": "Lorient"
+      },
+      "all": {
+        "played": 34,
+        "win": 11,
+        "draw": 12,
+        "lose": 11
+      },
+      "goals": {
+        "for": 48,
+        "against": 51
+      },
+      "goalsDiff": -3,
+      "points": 45,
+      "form": "L,W,D,L,W"
+    },
+    {
+      "rank": 10,
       "team": {
         "name": "Toulouse"
       },
       "all": {
-        "played": 0,
-        "win": 0,
-        "draw": 0,
-        "lose": 0
+        "played": 33,
+        "win": 12,
+        "draw": 8,
+        "lose": 13
       },
       "goals": {
-        "for": 0,
-        "against": 0
+        "for": 47,
+        "against": 46
       },
-      "goalsDiff": 0,
-      "points": 0,
-      "form": null
+      "goalsDiff": 1,
+      "points": 44,
+      "form": "W,W,D,L,L"
+    },
+    {
+      "rank": 11,
+      "team": {
+        "name": "Paris FC"
+      },
+      "all": {
+        "played": 34,
+        "win": 11,
+        "draw": 11,
+        "lose": 12
+      },
+      "goals": {
+        "for": 47,
+        "against": 50
+      },
+      "goalsDiff": -3,
+      "points": 44,
+      "form": "W,L,W,L,W"
+    },
+    {
+      "rank": 12,
+      "team": {
+        "name": "Brest"
+      },
+      "all": {
+        "played": 34,
+        "win": 10,
+        "draw": 9,
+        "lose": 15
+      },
+      "goals": {
+        "for": 43,
+        "against": 55
+      },
+      "goalsDiff": -12,
+      "points": 39,
+      "form": "D,L,L,L,D"
+    },
+    {
+      "rank": 13,
+      "team": {
+        "name": "Angers SCO"
+      },
+      "all": {
+        "played": 34,
+        "win": 9,
+        "draw": 9,
+        "lose": 16
+      },
+      "goals": {
+        "for": 29,
+        "against": 48
+      },
+      "goalsDiff": -19,
+      "points": 36,
+      "form": "D,D,L,L,D"
+    },
+    {
+      "rank": 14,
+      "team": {
+        "name": "Le Havre"
+      },
+      "all": {
+        "played": 34,
+        "win": 7,
+        "draw": 14,
+        "lose": 13
+      },
+      "goals": {
+        "for": 32,
+        "against": 44
+      },
+      "goalsDiff": -12,
+      "points": 35,
+      "form": "W,L,D,D,D"
+    },
+    {
+      "rank": 15,
+      "team": {
+        "name": "Auxerre"
+      },
+      "all": {
+        "played": 34,
+        "win": 8,
+        "draw": 10,
+        "lose": 16
+      },
+      "goals": {
+        "for": 34,
+        "against": 44
+      },
+      "goalsDiff": -10,
+      "points": 34,
+      "form": "W,W,W,L,D"
+    },
+    {
+      "rank": 16,
+      "team": {
+        "name": "Nice"
+      },
+      "all": {
+        "played": 34,
+        "win": 7,
+        "draw": 11,
+        "lose": 16
+      },
+      "goals": {
+        "for": 37,
+        "against": 60
+      },
+      "goalsDiff": -23,
+      "points": 32,
+      "form": "D,L,D,D,D"
+    },
+    {
+      "rank": 17,
+      "team": {
+        "name": "Nantes"
+      },
+      "all": {
+        "played": 33,
+        "win": 5,
+        "draw": 8,
+        "lose": 20
+      },
+      "goals": {
+        "for": 29,
+        "against": 52
+      },
+      "goalsDiff": -23,
+      "points": 23,
+      "form": "L,W,L,L,D"
+    },
+    {
+      "rank": 18,
+      "team": {
+        "name": "Metz"
+      },
+      "all": {
+        "played": 34,
+        "win": 3,
+        "draw": 8,
+        "lose": 23
+      },
+      "goals": {
+        "for": 32,
+        "against": 76
+      },
+      "goalsDiff": -44,
+      "points": 17,
+      "form": "D,L,L,D,L"
     }
   ],
   "serieA": [
