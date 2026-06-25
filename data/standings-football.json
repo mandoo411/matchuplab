@@ -1,5 +1,234 @@
 {
-  "kLeague": null,
+  "kLeague": [
+    {
+      "rank": 1,
+      "team": {
+        "name": "FC서울"
+      },
+      "all": {
+        "played": 15,
+        "win": 10,
+        "draw": 2,
+        "lose": 3
+      },
+      "goals": {
+        "for": 27,
+        "against": 12
+      },
+      "goalsDiff": 15,
+      "points": 32,
+      "form": null
+    },
+    {
+      "rank": 2,
+      "team": {
+        "name": "울산 HD"
+      },
+      "all": {
+        "played": 15,
+        "win": 8,
+        "draw": 2,
+        "lose": 5
+      },
+      "goals": {
+        "for": 22,
+        "against": 20
+      },
+      "goalsDiff": 2,
+      "points": 26,
+      "form": null
+    },
+    {
+      "rank": 3,
+      "team": {
+        "name": "전북 현대"
+      },
+      "all": {
+        "played": 15,
+        "win": 7,
+        "draw": 5,
+        "lose": 3
+      },
+      "goals": {
+        "for": 21,
+        "against": 12
+      },
+      "goalsDiff": 9,
+      "points": 26,
+      "form": null
+    },
+    {
+      "rank": 4,
+      "team": {
+        "name": "강원 FC"
+      },
+      "all": {
+        "played": 15,
+        "win": 6,
+        "draw": 6,
+        "lose": 3
+      },
+      "goals": {
+        "for": 19,
+        "against": 10
+      },
+      "goalsDiff": 9,
+      "points": 24,
+      "form": null
+    },
+    {
+      "rank": 5,
+      "team": {
+        "name": "포항 스틸러스"
+      },
+      "all": {
+        "played": 15,
+        "win": 6,
+        "draw": 4,
+        "lose": 5
+      },
+      "goals": {
+        "for": 12,
+        "against": 12
+      },
+      "goalsDiff": 0,
+      "points": 22,
+      "form": null
+    },
+    {
+      "rank": 6,
+      "team": {
+        "name": "인천 유나이티드"
+      },
+      "all": {
+        "played": 15,
+        "win": 6,
+        "draw": 3,
+        "lose": 6
+      },
+      "goals": {
+        "for": 21,
+        "against": 17
+      },
+      "goalsDiff": 4,
+      "points": 21,
+      "form": null
+    },
+    {
+      "rank": 7,
+      "team": {
+        "name": "FC안양"
+      },
+      "all": {
+        "played": 15,
+        "win": 4,
+        "draw": 8,
+        "lose": 3
+      },
+      "goals": {
+        "for": 19,
+        "against": 16
+      },
+      "goalsDiff": 3,
+      "points": 20,
+      "form": null
+    },
+    {
+      "rank": 8,
+      "team": {
+        "name": "제주SK FC"
+      },
+      "all": {
+        "played": 15,
+        "win": 5,
+        "draw": 3,
+        "lose": 7
+      },
+      "goals": {
+        "for": 13,
+        "against": 16
+      },
+      "goalsDiff": -3,
+      "points": 18,
+      "form": null
+    },
+    {
+      "rank": 9,
+      "team": {
+        "name": "부천 FC"
+      },
+      "all": {
+        "played": 15,
+        "win": 4,
+        "draw": 5,
+        "lose": 6
+      },
+      "goals": {
+        "for": 11,
+        "against": 15
+      },
+      "goalsDiff": -4,
+      "points": 17,
+      "form": null
+    },
+    {
+      "rank": 10,
+      "team": {
+        "name": "대전 하나 시티즌"
+      },
+      "all": {
+        "played": 15,
+        "win": 4,
+        "draw": 4,
+        "lose": 7
+      },
+      "goals": {
+        "for": 17,
+        "against": 16
+      },
+      "goalsDiff": 1,
+      "points": 16,
+      "form": null
+    },
+    {
+      "rank": 11,
+      "team": {
+        "name": "김천 상무"
+      },
+      "all": {
+        "played": 15,
+        "win": 2,
+        "draw": 8,
+        "lose": 5
+      },
+      "goals": {
+        "for": 15,
+        "against": 21
+      },
+      "goalsDiff": -6,
+      "points": 14,
+      "form": null
+    },
+    {
+      "rank": 12,
+      "team": {
+        "name": "광주 FC"
+      },
+      "all": {
+        "played": 15,
+        "win": 1,
+        "draw": 4,
+        "lose": 10
+      },
+      "goals": {
+        "for": 7,
+        "against": 37
+      },
+      "goalsDiff": -30,
+      "points": 7,
+      "form": null
+    }
+  ],
   "epl": [
     {
       "rank": 1,
