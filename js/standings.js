@@ -295,10 +295,7 @@
         <td>${team.loss}</td>
         <td>${team.played}</td>
         <td>${team.streak}</td>
-        <td>${team.battingAvg}</td>
-        <td>${team.era}</td>
         <td><div class="form-row">${buildFormIcons(team.form)}</div></td>
-        <td class="next-match">${formatNextMatch(team)}</td>
       </tr>`;
   }
 
@@ -314,10 +311,7 @@
       <th>패</th>
       <th>경기</th>
       <th>연속</th>
-      <th>타율</th>
-      <th>평균자책</th>
-      <th>최근5</th>
-      <th>다음경기</th>`;
+      <th>최근5</th>`;
   }
 
   function buildNpbLegend() {
