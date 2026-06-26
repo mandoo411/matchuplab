@@ -161,7 +161,6 @@
         <td class="${diffClass}">${formatGoalDiff(team.goalDiff)}</td>
         <td><strong>${team.points}</strong></td>
         <td><div class="form-row">${buildFormIcons(team.form)}</div></td>
-        <td class="next-match">${formatNextMatch(team)}</td>
       </tr>`;
   }
 
@@ -414,8 +413,7 @@
       <th>실점</th>
       <th>득실</th>
       <th>승점</th>
-      <th>최근5</th>
-      <th>다음경기</th>`;
+      <th>최근5</th>`;
 
     const headWinRate = `
       <th class="col-sticky col-sticky-rank">순위</th>
