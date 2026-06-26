@@ -177,7 +177,7 @@ async function fetchKboLive() {
       if (idx < 2) {
         console.warn(
           `[debug] kbo block ${idx}: rawA=${JSON.stringify(rawA)} rawB=${JSON.stringify(rawB)} ` +
-          `leftTeamHtml=${JSON.stringify(leftTeamHtml.slice(0, 120))} rightTeamHtml=${JSON.stringify(rightTeamHtml.slice(0, 120))}`
+          `blockSample=${JSON.stringify(block.slice(0, 400).replace(/\s+/g, ' '))}`
         );
       }
       if (!rawA || !rawB) return;
