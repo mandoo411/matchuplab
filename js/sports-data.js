@@ -1350,7 +1350,7 @@ var STANDINGS_DATA = STANDINGS_DUMMY_DATA;
 // ============================================
 // 라이브스코어 더미 데이터
 // ============================================
-const LIVESCORE_DATA = {
+const LIVESCORE_DUMMY_DATA = {
   football: {
     kLeague: [
       { id: 'live-fb-k1', teamA: '울산 HD', teamB: '전북 현대', status: 'live', scoreA: 1, scoreB: 0, display: "65'" },
@@ -1403,3 +1403,5 @@ const LIVESCORE_DATA = {
     ],
   },
 };
+/** 활성 라이브스코어 데이터 — livescore-loader.js가 JSON fetch 후 갱신 */
+var LIVESCORE_DATA = LIVESCORE_DUMMY_DATA;

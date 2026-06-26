@@ -109,7 +109,31 @@
       .join('');
   }
 
-  function init() {
+  const LIVE_REFRESH_INTERVAL_MS = 30000;
+
+  function showLivescoreLoading() {
+    if (!livescoreListEl) return;
+    livescoreListEl.innerHTML = `
+      <div class="empty-matches" role="status" aria-live="polite">
+        <p>실시간 경기 정보를 불러오는 중...</p>
+      </div>`;
+  }
+
+  function startLiveRefresh() {
+    if (typeof MatchUpLivescoreLoader === 'undefined') return;
+    setInterval(async () => {
+      await MatchUpLivescoreLoader.load();
+      renderLivescoreList();
+    }, LIVE_REFRESH_INTERVAL_MS);
+  }
+
+  async function init() {
+    showLivescoreLoading();
+
+    if (typeof MatchUpLivescoreLoader !== 'undefined') {
+      await MatchUpLivescoreLoader.load();
+    }
+
     MatchUpTabs.init({
       onChange: () => {
         renderLivescoreList();
@@ -117,6 +141,7 @@
     });
     renderStatusFilter();
     renderLivescoreList();
+    startLiveRefresh();
   }
 
   if (document.readyState === 'loading') {
