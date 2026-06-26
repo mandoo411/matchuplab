@@ -158,6 +158,12 @@ async function fetchKboLive() {
     const html = await res.text();
 
     const blocks = html.split(/<div[^>]*class="[^"]*\bsmsScore\b[^"]*"[^>]*>/i).slice(1);
+    if (blocks.length === 0) {
+      console.warn(
+        `[debug] kbo: no smsScore blocks. gameDate=${gameDate} htmlLen=${html.length} ` +
+        `hasSmsScore=${html.includes('smsScore')} sample=${html.slice(0, 200).replace(/\s+/g, ' ')}`
+      );
+    }
     const games = [];
 
     blocks.forEach((rest, idx) => {
