@@ -6,12 +6,12 @@
         "name": "LG 트윈스"
       },
       "win": 47,
-      "loss": 27,
+      "loss": 28,
       "draw": 0,
-      "played": 74,
-      "win_rate": "0.635",
+      "played": 75,
+      "win_rate": "0.627",
       "gamesBack": "0.0",
-      "streak": "1패"
+      "streak": "2패"
     },
     {
       "rank": 2,
@@ -19,25 +19,25 @@
         "name": "KT 위즈"
       },
       "win": 43,
-      "loss": 29,
+      "loss": 30,
       "draw": 1,
-      "played": 73,
-      "win_rate": "0.597",
+      "played": 74,
+      "win_rate": "0.589",
       "gamesBack": "3.0",
-      "streak": "1승"
+      "streak": "1패"
     },
     {
       "rank": 3,
       "team": {
         "name": "삼성 라이온즈"
       },
-      "win": 41,
+      "win": 42,
       "loss": 30,
       "draw": 2,
-      "played": 73,
-      "win_rate": "0.577",
-      "gamesBack": "4.5",
-      "streak": "1승"
+      "played": 74,
+      "win_rate": "0.583",
+      "gamesBack": "3.5",
+      "streak": "2승"
     },
     {
       "rank": 4,
@@ -45,64 +45,64 @@
         "name": "KIA 타이거즈"
       },
       "win": 41,
-      "loss": 33,
+      "loss": 34,
       "draw": 1,
-      "played": 75,
-      "win_rate": "0.554",
+      "played": 76,
+      "win_rate": "0.547",
       "gamesBack": "6.0",
-      "streak": "4승"
+      "streak": "1패"
     },
     {
       "rank": 5,
       "team": {
         "name": "두산 베어스"
       },
-      "win": 36,
+      "win": 37,
       "loss": 37,
       "draw": 2,
-      "played": 75,
-      "win_rate": "0.493",
-      "gamesBack": "10.5",
-      "streak": "2승"
+      "played": 76,
+      "win_rate": "0.500",
+      "gamesBack": "9.5",
+      "streak": "3승"
     },
     {
       "rank": 6,
       "team": {
         "name": "한화 이글스"
       },
-      "win": 34,
+      "win": 35,
       "loss": 37,
       "draw": 2,
-      "played": 73,
-      "win_rate": "0.479",
-      "gamesBack": "11.5",
-      "streak": "2패"
+      "played": 74,
+      "win_rate": "0.486",
+      "gamesBack": "10.5",
+      "streak": "1승"
     },
     {
       "rank": 7,
       "team": {
         "name": "NC 다이노스"
       },
-      "win": 33,
+      "win": 34,
       "loss": 38,
       "draw": 1,
-      "played": 72,
-      "win_rate": "0.465",
-      "gamesBack": "12.5",
-      "streak": "1승"
+      "played": 73,
+      "win_rate": "0.472",
+      "gamesBack": "11.5",
+      "streak": "2승"
     },
     {
       "rank": 8,
       "team": {
         "name": "롯데 자이언츠"
       },
-      "win": 31,
+      "win": 32,
       "loss": 40,
       "draw": 2,
-      "played": 73,
-      "win_rate": "0.437",
-      "gamesBack": "14.5",
-      "streak": "1패"
+      "played": 74,
+      "win_rate": "0.444",
+      "gamesBack": "13.5",
+      "streak": "1승"
     },
     {
       "rank": 9,
@@ -110,12 +110,12 @@
         "name": "SSG 랜더스"
       },
       "win": 30,
-      "loss": 42,
+      "loss": 43,
       "draw": 2,
-      "played": 74,
-      "win_rate": "0.417",
+      "played": 75,
+      "win_rate": "0.411",
       "gamesBack": "16.0",
-      "streak": "1패"
+      "streak": "2패"
     },
     {
       "rank": 10,
@@ -123,12 +123,12 @@
         "name": "키움 히어로즈"
       },
       "win": 26,
-      "loss": 49,
+      "loss": 50,
       "draw": 1,
-      "played": 76,
-      "win_rate": "0.347",
+      "played": 77,
+      "win_rate": "0.342",
       "gamesBack": "21.5",
-      "streak": "9패"
+      "streak": "10패"
     }
   ],
   "mlb": {
@@ -139,16 +139,16 @@
           "name": "Yankees"
         },
         "games": {
-          "played": 79
+          "played": 80
         },
         "wins": {
           "total": 48,
-          "percentage": ".608"
+          "percentage": ".600"
         },
         "loses": {
-          "total": 31
+          "total": 32
         },
-        "streak": "W2",
+        "streak": "L1",
         "gamesBack": "-"
       },
       {
@@ -167,7 +167,7 @@
           "total": 33
         },
         "streak": "W2",
-        "gamesBack": "2.5"
+        "gamesBack": "2.0"
       },
       {
         "position": 3,
@@ -175,16 +175,16 @@
           "name": "Blue Jays"
         },
         "games": {
-          "played": 80
+          "played": 81
         },
         "wins": {
           "total": 39,
-          "percentage": ".488"
+          "percentage": ".481"
         },
         "loses": {
-          "total": 41
+          "total": 42
         },
-        "streak": "L2",
+        "streak": "L3",
         "gamesBack": "9.5"
       },
       {
@@ -203,7 +203,7 @@
           "total": 44
         },
         "streak": "L2",
-        "gamesBack": "11.5"
+        "gamesBack": "11.0"
       },
       {
         "position": 5,
@@ -211,17 +211,17 @@
           "name": "Red Sox"
         },
         "games": {
-          "played": 78
+          "played": 79
         },
         "wins": {
-          "total": 32,
-          "percentage": ".410"
+          "total": 33,
+          "percentage": ".418"
         },
         "loses": {
           "total": 46
         },
-        "streak": "L1",
-        "gamesBack": "15.5"
+        "streak": "W1",
+        "gamesBack": "14.5"
       }
     ],
     "AL중부": [
@@ -285,17 +285,17 @@
           "name": "Tigers"
         },
         "games": {
-          "played": 80
+          "played": 81
         },
         "wins": {
           "total": 34,
-          "percentage": ".425"
+          "percentage": ".420"
         },
         "loses": {
-          "total": 46
+          "total": 47
         },
-        "streak": "L2",
-        "gamesBack": "7.5"
+        "streak": "L3",
+        "gamesBack": "8.0"
       },
       {
         "position": 5,
@@ -341,17 +341,17 @@
           "name": "Astros"
         },
         "games": {
-          "played": 82
+          "played": 83
         },
         "wins": {
-          "total": 39,
-          "percentage": ".476"
+          "total": 40,
+          "percentage": ".482"
         },
         "loses": {
           "total": 43
         },
-        "streak": "W2",
-        "gamesBack": "2.0"
+        "streak": "W3",
+        "gamesBack": "1.5"
       },
       {
         "position": 3,
@@ -359,17 +359,17 @@
           "name": "Athletics"
         },
         "games": {
-          "played": 80
+          "played": 81
         },
         "wins": {
-          "total": 38,
-          "percentage": ".475"
+          "total": 39,
+          "percentage": ".481"
         },
         "loses": {
           "total": 42
         },
-        "streak": "L4",
-        "gamesBack": "2.0"
+        "streak": "W1",
+        "gamesBack": "1.5"
       },
       {
         "position": 4,
@@ -377,17 +377,17 @@
           "name": "Rangers"
         },
         "games": {
-          "played": 80
+          "played": 81
         },
         "wins": {
-          "total": 38,
-          "percentage": ".475"
+          "total": 39,
+          "percentage": ".481"
         },
         "loses": {
           "total": 42
         },
-        "streak": "L2",
-        "gamesBack": "2.0"
+        "streak": "W1",
+        "gamesBack": "1.5"
       },
       {
         "position": 5,
@@ -434,17 +434,17 @@
           "name": "Phillies"
         },
         "games": {
-          "played": 80
+          "played": 81
         },
         "wins": {
-          "total": 44,
-          "percentage": ".550"
+          "total": 45,
+          "percentage": ".556"
         },
         "loses": {
           "total": 36
         },
-        "streak": "W2",
-        "gamesBack": "4.5"
+        "streak": "W3",
+        "gamesBack": "4.0"
       },
       {
         "position": 3,
@@ -470,17 +470,17 @@
           "name": "Nationals"
         },
         "games": {
-          "played": 81
+          "played": 82
         },
         "wins": {
           "total": 41,
-          "percentage": ".506"
+          "percentage": ".500"
         },
         "loses": {
-          "total": 40
+          "total": 41
         },
-        "streak": "L2",
-        "gamesBack": "8.0"
+        "streak": "L3",
+        "gamesBack": "8.5"
       },
       {
         "position": 5,
@@ -488,17 +488,17 @@
           "name": "Mets"
         },
         "games": {
-          "played": 80
+          "played": 81
         },
         "wins": {
           "total": 34,
-          "percentage": ".425"
+          "percentage": ".420"
         },
         "loses": {
-          "total": 46
+          "total": 47
         },
-        "streak": "L5",
-        "gamesBack": "14.5"
+        "streak": "L6",
+        "gamesBack": "15.0"
       }
     ],
     "NL중부": [
@@ -523,6 +523,24 @@
       {
         "position": 2,
         "team": {
+          "name": "Cubs"
+        },
+        "games": {
+          "played": 81
+        },
+        "wins": {
+          "total": 44,
+          "percentage": ".543"
+        },
+        "loses": {
+          "total": 37
+        },
+        "streak": "W4",
+        "gamesBack": "6.5"
+      },
+      {
+        "position": 3,
+        "team": {
           "name": "Cardinals"
         },
         "games": {
@@ -536,24 +554,6 @@
           "total": 36
         },
         "streak": "L2",
-        "gamesBack": "7.0"
-      },
-      {
-        "position": 3,
-        "team": {
-          "name": "Cubs"
-        },
-        "games": {
-          "played": 80
-        },
-        "wins": {
-          "total": 43,
-          "percentage": ".538"
-        },
-        "loses": {
-          "total": 37
-        },
-        "streak": "W3",
         "gamesBack": "7.0"
       },
       {
@@ -654,17 +654,17 @@
           "name": "Giants"
         },
         "games": {
-          "played": 79
+          "played": 80
         },
         "wins": {
           "total": 33,
-          "percentage": ".418"
+          "percentage": ".413"
         },
         "loses": {
-          "total": 46
+          "total": 47
         },
-        "streak": "W2",
-        "gamesBack": "18.0"
+        "streak": "L1",
+        "gamesBack": "18.5"
       },
       {
         "position": 5,
@@ -799,11 +799,11 @@
           "name": "Saitama Seibu Lions"
         },
         "games": {
-          "played": 72
+          "played": 73
         },
         "wins": {
-          "total": 43,
-          "percentage": ".614"
+          "total": 44,
+          "percentage": ".620"
         },
         "loses": {
           "total": 27
@@ -833,14 +833,14 @@
           "name": "Hokkaido Nippon-Ham Fighters"
         },
         "games": {
-          "played": 72
+          "played": 73
         },
         "wins": {
           "total": 40,
-          "percentage": ".556"
+          "percentage": ".548"
         },
         "loses": {
-          "total": 32
+          "total": 33
         },
         "streak": null
       },
