@@ -158,12 +158,10 @@ async function fetchKboLive() {
     const html = await res.text();
 
     const blocks = html.split(/<div[^>]*class="[^"]*\bsmsScore\b[^"]*"[^>]*>/i).slice(1);
-    if (blocks.length === 0) {
-      console.warn(
-        `[debug] kbo: no smsScore blocks. gameDate=${gameDate} htmlLen=${html.length} ` +
-        `hasSmsScore=${html.includes('smsScore')} sample=${html.slice(0, 200).replace(/\s+/g, ' ')}`
-      );
-    }
+    console.warn(
+      `[debug] kbo: blocks=${blocks.length} gameDate=${gameDate} htmlLen=${html.length} ` +
+      `hasSmsScore=${html.includes('smsScore')} sample=${html.slice(0, 200).replace(/\s+/g, ' ')}`
+    );
     const games = [];
 
     blocks.forEach((rest, idx) => {
@@ -176,6 +174,12 @@ async function fetchKboLive() {
 
       const rawA = extractFirst(leftTeamHtml, /<strong[^>]*class="[^"]*\bteamT\b[^"]*"[^>]*>([\s\S]*?)<\/strong>/i);
       const rawB = extractFirst(rightTeamHtml, /<strong[^>]*class="[^"]*\bteamT\b[^"]*"[^>]*>([\s\S]*?)<\/strong>/i);
+      if (idx < 2) {
+        console.warn(
+          `[debug] kbo block ${idx}: rawA=${JSON.stringify(rawA)} rawB=${JSON.stringify(rawB)} ` +
+          `leftTeamHtml=${JSON.stringify(leftTeamHtml.slice(0, 120))} rightTeamHtml=${JSON.stringify(rightTeamHtml.slice(0, 120))}`
+        );
+      }
       if (!rawA || !rawB) return;
 
       const scoreMatches = [...scoreWrapHtml.matchAll(/<em[^>]*class="[^"]*\bscore\b[^"]*"[^>]*>([\s\S]*?)<\/em>/gi)].map((m) =>
