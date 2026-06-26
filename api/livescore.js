@@ -157,35 +157,25 @@ async function fetchKboLive() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const html = await res.text();
 
-    const blocks = html.split(/<div[^>]*class="[^"]*\bsmsScore\b[^"]*"[^>]*>/i).slice(1);
-    console.warn(
-      `[debug] kbo: blocks=${blocks.length} gameDate=${gameDate} htmlLen=${html.length} ` +
-      `hasSmsScore=${html.includes('smsScore')} sample=${html.slice(0, 200).replace(/\s+/g, ' ')}`
-    );
+    const blocks = html.split(/<div[^>]*class=["'][^"']*\bsmsScore\b[^"']*["'][^>]*>/i).slice(1);
     const games = [];
 
     blocks.forEach((rest, idx) => {
-      const block = rest.split(/<div[^>]*class="[^"]*\bsmsScore\b[^"]*"[^>]*>/i)[0];
+      const block = rest.split(/<div[^>]*class=["'][^"']*\bsmsScore\b[^"']*["'][^>]*>/i)[0];
 
-      const leftTeamHtml = block.match(/<p[^>]*class="[^"]*\bleftTeam\b[^"]*"[^>]*>([\s\S]*?)<\/p>/i)?.[1] || '';
-      const rightTeamHtml = block.match(/<p[^>]*class="[^"]*\brightTeam\b[^"]*"[^>]*>([\s\S]*?)<\/p>/i)?.[1] || '';
-      const scoreWrapHtml = block.match(/<div[^>]*class="[^"]*\bscore_wrap\b[^"]*"[^>]*>([\s\S]*?)<\/div>/i)?.[1] || '';
-      const placeHtml = block.match(/<p[^>]*class="[^"]*\bplace\b[^"]*"[^>]*>([\s\S]*?)<\/p>/i)?.[1] || '';
+      const leftTeamHtml = block.match(/<p[^>]*class=["'][^"']*\bleftTeam\b[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1] || '';
+      const rightTeamHtml = block.match(/<p[^>]*class=["'][^"']*\brightTeam\b[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1] || '';
+      const scoreWrapHtml = block.match(/<div[^>]*class=["'][^"']*\bscore_wrap\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i)?.[1] || '';
+      const placeHtml = block.match(/<p[^>]*class=["'][^"']*\bplace\b[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1] || '';
 
-      const rawA = extractFirst(leftTeamHtml, /<strong[^>]*class="[^"]*\bteamT\b[^"]*"[^>]*>([\s\S]*?)<\/strong>/i);
-      const rawB = extractFirst(rightTeamHtml, /<strong[^>]*class="[^"]*\bteamT\b[^"]*"[^>]*>([\s\S]*?)<\/strong>/i);
-      if (idx < 2) {
-        console.warn(
-          `[debug] kbo block ${idx}: rawA=${JSON.stringify(rawA)} rawB=${JSON.stringify(rawB)} ` +
-          `blockSample=${JSON.stringify(block.slice(0, 400).replace(/\s+/g, ' '))}`
-        );
-      }
+      const rawA = extractFirst(leftTeamHtml, /<strong[^>]*class=["'][^"']*\bteamT\b[^"']*["'][^>]*>([\s\S]*?)<\/strong>/i);
+      const rawB = extractFirst(rightTeamHtml, /<strong[^>]*class=["'][^"']*\bteamT\b[^"']*["'][^>]*>([\s\S]*?)<\/strong>/i);
       if (!rawA || !rawB) return;
 
-      const scoreMatches = [...scoreWrapHtml.matchAll(/<em[^>]*class="[^"]*\bscore\b[^"]*"[^>]*>([\s\S]*?)<\/em>/gi)].map((m) =>
+      const scoreMatches = [...scoreWrapHtml.matchAll(/<em[^>]*class=["'][^"']*\bscore\b[^"']*["'][^>]*>([\s\S]*?)<\/em>/gi)].map((m) =>
         stripTags(m[1])
       );
-      const flagText = extractFirst(scoreWrapHtml, /<strong[^>]*class="[^"]*\bflag\b[^"]*"[^>]*>([\s\S]*?)<\/strong>/i);
+      const flagText = extractFirst(scoreWrapHtml, /<strong[^>]*class=["'][^"']*\bflag\b[^"']*["'][^>]*>([\s\S]*?)<\/strong>/i);
       const timeText = stripTags(placeHtml);
 
       const teamA = KBO_TEAM_FULL_NAME[rawA] || rawA;
