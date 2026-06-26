@@ -170,6 +170,11 @@ async function fetchKboLive() {
 
       const rawA = extractFirst(leftTeamHtml, /<strong[^>]*class=["'][^"']*\bteamT\b[^"']*["'][^>]*>([\s\S]*?)<\/strong>/i);
       const rawB = extractFirst(rightTeamHtml, /<strong[^>]*class=["'][^"']*\bteamT\b[^"']*["'][^>]*>([\s\S]*?)<\/strong>/i);
+      console.warn(
+        `[debug2] kbo block ${idx}: rawA=${JSON.stringify(rawA)} rawB=${JSON.stringify(rawB)} ` +
+        `leftLen=${leftTeamHtml.length} rightLen=${rightTeamHtml.length} blockLen=${block.length} ` +
+        `blockTail=${JSON.stringify(block.slice(-300).replace(/\s+/g, ' '))}`
+      );
       if (!rawA || !rawB) return;
 
       const scoreMatches = [...scoreWrapHtml.matchAll(/<em[^>]*class=["'][^"']*\bscore\b[^"']*["'][^>]*>([\s\S]*?)<\/em>/gi)].map((m) =>
