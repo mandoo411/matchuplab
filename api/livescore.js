@@ -143,8 +143,14 @@ function extractFirst(html, regex) {
 
 async function fetchKboLive() {
   try {
+    // ScoreBoard.aspx는 gameDate 쿼리 파라미터 없이 GET하면 ASP.NET 세션/뷰스테이트가
+    // 없는 상태로 처리되어 날짜가 어긋나고 "데이터가 존재하지 않습니다"로 빈 화면을
+    // 반환한다(실제로 확인됨: 무파라미터 요청은 스테일 상태를 반환, ?gameDate=YYYYMMDD를
+    // 붙이면 해당 날짜의 실제 경기 목록을 정상적으로 반환). 그래서 한국 시간 기준 오늘
+    // 날짜를 명시적으로 넘긴다.
+    const gameDate = todayInTZ('Asia/Seoul').replace(/-/g, '');
     const res = await timeoutFetch(
-      'https://www.koreabaseball.com/Schedule/ScoreBoard.aspx',
+      `https://www.koreabaseball.com/Schedule/ScoreBoard.aspx?gameDate=${gameDate}`,
       { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MatchUpLabBot/1.0; +https://matchuplab-six.vercel.app)' } },
       8000
     );
